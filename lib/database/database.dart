@@ -228,7 +228,7 @@ final List<Map<String, String>> Draw_data = [
   {"name": "Dynamo Kyiv", "photo": "assets/main/logos/Dynamo Kyiv.png"},
   {"name": "Dynamo Moscow", "photo": "assets/main/logos/Dynamo Moscow.png"},
   {"name": "Eintracht Frankfurt", "photo": "assets/main/logos/Eintracht Frankfurt.png"},
-  {"name": "El Dakhleya", "photo": "assets/main/logos/El Dakhleya.png"},
+  {"name": "El Dakhleya", "photo": "assets/main/logos/El Dakhleya .png"},
   {"name": "ENPPI", "photo": "assets/main/logos/ENPPI.png"},
   {"name": "Everton FC", "photo": "assets/main/logos/Everton FC.png"},
   {"name": "Excelsior Rotterdam", "photo": "assets/main/logos/Excelsior Rotterdam.png"},

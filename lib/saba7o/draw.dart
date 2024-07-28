@@ -46,7 +46,7 @@ class _DrawState extends State<Draw> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam== 'Blue Team'? Colors.blue:Colors.red,
+          backgroundColor: winningTeam == 'Blue Team' ? Colors.blue : Colors.red,
           content: Text(
             winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -98,120 +98,134 @@ class _DrawState extends State<Draw> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: Stack(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+            Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: Text(
-                            gameRedScore.toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                      Column(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Text(
+                                gameRedScore.toString(),
+                                style: TextStyle(color: Colors.white, fontSize: 25),
+                              ),
+                            ),
                           ),
-                        ),
+                          IconButton(
+                            icon: Icon(Icons.add, color: Colors.red),
+                            onPressed: () {
+                              setState(() {
+                                gameRedScore++;
+                                questionsNumber++;
+                                _checkGameEnd();
+                              });
+                            },
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(Icons.add, color: Colors.red),
-                        onPressed: () {
-                          setState(() {
-                            gameRedScore++;
-                            questionsNumber++;
-                            _checkGameEnd();
-
-                          });
-                        },
+                      Text(
+                        'Question No.${questionsNumber + 1}',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Text(
+                                gameBlueScore.toString(),
+                                style: TextStyle(color: Colors.white, fontSize: 25),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.add, color: Colors.blue),
+                            onPressed: () {
+                              setState(() {
+                                gameBlueScore++;
+                                questionsNumber++;
+                                _checkGameEnd();
+                              });
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  Text(
-                    'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: Text(
-                            gameBlueScore.toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 25),
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.add, color: Colors.blue),
-                        onPressed: () {
-                          setState(() {
-                            gameBlueScore++;
-                            questionsNumber++;
-                            _checkGameEnd();
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.symmetric(vertical: 20),
-              child: Center(
-                child: Text(
-                  Draw_data[randomNumbers[questionsNumber]]['name'] as String,
-                  style: TextStyle(fontSize: 40),
                 ),
-              ),
-            ),
-            Image(image: AssetImage("assets/main/logos/AC Milan.png")),
-            SizedBox(height: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: changeQuestion,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.green,
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text('Change the question'),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  child: Center(
+                    child: Text(
+                      Draw_data[randomNumbers[questionsNumber]]['name'] as String,
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DrawingPage()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blueGrey,
+                Container(
+                  child: ClipRRect(
+                    child: Image(
+                      image: AssetImage(Draw_data[randomNumbers[questionsNumber]]['photo'] as String),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  child: Text('Drawing Page'),
                 ),
               ],
+            ),
+            Positioned(
+              bottom: 50,
+              left: 10,
+              right: 150,
+              child: ElevatedButton(
+                onPressed: changeQuestion,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green,
+                ),
+                child: Text('Change the question'),
+              ),
+            ),
+            Positioned(
+              bottom: 50,
+              right: 20,
+              left: 200,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DrawingPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blueGrey,
+                ),
+                child: Icon(Icons.draw_rounded),
+              ),
             ),
           ],
         ),
