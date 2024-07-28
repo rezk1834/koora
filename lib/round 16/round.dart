@@ -95,7 +95,7 @@ class _RoundScreenState extends State<RoundScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Round of $_roundNumber'),
+        title: Text('عارف انه لسه محتاج تعديل'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

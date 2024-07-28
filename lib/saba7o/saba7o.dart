@@ -26,11 +26,14 @@ class _saba7oState extends State<saba7o> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('صباحو تحدي', style: TextStyle(fontSize: 40),),
+        title: Text(
+          'صباحو تحدي',
+          style: TextStyle(fontSize: 40),
+        ),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 8,top: 20,right: 8,bottom: 8),
+        padding: const EdgeInsets.only(left: 8, top: 20, right: 8, bottom: 8),
         child: Column(
           children: [
             Padding(
@@ -38,15 +41,22 @@ class _saba7oState extends State<saba7o> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('  Score ', style: TextStyle(fontSize: 35),),
-                  scoreContainer(red_score.toString(), Colors.red,30),
-                  scoreContainer(blue_score.toString(), Colors.blue,30),
+                  Text(
+                    '  Score ',
+                    style: TextStyle(fontSize: 35),
+                  ),
+                  scoreContainer(red_score.toString(), Colors.red, 30),
+                  scoreContainer(blue_score.toString(), Colors.blue, 30),
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             Expanded(
-              child: ListView.builder(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1,
+                ),
                 itemCount: saba7o_categories.length,
                 itemBuilder: (context, index) {
                   return Square(
@@ -56,7 +66,6 @@ class _saba7oState extends State<saba7o> {
                     blue_score: blue_score,
                     path: saba7o_categories[index]['path']!,
                     updateScores: updateScores,
-
                   );
                 },
               ),

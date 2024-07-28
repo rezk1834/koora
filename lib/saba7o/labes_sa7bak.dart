@@ -44,11 +44,8 @@ class _labesSa7bakState extends State<labesSa7bak> {
 
   void nextQuestion() {
     setState(() {
-      if (questionsNumber < randomNumbers.length - 1) {
-        questionsNumber++;
-      } else {
-        questionsNumber = 0; // or handle as per your game logic
-      }
+      questionsNumber++;
+      _checkGameEnd();
       timerKey = UniqueKey();
     });
   }

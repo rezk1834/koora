@@ -128,17 +128,11 @@ import '../saba7o/ehdeb.dart';
                 ),
               ],
             ),
-            child: Stack(
-              children: [
-                Positioned(
-                  right: 10,
-                  bottom: 10,
-                  child: Text(
-                    widget.child,
-                    style: TextStyle(fontSize: 45, color: Colors.white),
-                  ),
-                ),
-              ],
+            child: Center(
+              child: Text(
+                widget.child,
+                style: TextStyle(fontSize: 30, color: Colors.white,fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ),

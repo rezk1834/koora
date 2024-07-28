@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../database/database.dart';
 import '../database/saba7o database/guess_the_player_data.dart';
 
 class GuessThePlayer extends StatefulWidget {
@@ -46,29 +45,13 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
 
   void draw() {
     setState(() {
-      if (questionsNumber < 2) {
-        questionsNumber++;
-        clueNumber = 0;
-        showName = false;
-      } else {
-        _endGame();
-      }
+      questionsNumber++;
+      clueNumber = 0;
+      showName = false;
+      _checkGameEnd();
     });
   }
 
-  void _endGame() {
-    if (gameRedScore > gameBlueScore) {
-      redScore++;
-      _showWinnerDialog('Red Team');
-    } else if (gameRedScore < gameBlueScore) {
-      blueScore++;
-      _showWinnerDialog('Blue Team');
-    } else {
-      redScore++;
-      blueScore++;
-      _showWinnerDialog('Draw');
-    }
-  }
 
   void _showWinnerDialog(String winningTeam) {
     showDialog(
@@ -77,7 +60,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
         return AlertDialog(
           backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
           content: Text(
-            '$winningTeam wins!',
+            winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
           ),
         );
@@ -88,6 +71,21 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
       Navigator.pop(context); // Close the alert dialog
       Navigator.pop(context, [redScore, blueScore]); // Navigate back
     });
+  }
+
+  void _checkGameEnd() {
+    if (questionsNumber == 3) {
+      questionsNumber--;
+      if (gameRedScore > gameBlueScore) {
+        redScore++;
+        _showWinnerDialog('Red Team');
+      } else if (gameRedScore < gameBlueScore) {
+        blueScore++;
+        _showWinnerDialog('Blue Team');
+      } else {
+        _showWinnerDialog('Draw');
+      }
+    }
   }
 
   void changeQuestion() {
@@ -103,8 +101,10 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
     Map<String, String> currentPlayerData = guessThePlayer_data[randomNumbers[questionsNumber]];
 
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Guess The Player Page'),
+        title:  Text('من اللاعب', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -136,13 +136,10 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         onPressed: () {
                           setState(() {
                             gameRedScore++;
-                            if (gameRedScore == 2) {
-                              _endGame();
-                            } else {
-                              questionsNumber++;
-                              clueNumber = 0;
-                              showName = false;
-                            }
+                            questionsNumber++;
+                            clueNumber = 0;
+                            showName = false;
+                           _checkGameEnd();
                           });
                         },
                       ),
@@ -150,7 +147,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                   ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
                   ),
                   Column(
                     children: [
@@ -173,13 +170,10 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         onPressed: () {
                           setState(() {
                             gameBlueScore++;
-                            if (gameBlueScore == 2) {
-                              _endGame();
-                            } else {
-                              questionsNumber++;
-                              clueNumber = 0;
-                              showName = false;
-                            }
+                            questionsNumber++;
+                            clueNumber = 0;
+                            showName = false;
+                            _checkGameEnd();
                           });
                         },
                       ),
