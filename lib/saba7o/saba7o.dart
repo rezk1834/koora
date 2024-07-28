@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../components/saba7o_square.dart';
+import '../components/square.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
 
@@ -49,7 +49,7 @@ class _saba7oState extends State<saba7o> {
               child: ListView.builder(
                 itemCount: saba7o_categories.length,
                 itemBuilder: (context, index) {
-                  return saba7o_square(
+                  return Square(
                     child: saba7o_categories[index]['title']!,
                     pic: saba7o_categories[index]['image']!,
                     red_score: red_score,

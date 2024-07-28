@@ -1,4 +1,4 @@
-name: koora
+name: football
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -76,6 +76,7 @@ flutter:
     - assets/saba7o/
     - assets/saba7o/men_fe_elsora/
     - assets/aqua ta7ady/
+    - assets/teams/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

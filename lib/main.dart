@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/saba7o': (context) => saba7o(),
         '/aqua': (context) => aqua(),
         '/challenge': (context) => challenge(),
-        '/round': (context) => round(),
+        '/round': (context) => NameEntryScreen(),
 
       },
     );

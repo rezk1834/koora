@@ -185,7 +185,7 @@ class _DrawState extends State<Draw> {
                 ),
               ),
             ),
-            Image(image: AssetImage("assets/main/img.png")),
+            Image(image: AssetImage(Draw_data[randomNumbers[questionsNumber]]['photo'] as String,)),
             SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

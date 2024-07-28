@@ -3,7 +3,12 @@
   import 'package:football/saba7o/password.dart';
   import 'package:football/saba7o/rondo.dart';
   import 'package:football/saba7o/whisper.dart';
-  import '../saba7o/acting.dart';
+  import '../30 challenge/Career.dart';
+import '../30 challenge/TheBell.dart';
+import '../30 challenge/TheImpossible.dart';
+import '../30 challenge/TheMazad.dart';
+import '../30 challenge/WDYK.dart';
+import '../saba7o/acting.dart';
   import '../saba7o/draw.dart';
 import '../saba7o/ehdeb.dart';
   import '../saba7o/ekdeb.dart';
@@ -15,7 +20,7 @@ import '../saba7o/ehdeb.dart';
   import '../saba7o/bank.dart';
   import '../saba7o/seconds.dart';
 
-  class saba7o_square extends StatefulWidget {
+  class Square extends StatefulWidget {
     final String child;
     final String pic;
     final int red_score;
@@ -23,7 +28,7 @@ import '../saba7o/ehdeb.dart';
     final String path;
     final Function(int, int) updateScores;
 
-    saba7o_square({
+    Square({
       super.key,
       required this.child,
       required this.pic,
@@ -34,10 +39,10 @@ import '../saba7o/ehdeb.dart';
     });
 
     @override
-    State<saba7o_square> createState() => _saba7o_squareState();
+    State<Square> createState() => _SquareState();
   }
 
-  class _saba7o_squareState extends State<saba7o_square> {
+  class _SquareState extends State<Square> {
     Future<void> _navigateToPage(BuildContext context) async {
       final newScores = await Navigator.push(
         context,
@@ -72,6 +77,18 @@ import '../saba7o/ehdeb.dart';
                 return Draw(redScore: widget.red_score, blueScore: widget.blue_score);
               case '/mazad':
                 return Mazad(redScore: widget.red_score, blueScore: widget.blue_score);
+
+
+              case '/wdyk':
+                return WDYK();
+              case '/themazad':
+                return TheMazad();
+              case '/bell':
+                return TheBell();
+              case '/impossible':
+                return TheImpossible();
+              case '/career':
+                return Career();
 
 
               default:
