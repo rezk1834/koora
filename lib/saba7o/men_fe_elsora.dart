@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../database/database.dart';
+import '../database/saba7o database/men_fel_sora_data.dart';
 
 class Men_fe_elsora extends StatefulWidget {
   final int redScore;
@@ -42,20 +44,29 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
     return uniqueNumbers.toList();
   }
 
-  void _endGame(String winningTeam) {
-    if (winningTeam == "Red") {
-      redScore++;
-    } else if (winningTeam == "Blue") {
-      blueScore++;
-    }
 
+
+  void draw() {
+    setState(() {
+      questionsNumber++;
+      _checkGameEnd();
+    });
+  }
+  void toggleAnswer() {
+    showNotifier.value = !showNotifier.value;
+  }
+  void _showWinnerDialog(String winningTeam) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam == 'Blue' ? Colors.blue : Colors.red,
+          backgroundColor: winningTeam == 'Blue Team'
+              ? Colors.blue
+              : winningTeam == 'Red Team'
+              ? Colors.red
+              : Colors.grey,
           content: Text(
-            '$winningTeam Team wins!',
+            winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
           ),
         );
@@ -68,15 +79,30 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
     });
   }
 
-  void toggleAnswer() {
-    showNotifier.value = !showNotifier.value;
+  void _checkGameEnd() {
+    if (questionsNumber == 5) {
+      questionsNumber--;
+      if (gameRedScore > gameBlueScore) {
+        redScore++;
+        _showWinnerDialog('Red Team');
+      } else if (gameRedScore < gameBlueScore) {
+        blueScore++;
+        _showWinnerDialog('Blue Team');
+      } else {
+        redScore++;
+        blueScore++;
+        _showWinnerDialog('Draw');
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Men_fe_elsora Page'),
+        title: Text('مين في الصورة', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -108,11 +134,8 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                         onPressed: () {
                           setState(() {
                             gameRedScore++;
-                            if (gameRedScore == 3) {
-                              _endGame("Red");
-                            } else {
-                              questionsNumber++;
-                            }
+                            questionsNumber++;
+                            _checkGameEnd();
                           });
                         },
                       ),
@@ -120,7 +143,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                   ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
                   ),
                   Column(
                     children: [
@@ -143,11 +166,8 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                         onPressed: () {
                           setState(() {
                             gameBlueScore++;
-                            if (gameBlueScore == 3) {
-                              _endGame("Blue");
-                            } else {
-                              questionsNumber++;
-                            }
+                            questionsNumber++;
+                            _checkGameEnd();
                           });
                         },
                       ),
@@ -161,7 +181,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.all(10),
@@ -173,9 +193,12 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                         style: TextStyle(fontSize: 20),
                       ),
                       SizedBox(height: 20),
-                      Image.asset(
-                        Men_fe_elsora_data[randomNumbers[questionsNumber]]['image'] as String,
-                        fit: BoxFit.cover,
+                      InteractiveViewer(
+                        maxScale: 12,
+                        child: Image.asset(
+                          Men_fe_elsora_data[randomNumbers[questionsNumber]]['image'] as String,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       SizedBox(height: 20),
                       ValueListenableBuilder<bool>(
@@ -192,13 +215,26 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                                       : "",
                                   style: TextStyle(fontSize: 15),
                                 ),
-                              ElevatedButton(
-                                onPressed: toggleAnswer,
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.black,
-                                  backgroundColor: Color(0xfffdca40),
-                                ),
-                                child: Text(show ? 'Hide Answer' : 'Show Answer'),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: draw,
+                                    style: ElevatedButton.styleFrom(
+                                      foregroundColor: Colors.white,
+                                      backgroundColor: Colors.blueGrey,
+                                    ),
+                                    child: Text('Draw'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: toggleAnswer,
+                                    style: ElevatedButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                      backgroundColor: Color(0xfffdca40),
+                                    ),
+                                    child: Text(show ? 'Hide Answer' : 'Show Answer'),
+                                  ),
+                                ],
                               ),
                             ],
                           );

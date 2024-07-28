@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../database/database.dart';
+import '../database/saba7o database/acting_data.dart';
 
 class Acting extends StatefulWidget {
   final int redScore;
@@ -80,6 +81,7 @@ class _ActingState extends State<Acting> {
 
   void _checkGameEnd() {
     if (questionsNumber == 8) {
+      questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
         _showWinnerDialog('Red Team');
@@ -101,8 +103,9 @@ class _ActingState extends State<Acting> {
   @override
   Widget build(BuildContext context) {
     return questionsNumber<8?Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Acting Page'),
+        title: Text('الرسم', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
         centerTitle: true,
       ),
       body: Padding(

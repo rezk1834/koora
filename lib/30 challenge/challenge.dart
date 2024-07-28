@@ -34,17 +34,6 @@ class _challengeState extends State<challenge> {
         padding: const EdgeInsets.only(left: 8,top: 20,right: 8,bottom: 8),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('  Score ', style: TextStyle(fontSize: 35),),
-                  scoreContainer(red_score.toString(), Colors.red),
-                  scoreContainer(blue_score.toString(), Colors.blue),
-                ],
-              ),
-            ),
             SizedBox(height: 10,),
             Expanded(
               child: ListView.builder(

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../database/database.dart';
+import '../database/saba7o database/Ekdeb_data.dart';
 
 class Ekdeb extends StatefulWidget {
   final int redScore;
@@ -28,7 +29,7 @@ class _EkdebState extends State<Ekdeb> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(6, Acting_data.length);
+    randomNumbers = generateUniqueRandomNumbers(5, Ekdeb_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -65,7 +66,7 @@ class _EkdebState extends State<Ekdeb> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam == 'Blue Team' ? Colors.blue : Colors.red,
+          backgroundColor: winningTeam == 'draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
           content: Text(
             winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -82,6 +83,7 @@ class _EkdebState extends State<Ekdeb> {
 
   void _checkGameEnd() {
     if (questionsNumber == 5) {
+      questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
         _showWinnerDialog('Red Team');
@@ -98,10 +100,10 @@ class _EkdebState extends State<Ekdeb> {
   Widget build(BuildContext context) {
     List<int> randomNumbers = generateUniqueRandomNumbers(5, Ekdeb_data.length);
 
-    return questionsNumber < 5
-        ? Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Ekdeb Page'),
+        title:  Text('اكدب صح', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
         centerTitle: true,
       ),
       body: Padding(
@@ -144,7 +146,7 @@ class _EkdebState extends State<Ekdeb> {
                   ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
                   ),
                   Column(
                     children: [
@@ -182,7 +184,7 @@ class _EkdebState extends State<Ekdeb> {
             Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: EdgeInsets.all(10),
@@ -201,7 +203,7 @@ class _EkdebState extends State<Ekdeb> {
                 return Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.all(10),
@@ -255,9 +257,6 @@ class _EkdebState extends State<Ekdeb> {
           ],
         ),
       ),
-    )
-        : Container(
-      color: Colors.white,
     );
   }
 }

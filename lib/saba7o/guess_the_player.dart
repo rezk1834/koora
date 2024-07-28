@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../database/database.dart';
+import '../database/saba7o database/guess_the_player_data.dart';
 
 class GuessThePlayer extends StatefulWidget {
   final int redScore;
@@ -74,7 +75,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam == 'Blue Team' ? Colors.blue : Colors.red,
+          backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
           content: Text(
             '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -136,7 +137,6 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                           setState(() {
                             gameRedScore++;
                             if (gameRedScore == 2) {
-                              redScore++;
                               _endGame();
                             } else {
                               questionsNumber++;
@@ -174,7 +174,6 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                           setState(() {
                             gameBlueScore++;
                             if (gameBlueScore == 2) {
-                              blueScore++;
                               _endGame();
                             } else {
                               questionsNumber++;

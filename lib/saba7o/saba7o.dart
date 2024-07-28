@@ -39,8 +39,8 @@ class _saba7oState extends State<saba7o> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('  Score ', style: TextStyle(fontSize: 35),),
-                  scoreContainer(red_score.toString(), Colors.red),
-                  scoreContainer(blue_score.toString(), Colors.blue),
+                  scoreContainer(red_score.toString(), Colors.red,30),
+                  scoreContainer(blue_score.toString(), Colors.blue,30),
                 ],
               ),
             ),

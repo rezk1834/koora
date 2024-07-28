@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
+import '../database/saba7o database/risk_data.dart';
 
 class Risk extends StatefulWidget {
   final int redScore;
@@ -135,8 +136,10 @@ class _RiskState extends State<Risk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Risk Page'),
+        title: Text('ريسك', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[
@@ -145,8 +148,8 @@ class _RiskState extends State<Risk> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                scoreContainer(gameRedScore.toString(), Colors.red),
-                scoreContainer(gameBlueScore.toString(), Colors.blue),
+                scoreContainer(gameRedScore.toString(), Colors.red,14),
+                scoreContainer(gameBlueScore.toString(), Colors.blue,14),
               ],
             ),
           ),

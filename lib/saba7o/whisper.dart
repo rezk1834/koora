@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../database/database.dart';
+import '../database/saba7o database/whisper_data.dart';
 
 class Whisper extends StatefulWidget {
   final int redScore;
@@ -27,7 +28,7 @@ class _WhisperState extends State<Whisper> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(9, Acting_data.length);
+    randomNumbers = generateUniqueRandomNumbers(9, Whisper_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -54,7 +55,7 @@ class _WhisperState extends State<Whisper> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam== 'Blue Team'? Colors.blue:Colors.red,
+          backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
           content: Text(
             winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -96,8 +97,10 @@ class _WhisperState extends State<Whisper> {
     List<int> randomNumbers = generateUniqueRandomNumbers(8, Whisper_data.length);
 
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Whisper Page'),
+        title: Text('الهمس', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -138,7 +141,7 @@ class _WhisperState extends State<Whisper> {
                     ),
                     Text(
                       'Question No.${questionsNumber + 1}',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
                     ),
                     Column(
                       children: [
@@ -175,7 +178,7 @@ class _WhisperState extends State<Whisper> {
               Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: EdgeInsets.all(10),

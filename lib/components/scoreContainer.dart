@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget scoreContainer(String title, Color color) {
+Widget scoreContainer(String title, Color color,double fontSize) {
   return Container(
     width: 70,
     height: 40,
@@ -11,7 +11,7 @@ Widget scoreContainer(String title, Color color) {
     child: Center(
       child: Text(
         title,
-        style: TextStyle(color: Colors.white, fontSize: 14),
+        style: TextStyle(color: Colors.white, fontSize: fontSize=fontSize),
         textAlign: TextAlign.center,
       ),
     ),

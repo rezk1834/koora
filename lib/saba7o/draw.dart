@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../components/drawingpage.dart';
 import '../database/database.dart';
+import '../database/saba7o database/draw_data.dart';
 
 class Draw extends StatefulWidget {
   final int redScore;
@@ -46,7 +47,7 @@ class _DrawState extends State<Draw> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam == 'Blue Team' ? Colors.blue : Colors.red,
+          backgroundColor: winningTeam == 'draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
           content: Text(
             winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -93,8 +94,10 @@ class _DrawState extends State<Draw> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Draw Page'),
+        title: Text('الرسم', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -174,7 +177,7 @@ class _DrawState extends State<Draw> {
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.all(10),

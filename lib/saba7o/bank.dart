@@ -98,7 +98,8 @@ class _BankState extends State<Bank> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bank Page'),
+        title: Text('بنك', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: Stack(
         children: [
@@ -108,8 +109,8 @@ class _BankState extends State<Bank> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                scoreContainer(redBankScore.toString(), Colors.red),
-                scoreContainer(blueBankScore.toString(), Colors.blue),
+                scoreContainer(redBankScore.toString(), Colors.red,14),
+                scoreContainer(blueBankScore.toString(), Colors.blue,14),
               ],
             ),
           ),
