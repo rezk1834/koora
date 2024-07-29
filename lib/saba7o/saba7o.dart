@@ -22,6 +22,13 @@ class _saba7oState extends State<saba7o> {
     });
   }
 
+  void resetScore() {
+    setState(() {
+      red_score = 0;
+      blue_score = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,48 +37,89 @@ class _saba7oState extends State<saba7o> {
           'صباحو تحدي',
           style: TextStyle(fontSize: 40),
         ),
+        automaticallyImplyLeading: false,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8, top: 20, right: 8, bottom: 8),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 50,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '  Score ',
-                    style: TextStyle(fontSize: 35),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          red_score.toString(),
+                          style: TextStyle(fontSize: 25, color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ),
-                  scoreContainer(red_score.toString(), Colors.red, 30),
-                  scoreContainer(blue_score.toString(), Colors.blue, 30),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.horizontal(right: Radius.circular(15)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          blue_score.toString(),
+                          style: TextStyle(fontSize: 25, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1,
-                ),
-                itemCount: saba7o_categories.length,
-                itemBuilder: (context, index) {
-                  return Square(
-                    child: saba7o_categories[index]['title']!,
-                    pic: saba7o_categories[index]['image']!,
-                    red_score: red_score,
-                    blue_score: blue_score,
-                    path: saba7o_categories[index]['path']!,
-                    updateScores: updateScores,
-                  );
-                },
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8, top: 20, right: 8, bottom: 8),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1,
+                      ),
+                      itemCount: saba7o_categories.length,
+                      itemBuilder: (context, index) {
+                        return Square(
+                          child: saba7o_categories[index]['title']!,
+                          pic: saba7o_categories[index]['image']!,
+                          red_score: red_score,
+                          blue_score: blue_score,
+                          path: saba7o_categories[index]['path']!,
+                          updateScores: updateScores,
+                        );
+                      },
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: resetScore,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.green,
+                    ),
+                    child: Text(
+                      'Reset the score',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily:"Amiri",
       ),
-      home: home_screen(),
+      home: saba7o(),
       routes: {
         '/saba7o': (context) => saba7o(),
         '/aqua': (context) => aqua(),
