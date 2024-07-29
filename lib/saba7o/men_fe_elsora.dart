@@ -49,6 +49,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
   void draw() {
     setState(() {
       questionsNumber++;
+      showNotifier.value = false;
       _checkGameEnd();
     });
   }
@@ -80,6 +81,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
   }
 
   void _checkGameEnd() {
+    showNotifier.value = false;
     if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
@@ -167,6 +169,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                           setState(() {
                             gameBlueScore++;
                             questionsNumber++;
+                            showNotifier.value = false;
                             _checkGameEnd();
                           });
                         },

@@ -52,6 +52,7 @@ class _EhbedState extends State<Ehbed> {
   void changeQuestion() {
     setState(() {
       _checkGameEnd();
+      showAnswerNotifier.value =  false;
       randomNumbers[questionsNumber] = random.nextInt(Ehbed_data.length);
     });
   }
@@ -65,7 +66,8 @@ class _EhbedState extends State<Ehbed> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
+          backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam ==
+              'Blue Team' ? Colors.blue : Colors.red),
           content: Text(
             winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -81,6 +83,7 @@ class _EhbedState extends State<Ehbed> {
   }
 
   void _checkGameEnd() {
+    showAnswerNotifier.value = false;
     if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
@@ -102,104 +105,88 @@ class _EhbedState extends State<Ehbed> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('اهبد صح', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title: Text(
+            'اهبد صح', style: TextStyle(fontSize: 30, fontFamily: 'Teko')),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: Text(
-                            gameRedScore.toString(),
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 25),
+                      Column(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Text(
+                                gameRedScore.toString(),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 25),
+                              ),
+                            ),
                           ),
-                        ),
+                          IconButton(
+                            icon: Icon(Icons.add, color: Colors.red),
+                            onPressed: () {
+                              setState(() {
+                                gameRedScore++;
+                                questionsNumber++;
+                                _checkGameEnd();
+                              });
+                            },
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(Icons.add, color: Colors.red),
-                        onPressed: () {
-                          setState(() {
-                            gameRedScore++;
-                            questionsNumber++;
-                            _checkGameEnd();
-                          });
-                        },
+                      Text(
+                        'Question No.${questionsNumber + 1}',
+                        style: TextStyle(fontSize: 27, fontFamily: 'Zain'),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Text(
+                                gameBlueScore.toString(),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 25),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.add, color: Colors.blue),
+                            onPressed: () {
+                              setState(() {
+                                gameBlueScore++;
+                                questionsNumber++;
+                                _checkGameEnd();
+                              });
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  Text(
-                    'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: Text(
-                            gameBlueScore.toString(),
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 25),
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.add, color: Colors.blue),
-                        onPressed: () {
-                          setState(() {
-                            gameBlueScore++;
-                            questionsNumber++;
-                            _checkGameEnd();
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.symmetric(vertical: 20),
-              child: Center(
-                child: Text(
-                  Ehbed_data[randomNumbers[questionsNumber]]
-                  ['question'] as String,
-                  style: TextStyle(fontSize: 40),
                 ),
-              ),
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: showAnswerNotifier,
-              builder: (context, showAnswer, child) {
-                return Container(
+                SizedBox(height: 30),
+                Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.4),
@@ -207,54 +194,90 @@ class _EhbedState extends State<Ehbed> {
                   ),
                   padding: EdgeInsets.all(10),
                   margin: EdgeInsets.symmetric(vertical: 20),
-                  child: showAnswer
-                      ? Text(
-                    Ehbed_data[randomNumbers[questionsNumber]]
-                    ['answer']
-                        .toString(),
-                    style:
-                    TextStyle(fontSize: 40, color: Colors.green),
-                  )
-                      : Text(""),
-                );
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: draw,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blueGrey,
+                  child: Center(
+                    child: Text(
+                      Ehbed_data[randomNumbers[questionsNumber]]['question']
+                      as String,
+                      style: TextStyle(fontSize: 40),
+                    ),
                   ),
-                  child: Text('No Answer'),
                 ),
-                ElevatedButton(
-                  onPressed: changeQuestion,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.green,
-                  ),
-                  child: Text('Change the question'),
+                ValueListenableBuilder<bool>(
+                  valueListenable: showAnswerNotifier,
+                  builder: (context, showAnswer, child) {
+                    return Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      child: showAnswer
+                          ? Text(
+                        Ehbed_data[randomNumbers[questionsNumber]]
+                        ['answer']
+                            .toString(),
+                        style: TextStyle(
+                            fontSize: 40, color: Colors.green),
+                      )
+                          : Text(""),
+                    );
+                  },
                 ),
               ],
             ),
-            ElevatedButton(
-              onPressed: toggleAnswer,
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Color(0xfffdca40),
-              ),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: showAnswerNotifier,
-                builder: (context, showAnswer, child) {
-                  return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
-                },
+          ),
+          Positioned(
+            left: 10,
+            right: 10,
+            bottom: 30,
+            child: Container(
+              color: Colors.grey[200],
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: draw,
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.blueGrey,
+                        ),
+                        child: Text('No Answer'),
+                      ),
+                      ElevatedButton(
+                        onPressed: changeQuestion,
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.green,
+                        ),
+                        child: Text('Change the question'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: toggleAnswer,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Color(0xfffdca40),
+                    ),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: showAnswerNotifier,
+                      builder: (context, showAnswer, child) {
+                        return Text(
+                            showAnswer ? 'Hide Answer' : 'Show Answer');
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

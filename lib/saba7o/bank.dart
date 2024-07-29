@@ -74,8 +74,8 @@ class _BankState extends State<Bank> {
       context,
       MaterialPageRoute(
         builder: (context) => BankPage(
-          redScore: redScore,
-          blueScore: blueScore,
+          redScore: redBankScore,
+          blueScore: blueBankScore,
           color: color,
           bankingScore: bankingScore,
         ),
@@ -128,8 +128,8 @@ class _BankState extends State<Bank> {
                           : () {
                         Color color = (i % 2 == 0) ? Colors.red : Colors.blue;
                         int bankingScore = (color == Colors.red)
-                            ? redScore
-                            : blueScore;
+                            ? redBankScore
+                            : blueBankScore;
                         navigateToBankPage(color, bankingScore, i);
                       },
                       style: ElevatedButton.styleFrom(
