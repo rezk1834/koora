@@ -13,6 +13,7 @@ class CountdownTimer extends StatefulWidget {
 class _CountdownTimerState extends State<CountdownTimer> {
   late int _remainingSeconds;
   Timer? _timer;
+  bool _isRunning = false; // Track if the timer is running
 
   @override
   void initState() {
@@ -27,21 +28,35 @@ class _CountdownTimerState extends State<CountdownTimer> {
   }
 
   void startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_remainingSeconds > 0) {
-        setState(() {
-          _remainingSeconds--;
-        });
-      } else {
-        _timer?.cancel();
-      }
-    });
+    if (!_isRunning) {
+      _timer?.cancel();
+      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        if (_remainingSeconds > 0) {
+          setState(() {
+            _remainingSeconds--;
+          });
+        } else {
+          _timer?.cancel();
+          setState(() {
+            _isRunning = false;
+          });
+        }
+      });
+      setState(() {
+        _isRunning = true;
+      });
+    } else {
+      _timer?.cancel();
+      setState(() {
+        _isRunning = false;
+      });
+    }
   }
 
   void resetTimer() {
     setState(() {
       _remainingSeconds = widget.seconds;
+      _isRunning = false;
     });
     _timer?.cancel();
   }
@@ -85,7 +100,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   backgroundColor: Colors.green,
                 ),
                 child: Text(
-                  'Start',
+                  _isRunning ? 'Stop' : 'Start',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
