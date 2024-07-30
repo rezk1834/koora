@@ -76,7 +76,8 @@ class _BankPageState extends State<BankPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bank Page'),
+        title: Text('بنك', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        centerTitle: true,
       ),
       body: questionsNumber<12? Stack(
         children: [

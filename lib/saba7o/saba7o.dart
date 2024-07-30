@@ -32,18 +32,22 @@ class _saba7oState extends State<saba7o> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: Text(
           'صباحو تحدي',
           style: TextStyle(fontSize: 40),
         ),
+        backgroundColor: Colors.grey[300],
         automaticallyImplyLeading: false,
+        scrolledUnderElevation: 0,
+        elevation: 0,
         centerTitle: true,
       ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8, 8, 8,0),
             child: Container(
               height: 50,
               child: Row(
@@ -82,7 +86,7 @@ class _saba7oState extends State<saba7o> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(left: 8, top: 20, right: 8, bottom: 8),
+              padding: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
               child: Column(
                 children: [
                   Expanded(

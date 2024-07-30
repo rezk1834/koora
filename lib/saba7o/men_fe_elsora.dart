@@ -44,17 +44,18 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
     return uniqueNumbers.toList();
   }
 
-
-
   void draw() {
     setState(() {
       questionsNumber++;
+      showNotifier.value = false;
       _checkGameEnd();
     });
   }
+
   void toggleAnswer() {
     showNotifier.value = !showNotifier.value;
   }
+
   void _showWinnerDialog(String winningTeam) {
     showDialog(
       context: context,
@@ -80,6 +81,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
   }
 
   void _checkGameEnd() {
+    showNotifier.value = false;
     if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
@@ -101,7 +103,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('مين في الصورة', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title: Text('مين في الصورة', style: TextStyle(fontSize: 30, fontFamily: 'Teko')),
         centerTitle: true,
       ),
       body: Padding(
@@ -143,7 +145,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                   ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
+                    style: TextStyle(fontSize: 27, fontFamily: 'Zain'),
                   ),
                   Column(
                     children: [
@@ -167,6 +169,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                           setState(() {
                             gameBlueScore++;
                             questionsNumber++;
+                            showNotifier.value = false;
                             _checkGameEnd();
                           });
                         },
@@ -195,10 +198,12 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                       SizedBox(height: 20),
                       InteractiveViewer(
                         maxScale: 12,
-                        child: Image.asset(
+                        child: Image.network(
                           Men_fe_elsora_data[randomNumbers[questionsNumber]]['image'] as String,
-                          fit: BoxFit.cover,
-                        ),
+                          errorBuilder: (context, error, stackTrace) {
+                            return Center(child: Text('Failed to load image'));
+                          },
+                        )
                       ),
                       SizedBox(height: 20),
                       ValueListenableBuilder<bool>(

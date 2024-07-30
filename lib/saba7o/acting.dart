@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../database/database.dart';
+
 import '../database/saba7o database/acting_data.dart';
 
 class Acting extends StatefulWidget {
@@ -139,6 +139,7 @@ class _ActingState extends State<Acting> {
                           setState(() {
                             gameRedScore++;
                             questionsNumber++;
+
                             _checkGameEnd();
                           });
                         },
