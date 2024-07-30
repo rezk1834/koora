@@ -60,16 +60,22 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: winningTeam == 'Blue Team'
-              ? Colors.blue
-              : winningTeam == 'Red Team'
-              ? Colors.red
-              : Colors.grey,
-          content: Text(
-            winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-            style: TextStyle(color: Colors.white, fontSize: 25),
-          ),
+        return Stack(
+          children: [
+            ModalBarrier(
+              color: Colors.black.withOpacity(0.5),
+              dismissible: false,
+            ),
+            AlertDialog(
+              backgroundColor: winningTeam == 'Draw'
+                  ? Colors.grey
+                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
+              content: Text(
+                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+            ),
+          ],
         );
       },
     );

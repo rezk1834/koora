@@ -117,9 +117,11 @@ class _BankPageState extends State<BankPage> {
                 ),
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  Bank_data[randomNumbers[questionsNumber]]['answer'].toString(),
-                  style: TextStyle(fontSize: 40, color: Colors.green),
+                child: Center(
+                  child: Text(
+                    Bank_data[randomNumbers[questionsNumber]]['answer'].toString(),
+                    style: TextStyle(fontSize: 40, color: Colors.green),
+                  ),
                 ),
               ),
             ],
@@ -173,6 +175,14 @@ class _BankPageState extends State<BankPage> {
             Text("Current points: $score", style: TextStyle(fontSize: 25)),
             Text("Bank points: $bank", style: TextStyle(fontSize: 25)),
             ElevatedButton(
+              onPressed: banking,
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blueGrey,
+              ),
+              child: Text('Bank', style: TextStyle(fontSize: 20)),
+            ),
+            ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, bank);
               },
@@ -181,14 +191,6 @@ class _BankPageState extends State<BankPage> {
                 backgroundColor: widget.color,
               ),
               child: Text('Return', style: TextStyle(fontSize: 20)),
-            ),
-            ElevatedButton(
-              onPressed: banking,
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blueGrey,
-              ),
-              child: Text('Bank', style: TextStyle(fontSize: 20)),
             ),
           ],
         ),

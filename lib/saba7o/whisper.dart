@@ -54,12 +54,22 @@ class _WhisperState extends State<Whisper> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
-          content: Text(
-            winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-            style: TextStyle(color: Colors.white, fontSize: 25),
-          ),
+        return Stack(
+          children: [
+            ModalBarrier(
+              color: Colors.black.withOpacity(0.5),
+              dismissible: false,
+            ),
+            AlertDialog(
+              backgroundColor: winningTeam == 'Draw'
+                  ? Colors.grey
+                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
+              content: Text(
+                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+            ),
+          ],
         );
       },
     );

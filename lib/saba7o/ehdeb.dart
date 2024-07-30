@@ -64,14 +64,24 @@ class _EhbedState extends State<Ehbed> {
   void _showWinnerDialog(String winningTeam) {
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: winningTeam == 'Draw' ? Colors.grey : (winningTeam ==
-              'Blue Team' ? Colors.blue : Colors.red),
-          content: Text(
-            winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-            style: TextStyle(color: Colors.white, fontSize: 25),
-          ),
+        return Stack(
+          children: [
+            ModalBarrier(
+              color: Colors.black.withOpacity(0.5),
+              dismissible: false,
+            ),
+            AlertDialog(
+              backgroundColor: winningTeam == 'Draw'
+                  ? Colors.grey
+                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
+              content: Text(
+                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+            ),
+          ],
         );
       },
     );
@@ -81,6 +91,7 @@ class _EhbedState extends State<Ehbed> {
       Navigator.pop(context, [redScore, blueScore]); // Navigate back
     });
   }
+
 
   void _checkGameEnd() {
     showAnswerNotifier.value = false;
