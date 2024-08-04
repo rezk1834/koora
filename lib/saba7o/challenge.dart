@@ -46,6 +46,7 @@ class _challengeState extends State<challenge> {
                     blue_score: blue_score,
                     path: challenge_categories[index]['path']!,
                     updateScores: updateScores,
+                    rules: "dsgfd",
 
                   );
                 },

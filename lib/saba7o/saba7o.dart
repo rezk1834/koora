@@ -32,98 +32,37 @@ class _saba7oState extends State<saba7o> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: Text(
-          'صباحو تحدي',
-          style: TextStyle(fontSize: 40),
+          'تحدي معلومات كرة القدم',
+          style: TextStyle(fontSize: 25,color: Color(0xffd8dbde),),
+
         ),
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Color(0xff181e22),
         automaticallyImplyLeading: false,
-        scrolledUnderElevation: 0,
-        elevation: 0,
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 8, 8,0),
-            child: Container(
-              height: 50,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          red_score.toString(),
-                          style: TextStyle(fontSize: 25, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.horizontal(right: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          blue_score.toString(),
-                          style: TextStyle(fontSize: 25, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      backgroundColor: Colors.pink,
+      body: Container(
+        color: Colors.transparent,
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 0.9,
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1,
-                      ),
-                      itemCount: saba7o_categories.length,
-                      itemBuilder: (context, index) {
-                        return Square(
-                          child: saba7o_categories[index]['title']!,
-                          pic: saba7o_categories[index]['image']!,
-                          red_score: red_score,
-                          blue_score: blue_score,
-                          path: saba7o_categories[index]['path']!,
-                          updateScores: updateScores,
-                        );
-                      },
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: resetScore,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.green,
-                    ),
-                    child: Text(
-                      'Reset the score',
-                      style: TextStyle(fontSize: 25),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+          itemCount: game_categories.length,
+          itemBuilder: (context, index) {
+            return Square(
+              child: game_categories[index]['title']!,
+              pic: game_categories[index]['image']!,
+              red_score: red_score,
+              blue_score: blue_score,
+              path: game_categories[index]['path']!,
+              rules: game_categories[index]['rules']!,
+              updateScores: updateScores,
+            );
+          },
+        ),
       ),
     );
   }

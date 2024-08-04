@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../database/database.dart';
+import '../theme.dart';
 import '../database/saba7o database/men_fel_sora_data.dart';
 
 class Men_fe_elsora extends StatefulWidget {
@@ -107,9 +108,10 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: colors.darkBackground,
       appBar: AppBar(
-        title: Text('مين في الصورة', style: TextStyle(fontSize: 30, fontFamily: 'Teko')),
+        backgroundColor: colors.darkAppbarBackground,
+        title: Text('مين في الصورة', style: TextStyle(fontSize: 30, fontFamily: 'Teko',color: colors.mainText)),
         centerTitle: true,
       ),
       body: Padding(
@@ -151,7 +153,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                   ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27, fontFamily: 'Zain'),
+                    style: TextStyle(fontSize: 27, fontFamily: 'Zain',color: colors.mainText),
                   ),
                   Column(
                     children: [
@@ -199,17 +201,30 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                     children: [
                       Text(
                         Men_fe_elsora_data[randomNumbers[questionsNumber]]['title'] as String,
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20,color: colors.mainText),
                       ),
                       SizedBox(height: 20),
                       InteractiveViewer(
                         maxScale: 12,
                         child: Image.network(
                           Men_fe_elsora_data[randomNumbers[questionsNumber]]['image'] as String,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Center(child: Text('Failed to load image'));
+                          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes != null
+                                      ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                      : null,
+                                ),
+                              );
+                            }
                           },
-                        )
+                          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                            return Text('Failed to load image');
+                          },
+                        ),
                       ),
                       SizedBox(height: 20),
                       ValueListenableBuilder<bool>(
@@ -240,8 +255,8 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                                   ElevatedButton(
                                     onPressed: toggleAnswer,
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      backgroundColor: Color(0xfffdca40),
+                                      foregroundColor: colors.mainText,
+                                      backgroundColor: colors.answerButton,
                                     ),
                                     child: Text(show ? 'Hide Answer' : 'Show Answer'),
                                   ),

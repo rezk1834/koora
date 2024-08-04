@@ -1,21 +1,19 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../components/functions.dart';
-import '../database/saba7o database/Ehbed_data.dart';
-import 'package:football/theme.dart';
+import '../database/saba7o database/TheImpossible_data.dart';
 
-class Ehbed extends StatefulWidget {
+class TheImpossible extends StatefulWidget {
   final int redScore;
   final int blueScore;
 
-  Ehbed({required this.redScore, required this.blueScore});
+  TheImpossible({required this.redScore, required this.blueScore});
 
   @override
-  State<Ehbed> createState() => _EhbedState();
+  State<TheImpossible> createState() => _TheImpossibleState();
 }
 
-class _EhbedState extends State<Ehbed> {
+class _TheImpossibleState extends State<TheImpossible> {
   late int redScore;
   late int blueScore;
   int gameBlueScore = 0;
@@ -30,7 +28,7 @@ class _EhbedState extends State<Ehbed> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(5, Ehbed_data.length);
+    randomNumbers = generateUniqueRandomNumbers(5, TheImpossible_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -47,15 +45,15 @@ class _EhbedState extends State<Ehbed> {
   void draw() {
     setState(() {
       questionsNumber++;
-      checkGameEnd();
+      _checkGameEnd();
     });
   }
 
   void changeQuestion() {
     setState(() {
-      checkGameEnd();
-      showAnswerNotifier.value = false;
-      randomNumbers[questionsNumber] = random.nextInt(Ehbed_data.length);
+      _checkGameEnd();
+      showAnswerNotifier.value =  false;
+      randomNumbers[questionsNumber] = random.nextInt(TheImpossible_data.length);
     });
   }
 
@@ -63,34 +61,63 @@ class _EhbedState extends State<Ehbed> {
     showAnswerNotifier.value = !showAnswerNotifier.value;
   }
 
+  void _showWinnerDialog(String winningTeam) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            ModalBarrier(
+              color: Colors.black.withOpacity(0.5),
+              dismissible: false,
+            ),
+            AlertDialog(
+              backgroundColor: winningTeam == 'Draw'
+                  ? Colors.grey
+                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
+              content: Text(
+                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    Future.delayed(Duration(seconds: 1), () {
+      Navigator.pop(context); // Close the alert dialog
+      Navigator.pop(context, [redScore, blueScore]); // Navigate back
+    });
+  }
 
 
-  void checkGameEnd() {
+  void _checkGameEnd() {
     showAnswerNotifier.value = false;
     if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        showWinnerDialog('Red Team',context,redScore,blueScore);
+        _showWinnerDialog('Red Team');
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        showWinnerDialog('Blue Team',context,redScore,blueScore);
+        _showWinnerDialog('Blue Team');
       } else {
-        showWinnerDialog('Draw',context,redScore,blueScore);
+        _showWinnerDialog('Draw');
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    List<int> randomNumbers = generateUniqueRandomNumbers(5, TheImpossible_data.length);
+
     return Scaffold(
-      backgroundColor: colors.darkBackground,
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: colors.darkAppbarBackground,
         title: Text(
-          'اهبد صح',
-          style: TextStyle(fontSize: 30, fontFamily: 'Teko', color: colors.mainText),
-        ),
+            'المستحيل', style: TextStyle(fontSize: 30, fontFamily: 'Teko')),
         centerTitle: true,
       ),
       body: Stack(
@@ -110,23 +137,24 @@ class _EhbedState extends State<Ehbed> {
                             width: 40,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: colors.team1,
+                              color: Colors.red,
                               borderRadius: BorderRadius.circular(100),
                             ),
                             child: Center(
                               child: Text(
                                 gameRedScore.toString(),
-                                style: TextStyle(color: colors.mainText, fontSize: 25),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 25),
                               ),
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team1),
+                            icon: Icon(Icons.add, color: Colors.red),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
                                 questionsNumber++;
-                                checkGameEnd();
+                                _checkGameEnd();
                               });
                             },
                           ),
@@ -134,7 +162,7 @@ class _EhbedState extends State<Ehbed> {
                       ),
                       Text(
                         'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: colors.mainText),
+                        style: TextStyle(fontSize: 27, fontFamily: 'Zain'),
                       ),
                       Column(
                         children: [
@@ -142,23 +170,24 @@ class _EhbedState extends State<Ehbed> {
                             width: 40,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: colors.team2,
+                              color: Colors.blue,
                               borderRadius: BorderRadius.circular(100),
                             ),
                             child: Center(
                               child: Text(
                                 gameBlueScore.toString(),
-                                style: TextStyle(color: colors.mainText, fontSize: 25),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 25),
                               ),
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team2),
+                            icon: Icon(Icons.add, color: Colors.blue),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
                                 questionsNumber++;
-                                checkGameEnd();
+                                _checkGameEnd();
                               });
                             },
                           ),
@@ -171,14 +200,14 @@ class _EhbedState extends State<Ehbed> {
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: colors.mainText.withOpacity(0.4),
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.all(10),
                   margin: EdgeInsets.symmetric(vertical: 20),
                   child: Center(
                     child: Text(
-                      Ehbed_data[randomNumbers[questionsNumber]]['question']
+                      TheImpossible_data[randomNumbers[questionsNumber]]['question']
                       as String,
                       style: TextStyle(fontSize: 40),
                     ),
@@ -190,17 +219,18 @@ class _EhbedState extends State<Ehbed> {
                     return Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: colors.mainText.withOpacity(0.4),
+                        color: Colors.white.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.symmetric(vertical: 20),
                       child: showAnswer
                           ? Text(
-                        Ehbed_data[randomNumbers[questionsNumber]]
+                        TheImpossible_data[randomNumbers[questionsNumber]]
                         ['answer']
                             .toString(),
-                        style: TextStyle(fontSize: 40, color: colors.mainText),
+                        style: TextStyle(
+                            fontSize: 40, color: Colors.green),
                       )
                           : Text(""),
                     );
@@ -214,6 +244,7 @@ class _EhbedState extends State<Ehbed> {
             right: 10,
             bottom: 30,
             child: Container(
+              color: Colors.grey[200],
               padding: EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 children: [
@@ -221,23 +252,18 @@ class _EhbedState extends State<Ehbed> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
-                        onPressed: toggleAnswer,
+                        onPressed: draw,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: colors.mainText,
-                          backgroundColor: colors.button3,
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.blueGrey,
                         ),
-                        child: ValueListenableBuilder<bool>(
-                          valueListenable: showAnswerNotifier,
-                          builder: (context, showAnswer, child) {
-                            return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
-                          },
-                        ),
+                        child: Text('No Answer'),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: colors.mainText,
-                          backgroundColor: colors.questionButton,
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.green,
                         ),
                         child: Text('Change the question'),
                       ),
@@ -245,12 +271,18 @@ class _EhbedState extends State<Ehbed> {
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: draw,
+                    onPressed: toggleAnswer,
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: colors.mainText,
-                      backgroundColor: colors.answerButton,
+                      foregroundColor: Colors.black,
+                      backgroundColor: Color(0xfffdca40),
                     ),
-                    child: Text('No Answer'),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: showAnswerNotifier,
+                      builder: (context, showAnswer, child) {
+                        return Text(
+                            showAnswer ? 'Hide Answer' : 'Show Answer');
+                      },
+                    ),
                   ),
                 ],
               ),

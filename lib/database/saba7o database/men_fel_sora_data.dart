@@ -1,6 +1,6 @@
 final List<Map<String, String>> Men_fe_elsora_data = [
-  {"title": "Spurs 2016 vs Atletico Madrid",
-    "image": "assets/saba7o/men_fe_elsora/spurs2016.jpg",
+  {"title": "Spurs vs Atletico Madrid",
+    "image": "https://i2-prod.mirror.co.uk/incoming/article8521039.ece/ALTERNATES/s1227b/Atletico-Madrid-v-Tottenham-Hotspur-International-Champions-Cup.jpg",
     "player1":"Vorm",
     "player2":"Trippier",
     "player3":"Walkes",
@@ -13,24 +13,38 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player10":"Onomah",
     "player11":"Janssen",
   },
-  {
-    "title": "England vs Malta. World Cup Qualification 2016",
-    "image": "assets/saba7o/men_fe_elsora/england2016.png",
-    "player1": "Joe Hart",
-    "player2": "Kyle Walker",
-    "player3": "Ryan Bertrand",
-    "player4": "Jordan Henderson",
-    "player5": "Gary Cahill",
-    "player6": "John Stones",
-    "player7": "Theo Walcott",
-    "player8": "Dele Alli",
-    "player9": "Daniel Sturridge",
-    "player10": "Wayne Rooney (C)",
-    "player11": "Jesse Lingard"
+  {"title": "Atletico Madrid vs Spurs 2016",
+    "image": "https://drive.google.com/uc?export=view&id=1Hxa9Q6IU5agcT1_GIFqIUty3frsPTBgc",
+    "player1":"J Oblak",
+    "player2":"S Vrsaljko",
+    "player3":"S Savic",
+    "player4":"D Godín",
+    "player5":"Filipe Luis",
+    "player6":"S Ñíguez",
+    "player7":"G Fernández",
+    "player8":"Tiago Mendes",
+    "player9":"T Partey",
+    "player10":"H Hernández ",
+    "player11":"F Torres",
   },
   {
-    "title": "Arsenal Invisibles",
-    "image": "assets/saba7o/men_fe_elsora/arsenalInvisibles.png",
+    "title": "England vs Malta. World Cup Qualification 2016",
+    "image": "https://e0.365dm.com/16/10/1600x900/skysports-england-malta-qualifiers-team_3803972.jpg?20161008174041",
+    "player3": "Joe Hart",
+    "player1": "Kyle Walker",
+    "player6": "Ryan Bertrand",
+    "player4": "Jordan Henderson",
+    "player2": "Gary Cahill",
+    "player5": "John Stones",
+    "player8": "Theo Walcott",
+    "player7": "Dele Alli",
+    "player11": "Daniel Sturridge",
+    "player9": "Wayne Rooney (C)",
+    "player10": "Jesse Lingard"
+  },
+  {
+    "title": "Arsenal Invincibles",
+    "image": "https://miro.medium.com/v2/resize:fit:1024/1*cAh590d1845W979mOeyT_g.jpeg",
     "player1": "Viera",
     "player2": "Bergkamp",
     "player3": "Edu",
@@ -45,7 +59,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Saudi Arabia Vs Argentina",
-    "image": "assets/saba7o/men_fe_elsora/Saudi2022.png",
+    "image": "https://sm.imgix.net/22/46/saudi-arabia_2.jpg",
     "player1": "محمد العويس",
     "player2": "سعود عبدالحميد",
     "player3": "حسان التمبكتي",
@@ -60,7 +74,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Man city vs Bayern Munich 2014 UCL",
-    "image": "assets/saba7o/men_fe_elsora/manCity2014.png",
+    "image": "https://media.gettyimages.com/id/459581250/photo/fbl-eur-c1-man-city-bayern-munich.jpg?s=2048x2048&w=gi&k=20&c=SoXZUIGhb-cnnGo-Hv_6pf6CQ3uZvfK9-ccUsbc0x14=",
     "player1": "Fernando",
     "player2": "Joe Hart",
     "player3": "Eliaquim Mangala",
@@ -74,7 +88,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Sergio Aguero"
   },{
     "title": "Arsenal vs Schalke 04 2012 UCL",
-    "image": "assets/saba7o/men_fe_elsora/arsenal2012.png",
+    "image": "https://drive.google.com/uc?export=view&id=1Sy8obXSN3s1cA2yH6k8bpJc6L_6Y6yKw",
     "player1": "Vito Mannone",
     "player2": "Per Mertesacker",
     "player3": "Clarindo Andre Santos",
@@ -89,7 +103,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Italy vs Bosnia Friendly 2024",
-    "image": "assets/saba7o/men_fe_elsora/italy2024.png",
+    "image": "https://drive.google.com/uc?export=view&id=1nOrqtkia3f-sNiqq5nBOZH35c0g-dC_J",
     "player1": "1C Donnarumma",
     "player2": "4 Buongiorno",
     "player3": "5 Calafiori",
@@ -104,7 +118,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Belgium v Wales UEFA Nations League 2022",
-    "image": "assets/saba7o/men_fe_elsora/belgium2022.png",
+    "image": "https://drive.google.com/uc?export=view&id=1iupKasRiRl7pcSSFFm5eWQLHk_FJVHTD",
     "player1": "13 K Casteels",
     "player2": "19 L Dendoncker",
     "player3": "4 D Boyata",
@@ -119,7 +133,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Morocco Vs USA 2022",
-    "image": "assets/saba7o/men_fe_elsora/morocco2022.png",
+    "image": "https://media.gettyimages.com/id/1401073803/photo/morocco-v-united-states.jpg?s=1024x1024&w=gi&k=20&c=MGd3S4anYLiPSkXa-BstAzO-HvUT253ldoNT15QHT2E=",
     "player1": "1 bono",
     "player2": "2 Hakimi",
     "player3": "23 S Mmaee",
@@ -134,7 +148,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": " Napoli v Juventus Serie A 2023",
-    "image": "assets/saba7o/men_fe_elsora/napoli2023.png",
+    "image": "https://media.gettyimages.com/id/1838644904/photo/players-of-ssc-napoli-pose-for-a-team-photo-prior-to-the.jpg?s=1024x1024&w=gi&k=20&c=TieM_Hp5kUCz8RJhiIJmjmq2hp02rYckmNdTnsSga6g=",
     "player1": "1 Alex Meret",
     "player2": "5 Juan Jesus",
     "player3": "3 Kim Min-Jae",
@@ -149,7 +163,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Qatar v Senegal 2022",
-    "image": "assets/saba7o/men_fe_elsora/qatar2022.png",
+    "image": "https://www.idiskitimes.co.za/wp-content/uploads/2022/11/Qatar-XI-768x512.jpg",
     "player1": "Meshaal Aissa Barsham",
     "player2": "17 I. Mohammed",
     "player3": "2 P. Miguel",
@@ -164,7 +178,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Sweden v Estonia Euro 2024 Qual.",
-    "image": "assets/saba7o/men_fe_elsora/sweden2023.png",
+    "image": "https://media.gettyimages.com/id/1791410276/photo/group-f-uefa-euro-2024-european-qualifiers.jpg?s=2048x2048&w=gi&k=20&c=IuCP4lVqhb0D7UF0NvTeTWLmyVu2n8NKyt4XLUpJnXs=",
     "player1": "Robin Olsen",
     "player2": "Filip Helander",
     "player3": "Viktor Gyokeres",
@@ -178,8 +192,8 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Emil Krafth"
   },
   {
-    "title": "England v Scotland Friendly 2023",
-    "image": "assets/saba7o/men_fe_elsora/england2013.png",
+    "title": "England v Scotland Friendly 2013",
+    "image": "http://www.englandfootballonline.com/images/Matches/M921Sco2013Eng.jpg",
     "player1": "Theo Walcott",
     "player2": "Kyle Walker",
     "player3": "Phil Jagielka",
@@ -194,7 +208,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Liverpool Real Madrid UCL 2014",
-    "image": "assets/saba7o/men_fe_elsora/liverpool2014.png",
+    "image": "https://images2.minutemediacdn.com/image/upload/c_fill,w_1440,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/Real-Madrid-CF-v-Liverpool-FC---UEFA-Champions-Lea-e0d34eb6a77baf9ee3448a6dd728e21e.jpg",
     "player1": "Alberto Moreno",
     "player2": "Dejan Lovren",
     "player3": "Martin Skrtel",
@@ -209,7 +223,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Tottenham Hotspur v Chicago Fire Friendly 2014",
-    "image": "assets/saba7o/men_fe_elsora/tottenham2014.png",
+    "image": "https://media.gettyimages.com/id/452816772/photo/tottenham-hotspur-v-chicago-fire.jpg?s=1024x1024&w=gi&k=20&c=BJvGx0fQ1q25cQBbtdlzHhIMf13lCY6bYCN-j-06SD0=",
     "player1": "Andros Townsend ",
     "player2": "Brad Friedel ",
     "player3": "Etienne Capoue ",
@@ -223,7 +237,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Kyle Walker "
   },{
     "title": "PSG v Chelsea UCL 2016",
-    "image": "assets/saba7o/men_fe_elsora/psg2016.png",
+    "image": "https://media.gettyimages.com/id/514535492/photo/fbl-eur-c1-chelsea-psg.jpg?s=1024x1024&w=gi&k=20&c=d2DrfwNtLDyaVu1qYHLY2pkw6AA8ck0AlL4CjnaNY0U=",
     "player1": "Thiago Silva",
     "player2": "David Luiz",
     "player3": "Thiago Motta",
@@ -238,7 +252,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Portugal v Luxembourg Euro Qual. 2019",
-    "image": "assets/saba7o/men_fe_elsora/portugal2019.png",
+    "image": "https://media.gettyimages.com/id/1175346096/photo/portugal-v-luxembourg-uefa-euro-2020-qualifier.jpg?s=1024x1024&w=gi&k=20&c=bsg_Obvf6IiY_5awYZcnAZi4q4qC10QBG8OWflHxKbQ=",
     "player1": "1 Rui Patrício",
     "player2": "2 Nélson Semedo",
     "player3": "3 Pepe",
@@ -252,7 +266,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "20 Bernardo Silva"
   },{
     "title": " Portugal v Czech Republic Euro 2008 ",
-    "image": "assets/saba7o/men_fe_elsora/portugal2008.png",
+    "image": "https://l450v.alamy.com/450v/2e526c0/portugal-team-during-the-euro-2008-uefa-championships-soccer-match-group-a-portugal-vs-czech-republic-at-stade-de-geneve-in-geneva-switzerland-on-june-11-2008-portugal-won-3-1-photo-by-steeve-mcmaycameleonabacapresscom-2e526c0.jpg",
     "player1": "Ricardo",
     "player2": "Ricardo Carvalho",
     "player3": "Nuno Gomes",
@@ -266,7 +280,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Simao Sabrosa"
   },{
     "title": "Germany v Netherlands 2024",
-    "image": "assets/saba7o/men_fe_elsora/germany2024.png",
+    "image": "https://media.gettyimages.com/id/2107853661/photo/germany-netherlands.jpg",
     "player1": "Jamal Musiala",
     "player2": "Robert Andrich",
     "player3": "Joshua Kimmich",
@@ -280,7 +294,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Maximilian Mittelstädt"
   },{
     "title": "Denmark v Australia WC 2022",
-    "image": "assets/saba7o/men_fe_elsora/denmark2022.png",
+    "image": "https://media.gettyimages.com/id/1445767800/photo/group-d-fifa-world-cup-qatar-2022.jpg?s=2048x2048&w=gi&k=20&c=tly-R2sQkFXEg8j6-MSiiaNjRgpHEsJpR1fs4iq9COk=",
     "player1": "Rasmus Kristensen",
     "player2": "Joachim Andersen",
     "player3": "Andreas Christensen",
@@ -294,7 +308,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Martin Braithwaite"
   },{
     "title": "Portugal v Finland Friendly 2024",
-    "image": "assets/saba7o/men_fe_elsora/portugal2024.png",
+    "image": "https://media.gettyimages.com/id/1175346096/photo/portugal-v-luxembourg-uefa-euro-2020-qualifier.jpg?s=1024x1024&w=gi&k=20&c=bsg_Obvf6IiY_5awYZcnAZi4q4qC10QBG8OWflHxKbQ=",
     "player1": "Ruben Dias",
     "player2": "Rafael Leao",
     "player3": "Antonio Silva",
@@ -308,7 +322,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Francisco Conceicao"
   },{
     "title": "Arsenal v Monaco UCL 2015",
-    "image": "assets/saba7o/men_fe_elsora/arsenal2015.png",
+    "image": "https://drive.google.com/uc?export=view&id=1jJsEkXkhvpHSnxCkT5sZjTlt-oCEopzP",
     "player1": "Hector Bellerin",
     "player2": "David Ospina",
     "player3": "Per Mertesacker",
@@ -322,7 +336,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Mesut Ozil"
   },{
     "title": "Man United v Bayern Munich UCL 2014",
-    "image": "assets/saba7o/men_fe_elsora/manUnited2014.png",
+    "image": "https://media.gettyimages.com/id/481873825/photo/fbl-eur-c1-man-utd-bayern-munich.jpg?s=1024x1024&w=gi&k=20&c=qHZTEGu8poTJchtvFdn9dI4sEsQgysxSq2NkaMsMBeI=",
     "player1": "David de Gea",
     "player2": "Phil Jones",
     "player3": "Marouane Fellaini",
@@ -337,7 +351,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Bayern Munich v Man United UCL 2014",
-    "image": "assets/saba7o/men_fe_elsora/bayern2014.png",
+    "image": "https://drive.google.com/uc?export=view&id=1zxGg1cwZAJJFqdG_i3-FgS7OTav-QxUG",
     "player1": "David Alaba",
     "player2": "Manuel Neuer",
     "player3": "Javier Martinez",
@@ -351,7 +365,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Bastian Schweinsteiger"
   },{
     "title": "Germany v Portugal Euro 2021",
-    "image": "assets/saba7o/men_fe_elsora/germany2021.png",
+    "image": "https://media.gettyimages.com/id/1233544009/photo/fbl-euro-2020-2021-match24-por-ger.jpg?s=1024x1024&w=gi&k=20&c=e9QIeJIAC7VWaPsgX8Y3-NPYDFye1qSQ91XuTpkM0kc=",
     "player1": "Manuel Neuer",
     "player2": "Toni Kroos",
     "player3": "Antonio Ruediger",
@@ -366,7 +380,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Denmark v Australia WC 2018",
-    "image": "assets/saba7o/men_fe_elsora/denmark2018.png",
+    "image": "https://drive.google.com/uc?export=view&id=1IsHULeCWXGY7PfsNgkyIESxSXLzyAsrA",
     "player1": "Kasper Schmeichel",
     "player2": "Yussuf Poulsen",
     "player3": "Henrik Dalsgaard",
@@ -380,7 +394,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Thomas Delaney"
   },{
     "title": "Chelsea V PSG UCL 2014",
-    "image": "assets/saba7o/men_fe_elsora/chelsea2014.png",
+    "image": "https://media.gettyimages.com/id/483412697/photo/fbl-eur-c1-chelsea-psg.jpg?s=1024x1024&w=gi&k=20&c=-CIDEInQrva4zafxqL4gXDT0DnoJHEYvnUFKbBXMLKg=",
     "player1": "David Luiz",
     "player2": "Petr Cech",
     "player3": "Branislav Ivanovic",
@@ -394,7 +408,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Samuel Eto'o"
   },{
     "title": "Internazionale v Atletico Madrid UCL 2024  ",
-    "image": "assets/saba7o/men_fe_elsora/inter2024.png",
+    "image": "https://drive.google.com/uc?export=view&id=1P_AkWeKYeQC67lmk9EaSjkVQmOFS3cMa",
     "player1": "Marcus Thuram",
     "player2": "Stefan de Vrij",
     "player3": "Denzel Dumfries",
@@ -408,7 +422,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Hakan Calhanoglu"
   },{
     "title": "Internazionale v Genoa CFC Serie A 2023",
-    "image": "assets/saba7o/men_fe_elsora/inter2023.png",
+    "image": "https://drive.google.com/uc?export=view&id=1k5dqsd-8SRuVOMtU31l2mHUg19iZFky5",
     "player1": "Marcus Thuram",
     "player2": "Francesco Acerbi",
     "player3": "Yann Bisseck",
@@ -423,7 +437,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Juventus v Hellas Verona  Serie A 2022",
-    "image": "assets/saba7o/men_fe_elsora/juventus2022.png",
+    "image": "https://drive.google.com/uc?export=view&id=17IPDpYF77b4jcUy5SHRFQVHxYkCjuzS0",
     "player1": "Adrien Rabiot",
     "player2": "Gleison Bremer",
     "player3": "Arkadiusz Milik",
@@ -437,7 +451,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Nicolo Fagioli"
   },{
     "title": "Netherlands v Ecuador WC 2022",
-    "image": "assets/saba7o/men_fe_elsora/netherlands2022.png",
+    "image": "https://drive.google.com/uc?export=view&id=158nUdQmt-p-ydPGm5l75VDD1IKFNttXa",
     "player1": "Andreis Noppert",
     "player2": "Nathan Ake",
     "player3": "Denzel Dumfries",
@@ -452,7 +466,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Netherlands v France Euro 2024",
-    "image": "assets/saba7o/men_fe_elsora/netherlands2024.png",
+    "image": "https://drive.google.com/uc?export=view&id=1bwZ6-Mq_YgaiVd-zw89zy0wgBLmFuF7e",
     "player1": "Bart Verbruggen",
     "player2": "Jerdy Schouten",
     "player3": "Stefan de Vrij",
@@ -467,7 +481,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Germany vs Japan WC 2022",
-    "image": "assets/saba7o/men_fe_elsora/germany2022.png",
+    "image": "https://www.aljazeera.com/wp-content/uploads/2022/11/2022-11-23T131658Z_1800059963_UP1EIBN10A3HK_RTRMADP_3_SOCCER-WORLDCUP-GER-JPN-REPORT.jpg?resize=770%2C513&quality=80",
     "player1": "Raum",
     "player2": "Neuer",
     "player3": "Rudiger",
@@ -479,9 +493,25 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player9": "Gnabry",
     "player10": "Muller",
     "player11": "Gundogan"
-  },{
+  },
+  {
+    "title": "Germany vs Costa Rica WC 2022",
+    "image": "https://media.gettyimages.com/id/1245279793/photo/world-cup-2022-costa-rica-germany.jpg?s=1024x1024&w=gi&k=20&c=eOZ-_eE6F0tli2Fzpzptr1rah7m9AaSyzpvSsq32DMI=",
+    "player1": "Neuer",
+    "player2": "Kimmich",
+    "player3": "Rudiger",
+    "player4": "Müller",
+    "player5": "Goretzka",
+    "player6": "Gnabry",
+    "player7": "Süle",
+    "player8": "Schlotterbeck",
+    "player9": "Musiala",
+    "player10": "Gündogan",
+    "player11": "Sané"
+  },
+  {
     "title": "Italy and the Republic of Ireland Friendly 2014",
-    "image": "assets/saba7o/men_fe_elsora/italy2014.png",
+    "image": "https://drive.google.com/uc?export=view&id=185bqLEZS_V3YnSmkMGNP4Fr0XEX-MLK8",
     "player1": "Salvatore Sirigu",
     "player2": "Ciro Immobile",
     "player3": "Thiago Motta",
@@ -495,7 +525,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Riccardo Montolivo"
   },{
     "title": "Internazionale v Venezia Seria A 2022",
-    "image": "assets/saba7o/men_fe_elsora/inter20222.png",
+    "image": "https://drive.google.com/uc?export=view&id=1cQjX4jd4qKUMwhLKFvmhH8l39OJniqDd",
     "player1": "Škriniar",
     "player2": "Darmian",
     "player3": "Bastonide",
@@ -512,7 +542,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
 
   {
     "title": "Juventus v Bologna FC  Serie A 2023",
-    "image": "assets/saba7o/men_fe_elsora/juventus2023.png",
+    "image": "https://drive.google.com/uc?export=view&id=1CqNa_0d5LqZpEuDL-NHa6jotBGLI5sdK",
     "player1": "Federico Chiesa",
     "player2": "Wojciech Szczesny",
     "player3": "Federico Gatti",
@@ -527,7 +557,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Porto v Inter Milan UCL 2023",
-    "image": "assets/saba7o/men_fe_elsora/porto2023.png",
+    "image": "https://media.gettyimages.com/id/1468690321/photo/fc-internazionale-v-fc-porto-round-of-16-leg-one-uefa-champions-league.jpg?s=2048x2048&w=gi&k=20&c=tdVvMzhocjuo7-TcTluoE_2tAkJTMJLqcfV7L4MG1e0=",
     "player1": "Pepe",
     "player2": "Diogo Costa",
     "player3": "Ivan Marcano",
@@ -541,8 +571,24 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player11": "Pepe"
   },
   {
+    "title": "SL Benfica v Olympique Marseille UEFA Europa League 24",
+    "image": "https://media.gettyimages.com/id/2147728604/photo/sl-benfica-v-olympique-marseille-quarter-final-first-leg-uefa-europa-league-2023-24.jpg?s=1024x1024&w=gi&k=20&c=BL0XUbG-TRJ8-fHrB0R0Lk2DVYeqIv2a4l6JzaOZpds=",
+    "player1": "Alexander Bah",
+    "player2": "Antonio Silva",
+    "player3": "Casper Tengstedt",
+    "player4": "Anatoliy Trubin",
+    "player5": "Nicolas Otamendi",
+    "player6": "Angel Di Maria",
+    "player7": "Rafa Silva",
+    "player8": "David Neres",
+    "player9": "Fredrik Aursnes",
+    "player10": "Joao Neves",
+    "player11": "Florentino Luis"
+  },
+
+  {
     "title": "Portugal v Ghana WC 2022",
-    "image": "assets/saba7o/men_fe_elsora/portugal2022.png",
+    "image": "https://media.gettyimages.com/id/1245056270/photo/world-cup-2022-portugal-ghana.jpg?s=1024x1024&w=gi&k=20&c=ZTXTm_5_w9GAGu7kLUkDyksVy6KhYTRrZuv64lbLKL4=",
     "player1": "Diogo Costa",
     "player2": "Joao Cancelo",
     "player3": "Bernardo Silva",
@@ -557,7 +603,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Chelsea v Bayer Leverkusen UCL 2011",
-    "image": "assets/saba7o/men_fe_elsora/chelsea2011.png",
+    "image": "https://media.gettyimages.com/id/124924069/photo/the-chelsea-starting-xi-against-bayer-le.jpg?s=1024x1024&w=gi&k=20&c=AeyAv65pH90u7Hky5a7o0f0uK2J8rNJh5HxV8FVb2qA=",
     "player1": "John Obi Mikel",
     "player2": "David Luiz",
     "player3": "Daniel Sturridge",
@@ -570,9 +616,9 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player10": "Ashley Cole",
     "player11": "Jose Bosingwa"
   },
-  {
+  { //
     "title": "Barcelona v Juventus UCL 2017",
-    "image": "assets/saba7o/men_fe_elsora/barcelona2017.png",
+    "image": "https://drive.google.com/uc?export=view&id=1vyzCMVMkaaTuEHrt9DR66O8Hxb9bsttr",
     "player1": "Ter stegen",
     "player2": "Umtiti",
     "player3": "Javier Mascherano",
@@ -588,7 +634,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
 
   {
     "title": "Brazil vs Russia Friendly 2013",
-    "image": "assets/saba7o/men_fe_elsora/brazil2013.png",
+    "image": "https://drive.google.com/uc?export=view&id=1uE41_wiAHbHlJXm1c81gkv2RmxG1rUHS",
     "player1": "Julio Cesar",
     "player2": "Hernanes",
     "player3": "Fred",
@@ -603,7 +649,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "England vs Netherlands Friendly 2016",
-    "image": "assets/saba7o/men_fe_elsora/england20162.png",
+    "image": "https://media.gettyimages.com/id/518040106/photo/fbl-euro-2016-friendly-eng-ned.jpg?s=1024x1024&w=gi&k=20&c=U6aWSv0f537cnCKTkSsmnHrAZuyyWOgeM1dbLFQjpiw=",
     "player1": "Daniel Sturridge",
     "player2": "Ross Barkley",
     "player3": "Adam Lallana",
@@ -618,7 +664,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Real Madrid v Tottenham Hotspur UCL 2013",
-    "image": "assets/saba7o/men_fe_elsora/madrid2013.png",
+    "image": "https://drive.google.com/uc?export=view&id=1Y-XeL8GXU2VEVBZGE0ymzsXEfjQZHipE",
     "player1": "Iker Casillas",
     "player2": "Sergio Ramos",
     "player3": "Raul Albiol",
@@ -633,7 +679,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Italy World cup Winner Team 2006",
-    "image": "assets/saba7o/men_fe_elsora/italy2006.png",
+    "image": "https://drive.google.com/uc?export=view&id=1GoTNLRCI09uzkVyXrMFCj-5JDbp1oN3L",
     "player1": "Gianluigi Buffon",
     "player2": "Fabio Grosso",
     "player3": "Fabio Cannavaro",
@@ -648,7 +694,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Atletico 2019 vs Bayer 04 Leverkusen",
-    "image": "assets/saba7o/men_fe_elsora/atletico2019.jpg",
+    "image": "https://drive.google.com/uc?export=view&id=1o2Cl7Wf6I20TaBsvI41u4RoHv7XUPtia",
     "player1":"Jan Oblak",
     "player2":"Josema Gimenez",
     "player3":"Felipe",
@@ -663,7 +709,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Serbia 2018 vs Brazil",
-    "image": "assets/saba7o/men_fe_elsora/serbia2018.jpg",
+    "image": "https://drive.google.com/uc?export=view&id=1uLb6IX5RzYsVexhUioyKVZkptu4YzfK8",
     "player1":"V Stojkovic",
     "player2":"A Rukavina",
     "player3":"N Milenkovic",
@@ -678,7 +724,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Denmark 2023 vs slovenia",
-    "image": "assets/saba7o/men_fe_elsora/denmark2023.jpg",
+    "image": "https://drive.google.com/uc?export=view&id=1E9hM4yF6wJhjb1RmBXpkS1snaQ8lNEHe",
     "player1":"Kasper Schmeichel",
     "player2":"Simon Kjaer",
     "player3":"Mathias Jorgensen",
@@ -693,7 +739,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Brazil 2002 ",
-    "image": "assets/saba7o/men_fe_elsora/brazil2002.jpg",
+    "image": "https://drive.google.com/uc?export=view&id=1UYX6rBQsi843DC-xIfuPnzE22s4HX8u6",
     "player1":"Lúcio",
     "player2":"Edmílson",
     "player3":"Gilberto Silva",
@@ -708,7 +754,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Real Madrid 2002 vs Bayer 04 Leverkusen",
-    "image": "assets/saba7o/men_fe_elsora/realMadrid2002.png",
+    "image": "https://drive.google.com/uc?export=view&id=1uK3esnUeCjwlzt7tIWYJ5dRkluJ19xkw",
     "player1":"César",
     "player2":"Fernando Hierro",
     "player3":"Helguera",
@@ -723,7 +769,7 @@ final List<Map<String, String>> Men_fe_elsora_data = [
   },
   {
     "title": "Bayer 04 Leverkusen v Monaco Europa 2024",
-    "image": "assets/saba7o/men_fe_elsora/leverkusen2024.png",
+    "image": "https://drive.google.com/uc?export=view&id=1I5RQh3ejN2Y2gNn7y_56TbG-kHRWlUAT",
     "player1": "Edmond Tapsoba",
     "player2": "Adam Hlozek",
     "player3": "Mitchel Bakker",
@@ -736,4 +782,52 @@ final List<Map<String, String>> Men_fe_elsora_data = [
     "player10": "Florian Wirtz",
     "player11": "Amine Adli"
   },
+];
+
+
+final List<Map<String, String>> Men_fe_elsora_data1 = [
+  {"title": "Spurs 2016 vs Atletico Madrid",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seattletimes.com%2Fsports%2Fsounders%2Fhow-the-starting-xi-photo-began-and-why-one-of-soccers-oldest-traditions-is-still-going-today%2F&psig=AOvVaw3O5kFXsyjxJHCxIY-llhur&ust=1722823040534000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPCW6Iue2ocDFQAAAAAdAAAAABAE",
+    "player1":"Vorm",
+    "player2":"Trippier",
+    "player3":"Walkes",
+    "player4":"Carter-Vickers",
+    "player5":"Yedlin",
+    "player6":"Wanyama",
+    "player7":"Winks",
+    "player8":"Lamela",
+    "player9":"Eriksen",
+    "player10":"Onomah",
+    "player11":"Janssen",
+  },
+  {
+    "title": "England vs Malta. World Cup Qualification 2016",
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.seattletimes.com%2Fsports%2Fsounders%2Fhow-the-starting-xi-photo-began-and-why-one-of-soccers-oldest-traditions-is-still-going-today%2F&psig=AOvVaw3O5kFXsyjxJHCxIY-llhur&ust=1722823040534000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPCW6Iue2ocDFQAAAAAdAAAAABAE",    "player1": "Joe Hart",
+    "player2": "Kyle Walker",
+    "player3": "Ryan Bertrand",
+    "player4": "Jordan Henderson",
+    "player5": "Gary Cahill",
+    "player6": "John Stones",
+    "player7": "Theo Walcott",
+    "player8": "Dele Alli",
+    "player9": "Daniel Sturridge",
+    "player10": "Wayne Rooney (C)",
+    "player11": "Jesse Lingard"
+  },
+  {
+    "title": "Arsenal Invisibles",
+    "image": "https://drive.google.com/uc?export=view&id=1PszP-GBoLRzXKMMI4Bz4o7AjZY72Z69U",
+    "player1": "Viera",
+    "player2": "Bergkamp",
+    "player3": "Edu",
+    "player4": "Gasper",
+    "player5": "Lauren",
+    "player6": "Campbell",
+    "player7": "Toure",
+    "player8": "Cole",
+    "player9": "Lumberg",
+    "player10": "Henry",
+    "player11": "Pires"
+  },
+
 ];

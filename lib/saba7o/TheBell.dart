@@ -1,21 +1,21 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../components/functions.dart';
-import '../database/saba7o database/Ehbed_data.dart';
-import 'package:football/theme.dart';
+import '../components/scoreContainer.dart';
+import '../theme.dart';
+import '../database/saba7o database/TheBell_data.dart';
 
-class Ehbed extends StatefulWidget {
+class TheBell extends StatefulWidget {
   final int redScore;
   final int blueScore;
 
-  Ehbed({required this.redScore, required this.blueScore});
+  TheBell({required this.redScore, required this.blueScore});
 
   @override
-  State<Ehbed> createState() => _EhbedState();
+  State<TheBell> createState() => _TheBellState();
 }
 
-class _EhbedState extends State<Ehbed> {
+class _TheBellState extends State<TheBell> {
   late int redScore;
   late int blueScore;
   int gameBlueScore = 0;
@@ -30,7 +30,7 @@ class _EhbedState extends State<Ehbed> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(5, Ehbed_data.length);
+    randomNumbers = generateUniqueRandomNumbers(5, TheBell_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -47,15 +47,15 @@ class _EhbedState extends State<Ehbed> {
   void draw() {
     setState(() {
       questionsNumber++;
-      checkGameEnd();
+      _checkGameEnd();
     });
   }
 
   void changeQuestion() {
     setState(() {
-      checkGameEnd();
+      _checkGameEnd();
       showAnswerNotifier.value = false;
-      randomNumbers[questionsNumber] = random.nextInt(Ehbed_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(TheBell_data.length);
     });
   }
 
@@ -63,35 +63,74 @@ class _EhbedState extends State<Ehbed> {
     showAnswerNotifier.value = !showAnswerNotifier.value;
   }
 
+  void _showWinnerDialog(String winningTeam) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
 
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            ModalBarrier(
+              color: Colors.black.withOpacity(0.5),
+              dismissible: false,
+            ),
+            AlertDialog(
+              backgroundColor: winningTeam == 'Draw'
+                  ? colors.tertiaryText
+                  : (winningTeam == 'Blue Team' ? colors.team2 : colors.team1),
+              content: Text(
+                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
+                style: TextStyle(color: isDarkMode ? colors.mainText : Colors.black, fontSize: 25),
+              ),
+            ),
+          ],
+        );
+      },
+    );
 
-  void checkGameEnd() {
+    Future.delayed(Duration(seconds: 1), () {
+      Navigator.pop(context); // Close the alert dialog
+      Navigator.pop(context, [redScore, blueScore]); // Navigate back
+    });
+  }
+
+  void _checkGameEnd() {
     showAnswerNotifier.value = false;
     if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        showWinnerDialog('Red Team',context,redScore,blueScore);
+        _showWinnerDialog('Red Team');
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        showWinnerDialog('Blue Team',context,redScore,blueScore);
+        _showWinnerDialog('Blue Team');
       } else {
-        showWinnerDialog('Draw',context,redScore,blueScore);
+        _showWinnerDialog('Draw');
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: colors.darkBackground,
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        backgroundColor: colors.darkAppbarBackground,
         title: Text(
-          'اهبد صح',
-          style: TextStyle(fontSize: 30, fontFamily: 'Teko', color: colors.mainText),
+          'الجرس',
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Teko',
+            color: isDarkMode ? colors.mainText : Colors.black,
+          ),
         ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
         children: [
@@ -106,27 +145,14 @@ class _EhbedState extends State<Ehbed> {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: colors.team1,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameRedScore.toString(),
-                                style: TextStyle(color: colors.mainText, fontSize: 25),
-                              ),
-                            ),
-                          ),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 20),
                           IconButton(
                             icon: Icon(Icons.add, color: colors.team1),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
                                 questionsNumber++;
-                                checkGameEnd();
+                                _checkGameEnd();
                               });
                             },
                           ),
@@ -134,31 +160,18 @@ class _EhbedState extends State<Ehbed> {
                       ),
                       Text(
                         'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: colors.mainText),
+                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : Colors.black),
                       ),
                       Column(
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: colors.team2,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameBlueScore.toString(),
-                                style: TextStyle(color: colors.mainText, fontSize: 25),
-                              ),
-                            ),
-                          ),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 20),
                           IconButton(
                             icon: Icon(Icons.add, color: colors.team2),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
                                 questionsNumber++;
-                                checkGameEnd();
+                                _checkGameEnd();
                               });
                             },
                           ),
@@ -171,16 +184,16 @@ class _EhbedState extends State<Ehbed> {
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: colors.mainText.withOpacity(0.4),
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.all(10),
                   margin: EdgeInsets.symmetric(vertical: 20),
                   child: Center(
                     child: Text(
-                      Ehbed_data[randomNumbers[questionsNumber]]['question']
+                      TheBell_data[randomNumbers[questionsNumber]]['question']
                       as String,
-                      style: TextStyle(fontSize: 40),
+                      style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : Colors.black),
                     ),
                   ),
                 ),
@@ -190,17 +203,20 @@ class _EhbedState extends State<Ehbed> {
                     return Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: colors.mainText.withOpacity(0.4),
+                        color: Colors.white.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.symmetric(vertical: 20),
                       child: showAnswer
                           ? Text(
-                        Ehbed_data[randomNumbers[questionsNumber]]
+                        TheBell_data[randomNumbers[questionsNumber]]
                         ['answer']
                             .toString(),
-                        style: TextStyle(fontSize: 40, color: colors.mainText),
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: isDarkMode ? colors.mainText : Colors.black,
+                            fontWeight: FontWeight.bold),
                       )
                           : Text(""),
                     );
@@ -221,22 +237,17 @@ class _EhbedState extends State<Ehbed> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
-                        onPressed: toggleAnswer,
+                        onPressed: draw,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: colors.mainText,
-                          backgroundColor: colors.button3,
+                          foregroundColor: isDarkMode ? colors.mainText : Colors.black,
+                          backgroundColor: colors.answerButton,
                         ),
-                        child: ValueListenableBuilder<bool>(
-                          valueListenable: showAnswerNotifier,
-                          builder: (context, showAnswer, child) {
-                            return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
-                          },
-                        ),
+                        child: Text('No Answer'),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: colors.mainText,
+                          foregroundColor: isDarkMode ? colors.mainText : Colors.black,
                           backgroundColor: colors.questionButton,
                         ),
                         child: Text('Change the question'),
@@ -245,12 +256,17 @@ class _EhbedState extends State<Ehbed> {
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: draw,
+                    onPressed: toggleAnswer,
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: colors.mainText,
-                      backgroundColor: colors.answerButton,
+                      foregroundColor: isDarkMode ? colors.mainText : Colors.black,
+                      backgroundColor: colors.button3,
                     ),
-                    child: Text('No Answer'),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: showAnswerNotifier,
+                      builder: (context, showAnswer, child) {
+                        return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
+                      },
+                    ),
                   ),
                 ],
               ),
