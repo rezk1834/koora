@@ -47,6 +47,9 @@ class _GamesState extends State<Games> {
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
         automaticallyImplyLeading: false,
         centerTitle: true,
+        leading: Icon(Icons.menu),
+        elevation: 0,
+        bottomOpacity: 5,
       ),
       body: Column(
         children: [
@@ -109,6 +112,7 @@ class _GamesState extends State<Games> {
                           path: game_categories[index]['path']!,
                           updateScores: updateScores,
                           rules: game_categories[index]['rules']!,
+                          mood: isDarkMode,
                         );
                       },
                     ),

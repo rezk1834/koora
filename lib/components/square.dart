@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:football/saba7o/password.dart';
-import 'package:football/saba7o/rondo.dart';
-import 'package:football/saba7o/whisper.dart';
+import 'package:football/games/password.dart';
+import 'package:football/games/rondo.dart';
+import 'package:football/games/whisper.dart';
 import 'package:football/theme.dart';
-import '../saba7o/Career.dart';
-import '../saba7o/TheBell.dart';
-import '../saba7o/TheImpossible.dart';
-import '../saba7o/TheMazad.dart';
-import '../saba7o/WDYK.dart';
-import '../saba7o/acting.dart';
-import '../saba7o/draw.dart';
-import '../saba7o/ehdeb.dart';
-import '../saba7o/ekdeb.dart';
-import '../saba7o/guess_the_player.dart';
-import '../saba7o/labes_sa7bak.dart';
-import '../saba7o/mazad.dart';
-import '../saba7o/men_fe_elsora.dart';
-import '../saba7o/risk.dart';
-import '../saba7o/bank.dart';
-import '../saba7o/seconds.dart';
+import '../games/Career.dart';
+import '../games/TheBell.dart';
+import '../games/TheImpossible.dart';
+import '../games/TheMazad.dart';
+import '../games/WDYK.dart';
+import '../games/acting.dart';
+import '../games/draw.dart';
+import '../games/ehdeb.dart';
+import '../games/ekdeb.dart';
+import '../games/guess_the_player.dart';
+import '../games/labes_sa7bak.dart';
+import '../games/arosty.dart';
+import '../games/men_fe_elsora.dart';
+import '../games/risk.dart';
+import '../games/bank.dart';
+import '../games/seconds.dart';
+import '../theme.dart';
 
 class Square extends StatefulWidget {
   final String child;
@@ -27,6 +28,7 @@ class Square extends StatefulWidget {
   final int blue_score;
   final String path;
   final String rules;
+  final bool mood;
   final Function(int, int) updateScores;
 
   Square({
@@ -38,6 +40,7 @@ class Square extends StatefulWidget {
     required this.path,
     required this.rules,
     required this.updateScores,
+    required this.mood,
   });
 
   @override
@@ -78,7 +81,7 @@ class _SquareState extends State<Square> {
             case '/draw':
               return Draw(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/mazad':
-              return Mazad(redScore: widget.red_score, blueScore: widget.blue_score);
+              return arosty(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/wdyk':
               return WDYK();
             case '/themazad':
@@ -154,7 +157,7 @@ class _SquareState extends State<Square> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colors.darkBackground,
+      backgroundColor: widget.mood ? colors.darkBackground : colors.lightBackground,
       body: Stack(
         children: [
           Padding(
@@ -186,10 +189,10 @@ class _SquareState extends State<Square> {
             ),
           ),
           Positioned(
-            top: 10,
-            right: 5,
+            top: 0,
+            right: 0,
             child: IconButton(
-              icon: Icon(Icons.info, color: Colors.white, size: 25),
+              icon: Icon(Icons.info, color: Colors.white, size: 20),
               onPressed: showRules,
             ),
           ),

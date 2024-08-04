@@ -248,7 +248,7 @@ class _EhbedState extends State<Ehbed> {
                     onPressed: draw,
                     style: ElevatedButton.styleFrom(
                       foregroundColor: colors.mainText,
-                      backgroundColor: colors.answerButton,
+                      backgroundColor: Colors.transparent,
                     ),
                     child: Text('No Answer'),
                   ),

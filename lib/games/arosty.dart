@@ -4,17 +4,17 @@ import 'package:football/components/timer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/mazad_data.dart';
 
-class Mazad extends StatefulWidget {
+class arosty extends StatefulWidget {
   final int redScore;
   final int blueScore;
 
-  Mazad({required this.redScore, required this.blueScore});
+  arosty({required this.redScore, required this.blueScore});
 
   @override
-  State<Mazad> createState() => _MazadState();
+  State<arosty> createState() => _arostyState();
 }
 
-class _MazadState extends State<Mazad> {
+class _arostyState extends State<arosty> {
   late int redScore;
   late int blueScore;
   int gameBlueScore = 0;
@@ -30,7 +30,7 @@ class _MazadState extends State<Mazad> {
     redScore = widget.redScore;
     blueScore = widget.blueScore;
     timerKey = UniqueKey();
-    randomNumbers = generateUniqueRandomNumbers(8, Mazad_data.length);
+    randomNumbers = generateUniqueRandomNumbers(8, Arosty_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -99,17 +99,17 @@ class _MazadState extends State<Mazad> {
   void changeQuestion() {
     setState(() {
       _checkGameEnd();
-      randomNumbers[questionsNumber] = random.nextInt(Mazad_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(Arosty_data.length);
     });
   }
   @override
   Widget build(BuildContext context) {
-    List<int> randomNumbers = generateUniqueRandomNumbers(8, Mazad_data.length);
+    List<int> randomNumbers = generateUniqueRandomNumbers(8, Arosty_data.length);
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title:  Text('المزاد', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title:  Text('عروستي بالعكس', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
         centerTitle: true,
       ),
       body: Padding(
@@ -194,7 +194,7 @@ class _MazadState extends State<Mazad> {
               margin: EdgeInsets.symmetric(vertical: 20),
               child: Center(
                 child: Text(
-                  Mazad_data[randomNumbers[questionsNumber]]['question'] as String,
+                  Arosty_data[randomNumbers[questionsNumber]]['question'] as String,
                   style: TextStyle(fontSize: 40),
                 ),
               ),

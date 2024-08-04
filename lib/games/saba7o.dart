@@ -60,6 +60,7 @@ class _saba7oState extends State<saba7o> {
               path: game_categories[index]['path']!,
               rules: game_categories[index]['rules']!,
               updateScores: updateScores,
+              mood: true,
             );
           },
         ),

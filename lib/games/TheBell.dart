@@ -1,6 +1,6 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../theme.dart';
 import '../database/saba7o database/TheBell_data.dart';
@@ -30,7 +30,7 @@ class _TheBellState extends State<TheBell> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(5, TheBell_data.length);
+    randomNumbers = generateUniqueRandomNumbers(8, TheBell_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -47,13 +47,13 @@ class _TheBellState extends State<TheBell> {
   void draw() {
     setState(() {
       questionsNumber++;
-      _checkGameEnd();
+      checkGameEnd();
     });
   }
 
   void changeQuestion() {
     setState(() {
-      _checkGameEnd();
+      checkGameEnd();
       showAnswerNotifier.value = false;
       randomNumbers[questionsNumber] = random.nextInt(TheBell_data.length);
     });
@@ -63,52 +63,20 @@ class _TheBellState extends State<TheBell> {
     showAnswerNotifier.value = !showAnswerNotifier.value;
   }
 
-  void _showWinnerDialog(String winningTeam) {
-    final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
 
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            ModalBarrier(
-              color: Colors.black.withOpacity(0.5),
-              dismissible: false,
-            ),
-            AlertDialog(
-              backgroundColor: winningTeam == 'Draw'
-                  ? colors.tertiaryText
-                  : (winningTeam == 'Blue Team' ? colors.team2 : colors.team1),
-              content: Text(
-                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-                style: TextStyle(color: isDarkMode ? colors.mainText : Colors.black, fontSize: 25),
-              ),
-            ),
-          ],
-        );
-      },
-    );
 
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pop(context); // Close the alert dialog
-      Navigator.pop(context, [redScore, blueScore]); // Navigate back
-    });
-  }
-
-  void _checkGameEnd() {
+  void checkGameEnd() {
     showAnswerNotifier.value = false;
-    if (questionsNumber == 5) {
+    if (questionsNumber == 8) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        _showWinnerDialog('Red Team');
+        showWinnerDialog('Red Team',context,redScore,blueScore);
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        _showWinnerDialog('Blue Team');
+        showWinnerDialog('Blue Team',context,redScore,blueScore);
       } else {
-        _showWinnerDialog('Draw');
+        showWinnerDialog('Draw',context,redScore,blueScore);
       }
     }
   }
@@ -119,14 +87,14 @@ class _TheBellState extends State<TheBell> {
     final isDarkMode = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
+      backgroundColor: isDarkMode ? colors.darkBackground : Colors.grey[200],
       appBar: AppBar(
         title: Text(
           'الجرس',
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : Colors.black,
+            color: isDarkMode ? colors.mainText : colors.secondaryText,
           ),
         ),
         centerTitle: true,
@@ -152,7 +120,7 @@ class _TheBellState extends State<TheBell> {
                               setState(() {
                                 gameRedScore++;
                                 questionsNumber++;
-                                _checkGameEnd();
+                                checkGameEnd();
                               });
                             },
                           ),
@@ -160,7 +128,7 @@ class _TheBellState extends State<TheBell> {
                       ),
                       Text(
                         'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : Colors.black),
+                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                       ),
                       Column(
                         children: [
@@ -171,7 +139,7 @@ class _TheBellState extends State<TheBell> {
                               setState(() {
                                 gameBlueScore++;
                                 questionsNumber++;
-                                _checkGameEnd();
+                                checkGameEnd();
                               });
                             },
                           ),
@@ -193,7 +161,7 @@ class _TheBellState extends State<TheBell> {
                     child: Text(
                       TheBell_data[randomNumbers[questionsNumber]]['question']
                       as String,
-                      style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : Colors.black),
+                      style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
                     ),
                   ),
                 ),
@@ -215,7 +183,7 @@ class _TheBellState extends State<TheBell> {
                             .toString(),
                         style: TextStyle(
                             fontSize: 40,
-                            color: isDarkMode ? colors.mainText : Colors.black,
+                            color: isDarkMode ? colors.mainText : colors.secondaryText,
                             fontWeight: FontWeight.bold),
                       )
                           : Text(""),
@@ -239,16 +207,18 @@ class _TheBellState extends State<TheBell> {
                       ElevatedButton(
                         onPressed: draw,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: isDarkMode ? colors.mainText : Colors.black,
-                          backgroundColor: colors.answerButton,
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
                         child: Text('No Answer'),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: isDarkMode ? colors.mainText : Colors.black,
-                          backgroundColor: colors.questionButton,
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
                         child: Text('Change the question'),
                       ),
@@ -258,8 +228,9 @@ class _TheBellState extends State<TheBell> {
                   ElevatedButton(
                     onPressed: toggleAnswer,
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: isDarkMode ? colors.mainText : Colors.black,
-                      backgroundColor: colors.button3,
+                      side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                      backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                     ),
                     child: ValueListenableBuilder<bool>(
                       valueListenable: showAnswerNotifier,

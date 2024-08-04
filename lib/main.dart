@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:football/home_screen.dart';
 import 'package:football/round%2016/round.dart';
 import 'package:football/games.dart';
-import 'package:football/saba7o/saba7o.dart';
-import 'saba7o/challenge.dart';
-import 'aqua ta7ady/aqua.dart';
+
 import 'theme.dart';
 
 void main() {
@@ -21,11 +20,9 @@ class MyApp extends StatelessWidget {
       theme: _lightTheme,
       darkTheme: _darkTheme,
       themeMode: ThemeMode.system, // Use system setting for light/dark mode
-      home: Games(),
+      home: home_screen(),
       routes: {
         '/games': (context) => Games(),
-        '/aqua': (context) => aqua(),
-        '/challenge': (context) => challenge(),
         '/round': (context) => NameEntryScreen(),
       },
     );

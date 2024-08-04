@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:football/theme.dart';
+import '../components/functions.dart';
 import '../database/saba7o database/acting_data.dart';
 
 class Acting extends StatefulWidget {
@@ -55,63 +56,30 @@ class _ActingState extends State<Acting> {
     });
   }
 
-  void _showWinnerDialog(String winningTeam) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            ModalBarrier(
-              color: Colors.black.withOpacity(0.5),
-              dismissible: false,
-            ),
-            AlertDialog(
-              backgroundColor: winningTeam == 'Draw'
-                  ? Colors.grey
-                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
-              content: Text(
-                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pop(context); // Close the alert dialog
-      Navigator.pop(context, [redScore, blueScore]); // Navigate back
-    });
-  }
 
   void _checkGameEnd() {
     if (questionsNumber == 8) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        _showWinnerDialog('Red Team');
+        showWinnerDialog('Red Team',context,redScore,blueScore);
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        _showWinnerDialog('Blue Team');
+        showWinnerDialog('Blue Team',context,redScore,blueScore);
       } else {
-        redScore++;
-        blueScore++;
-        _showWinnerDialog('Draw');
+        showWinnerDialog('Draw',context,redScore,blueScore);
       }
     }  else if (gameRedScore == 4 && gameBlueScore == 4) {
-      redScore++;
-      blueScore++;
-      _showWinnerDialog('Draw');
+      showWinnerDialog('Draw',context,redScore,blueScore);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return questionsNumber<8?Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('الرسم', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title: Text('تمثيل', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
         centerTitle: true,
       ),
       body: Padding(
@@ -203,27 +171,35 @@ class _ActingState extends State<Acting> {
                     Acting_data[randomNumbers[questionsNumber]]['name'] as String,
                     style: TextStyle(fontSize: 40),
                   ),
-                  Image(image: AssetImage("assets/main/img.png")),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: draw,
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.blueGrey,
-                        ),
-                        child: Text('No Answer'),
+
+                  Positioned(
+                    left: 10,
+                    right: 10,
+                    bottom: 30,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: changeQuestion,
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: colors.mainText,
+                              backgroundColor: colors.questionButton,
+                            ),
+                            child: Text('Change the question'),
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: draw,
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: colors.mainText,
+                              backgroundColor: colors.answerButton,
+                            ),
+                            child: Text('No Answer'),
+                          ),
+                        ],
                       ),
-                      ElevatedButton(
-                        onPressed: changeQuestion,
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.green,
-                        ),
-                        child: Text('Change the question'),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -231,6 +207,6 @@ class _ActingState extends State<Acting> {
           ],
         ),
       ),
-    ): Container(color: Colors.white,);
+    );
   }
 }

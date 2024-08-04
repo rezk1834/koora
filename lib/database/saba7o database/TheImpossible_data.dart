@@ -1,4 +1,4 @@
-import 'package:football/saba7o/TheImpossible.dart';
+
 
 final List<Map<String, dynamic>> TheImpossible_data = [
   {"question": "امتي كانت اول مرة الاهلي ياخد الدوري من غير هزيمة؟", "answer": 1976},

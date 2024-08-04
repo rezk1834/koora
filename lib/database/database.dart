@@ -1,8 +1,6 @@
 
 final List<Map<String, String>> main_categories = [
-  {"title": "صباحو تحدي", "image": "assets/main/saba7o.png", "path": "/games"},
-  {"title": "تحدي ال30", "image": "assets/main/30 Challenge.png", "path": "/challenge"},
-  {"title": "أقوي تحدي", "image": "assets/main/Aqua Ta7ady.png", "path": "/aqua"},
+  {"title": "تحدي معلومات كرة القدم", "image": "assets/main/saba7o.png", "path": "/games"},
   {"title": "دور ال16", "image": "assets/main/round.png", "path": "/round"},
 ];
 
