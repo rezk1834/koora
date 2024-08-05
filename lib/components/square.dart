@@ -3,7 +3,7 @@ import 'package:football/games/password.dart';
 import 'package:football/games/rondo.dart';
 import 'package:football/games/whisper.dart';
 import 'package:football/theme.dart';
-import '../database/saba7o database/btola.dart';
+import '../games/btola.dart';
 import '../games/Career.dart';
 import '../games/TheBell.dart';
 import '../games/TheImpossible.dart';

@@ -4,7 +4,7 @@ import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
-import '../database/saba7o database/mazad_data.dart';
+import '../database/saba7o database/arosty_data.dart';
 import '../database/saba7o database/theMazad_data.dart';
 import '../theme.dart';
 class Mazad extends StatefulWidget {

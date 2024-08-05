@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../components/functions.dart';
-import '../../components/scoreContainer.dart';
-import '../../theme.dart';
-import 'btola_data.dart';
+import '../components/functions.dart';
+import '../components/scoreContainer.dart';
+import '../theme.dart';
+import '../database/saba7o database/btola_data.dart';
 
 class Btola extends StatefulWidget {
   final int redScore;

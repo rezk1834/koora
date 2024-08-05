@@ -82,7 +82,7 @@ class TheDrawer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ListTile(
                   leading: Icon(
-                    Icons.add_comment,
+                    Icons.share,
                     size: 29,
                   ),
                   title: Text(
