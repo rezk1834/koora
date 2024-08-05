@@ -3,6 +3,7 @@ import 'package:football/games/password.dart';
 import 'package:football/games/rondo.dart';
 import 'package:football/games/whisper.dart';
 import 'package:football/theme.dart';
+import '../games/btola.dart';
 import '../games/Career.dart';
 import '../games/TheBell.dart';
 import '../games/TheImpossible.dart';
@@ -13,6 +14,7 @@ import '../games/draw.dart';
 import '../games/ehdeb.dart';
 import '../games/ekdeb.dart';
 import '../games/guess_the_player.dart';
+import '../games/kobry.dart';
 import '../games/labes_sa7bak.dart';
 import '../games/arosty.dart';
 import '../games/men_fe_elsora.dart';
@@ -80,18 +82,22 @@ class _SquareState extends State<Square> {
               return Seconds(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/draw':
               return Draw(redScore: widget.red_score, blueScore: widget.blue_score);
-            case '/mazad':
+            case '/arosty':
               return arosty(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/wdyk':
-              return WDYK();
-            case '/themazad':
-              return TheMazad();
+              return WDYK(redScore: widget.red_score, blueScore: widget.blue_score);
+            case '/mazad':
+              return Mazad(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/bell':
               return TheBell(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/impossible':
               return TheImpossible(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/career':
               return Career(redScore: widget.red_score, blueScore: widget.blue_score);
+            case '/kobry':
+              return Kobry(redScore: widget.red_score, blueScore: widget.blue_score);
+            case '/btola':
+              return Btola(redScore: widget.red_score, blueScore: widget.blue_score);
             default:
               return Container(); // Placeholder for invalid path
           }

@@ -87,7 +87,7 @@ class _TheBellState extends State<TheBell> {
     final isDarkMode = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? colors.darkBackground : Colors.grey[200],
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
         title: Text(
           'الجرس',
@@ -113,9 +113,9 @@ class _TheBellState extends State<TheBell> {
                     children: [
                       Column(
                         children: [
-                          scoreContainer(gameRedScore.toString(), colors.team1, 20),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team1),
+                            icon: Icon(Icons.add, color: colors.team1,size: 35,),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
@@ -132,9 +132,9 @@ class _TheBellState extends State<TheBell> {
                       ),
                       Column(
                         children: [
-                          scoreContainer(gameBlueScore.toString(), colors.team2, 20),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team2),
+                            icon: Icon(Icons.add, color: colors.team2,size: 35,),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;

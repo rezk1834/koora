@@ -36,6 +36,8 @@ dependencies:
   group_button: ^5.3.4
   flutter_speed_dial: ^7.0.0
   collection: ^1.16.0
+  url_launcher: ^6.3.0
+  share: ^2.0.4
 
 
 

@@ -16,4 +16,5 @@ class colors {
   static const Color mainText = Color(0xffd8dbde);
   static const Color secondaryText = Colors.black;
   static const Color tertiaryText = Colors.grey;
+  static const String ScoreFont = "Orbitron";
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
+import '../components/scoreContainer.dart';
 import '../database/saba7o database/Ehbed_data.dart';
 import 'package:football/theme.dart';
 
@@ -83,15 +84,21 @@ class _EhbedState extends State<Ehbed> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: colors.darkBackground,
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        backgroundColor: colors.darkAppbarBackground,
         title: Text(
           'اهبد صح',
-          style: TextStyle(fontSize: 30, fontFamily: 'Teko', color: colors.mainText),
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Teko',
+            color: isDarkMode ? colors.mainText : colors.secondaryText,
+          ),
         ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
         children: [
@@ -106,22 +113,9 @@ class _EhbedState extends State<Ehbed> {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: colors.team1,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameRedScore.toString(),
-                                style: TextStyle(color: colors.mainText, fontSize: 25),
-                              ),
-                            ),
-                          ),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team1),
+                            icon: Icon(Icons.add, color: colors.team1,size: 35,),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
@@ -134,26 +128,13 @@ class _EhbedState extends State<Ehbed> {
                       ),
                       Text(
                         'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: colors.mainText),
+                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                       ),
                       Column(
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: colors.team2,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameBlueScore.toString(),
-                                style: TextStyle(color: colors.mainText, fontSize: 25),
-                              ),
-                            ),
-                          ),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team2),
+                            icon: Icon(Icons.add, color: colors.team2,size: 35,),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
@@ -180,7 +161,10 @@ class _EhbedState extends State<Ehbed> {
                     child: Text(
                       Ehbed_data[randomNumbers[questionsNumber]]['question']
                       as String,
-                      style: TextStyle(fontSize: 40),
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: isDarkMode ? colors.mainText : colors.secondaryText,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -200,7 +184,10 @@ class _EhbedState extends State<Ehbed> {
                         Ehbed_data[randomNumbers[questionsNumber]]
                         ['answer']
                             .toString(),
-                        style: TextStyle(fontSize: 40, color: colors.mainText),
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: isDarkMode ? colors.mainText : colors.secondaryText,
+                            fontWeight: FontWeight.bold),
                       )
                           : Text(""),
                     );
@@ -221,23 +208,20 @@ class _EhbedState extends State<Ehbed> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
-                        onPressed: toggleAnswer,
+                        onPressed: draw,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: colors.mainText,
-                          backgroundColor: colors.button3,
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
-                        child: ValueListenableBuilder<bool>(
-                          valueListenable: showAnswerNotifier,
-                          builder: (context, showAnswer, child) {
-                            return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
-                          },
-                        ),
+                        child: Text('No Answer'),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: colors.mainText,
-                          backgroundColor: colors.questionButton,
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
                         child: Text('Change the question'),
                       ),
@@ -245,12 +229,18 @@ class _EhbedState extends State<Ehbed> {
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: draw,
+                    onPressed: toggleAnswer,
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: colors.mainText,
-                      backgroundColor: Colors.transparent,
+                      side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                      backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                     ),
-                    child: Text('No Answer'),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: showAnswerNotifier,
+                      builder: (context, showAnswer, child) {
+                        return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
+                      },
+                    ),
                   ),
                 ],
               ),

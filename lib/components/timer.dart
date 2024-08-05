@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../theme.dart';
+
 class CountdownTimer extends StatefulWidget {
   final int seconds;
 
@@ -64,6 +66,8 @@ class _CountdownTimerState extends State<CountdownTimer> {
   @override
   Widget build(BuildContext context) {
     double progress = _remainingSeconds / widget.seconds;
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
 
     return Container(
       alignment: Alignment.center,
@@ -79,13 +83,13 @@ class _CountdownTimerState extends State<CountdownTimer> {
                 child: CircularProgressIndicator(
                   value: progress,
                   strokeWidth: 8,
-                  backgroundColor: Colors.grey[300],
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                  backgroundColor: Colors.grey,
+                  valueColor:isDarkMode ? AlwaysStoppedAnimation<Color>(Colors.white): AlwaysStoppedAnimation<Color>(Colors.black),
                 ),
               ),
               Text(
                 _remainingSeconds.toString(),
-                style: TextStyle(fontSize: 30, color: Colors.black),
+                style: TextStyle(fontSize: 30, color: isDarkMode ? colors.mainText : colors.secondaryText,),
               ),
             ],
           ),
@@ -96,19 +100,21 @@ class _CountdownTimerState extends State<CountdownTimer> {
               ElevatedButton(
                 onPressed: startTimer,
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green,
+                  side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                  foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                  backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
                 child: Text(
                   _isRunning ? 'Stop' : 'Start',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20,),
                 ),
               ),
               ElevatedButton(
                 onPressed: resetTimer,
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blueGrey,
+                  side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                  foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                  backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
                 child: Text(
                   'Reset',

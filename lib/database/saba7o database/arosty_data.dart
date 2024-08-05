@@ -1,4 +1,4 @@
-final List<Map<String, String>> Arosty_data = [
+final List<Map<String, String>> arosty_data = [
   {"question": "اذكر 5 ملاعب في اسبانيا", },
   {"question": "اذكر 5 لاعبين مصريين شاركوا في كاس العالم", },
   {"question": "اذكر 5 فرق افريقية غير عربية", },

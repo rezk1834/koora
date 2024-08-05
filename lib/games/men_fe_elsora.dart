@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import '../components/functions.dart';
+import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../theme.dart';
 import '../database/saba7o database/men_fel_sora_data.dart';
@@ -57,35 +59,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
     showNotifier.value = !showNotifier.value;
   }
 
-  void _showWinnerDialog(String winningTeam) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            ModalBarrier(
-              color: Colors.black.withOpacity(0.5),
-              dismissible: false,
-            ),
-            AlertDialog(
-              backgroundColor: winningTeam == 'Draw'
-                  ? Colors.grey
-                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
-              content: Text(
-                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-            ),
-          ],
-        );
-      },
-    );
 
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pop(context); // Close the alert dialog
-      Navigator.pop(context, [redScore, blueScore]); // Navigate back
-    });
-  }
 
   void _checkGameEnd() {
     showNotifier.value = false;
@@ -93,26 +67,33 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        _showWinnerDialog('Red Team');
+        showWinnerDialog('Red Team',context,redScore,blueScore);
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        _showWinnerDialog('Blue Team');
+        showWinnerDialog('Blue Team',context,redScore,blueScore);
       } else {
-        redScore++;
-        blueScore++;
-        _showWinnerDialog('Draw');
+        showWinnerDialog('Draw',context,redScore,blueScore);
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: colors.darkBackground,
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        backgroundColor: colors.darkAppbarBackground,
-        title: Text('مين في الصورة', style: TextStyle(fontSize: 30, fontFamily: 'Teko',color: colors.mainText)),
+        title: Text(
+          'مين في الصورة',
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Teko',
+            color: isDarkMode ? colors.mainText : colors.secondaryText,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -125,22 +106,9 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                 children: [
                   Column(
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: Text(
-                            gameRedScore.toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 25),
-                          ),
-                        ),
-                      ),
+                      scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
                       IconButton(
-                        icon: Icon(Icons.add, color: Colors.red),
+                        icon: Icon(Icons.add, color: colors.team1,size: 35,),
                         onPressed: () {
                           setState(() {
                             gameRedScore++;
@@ -153,31 +121,17 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                   ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27, fontFamily: 'Zain',color: colors.mainText),
+                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
                   Column(
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: Text(
-                            gameBlueScore.toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 25),
-                          ),
-                        ),
-                      ),
+                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
                       IconButton(
-                        icon: Icon(Icons.add, color: Colors.blue),
+                        icon: Icon(Icons.add, color: colors.team2,size: 35,),
                         onPressed: () {
                           setState(() {
                             gameBlueScore++;
                             questionsNumber++;
-                            showNotifier.value = false;
                             _checkGameEnd();
                           });
                         },
@@ -201,7 +155,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                     children: [
                       Text(
                         Men_fe_elsora_data[randomNumbers[questionsNumber]]['title'] as String,
-                        style: TextStyle(fontSize: 20,color: colors.mainText),
+                        style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText),
                       ),
                       SizedBox(height: 20),
                       InteractiveViewer(
@@ -239,7 +193,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                                   ['player$i']
                                   as String
                                       : "",
-                                  style: TextStyle(fontSize: 15),
+                                  style: TextStyle(fontSize: 15, color: isDarkMode ? colors.mainText : colors.secondaryText),
                                 ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -247,16 +201,18 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                                   ElevatedButton(
                                     onPressed: draw,
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: Colors.white,
-                                      backgroundColor: Colors.blueGrey,
+                                      side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                                      backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                                     ),
                                     child: Text('Draw'),
                                   ),
                                   ElevatedButton(
                                     onPressed: toggleAnswer,
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: colors.mainText,
-                                      backgroundColor: colors.answerButton,
+                                      side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                                      backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                                     ),
                                     child: Text(show ? 'Hide Answer' : 'Show Answer'),
                                   ),

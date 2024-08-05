@@ -1,8 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:football/components/timer.dart';
+import '../components/functions.dart';
+import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/labes_sa7bak_data.dart';
+import '../theme.dart';
 
 class labesSa7bak extends StatefulWidget {
   final int redScore;
@@ -51,47 +54,19 @@ class _labesSa7bakState extends State<labesSa7bak> {
   }
 
 
-  void _showWinnerDialog(String winningTeam) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            ModalBarrier(
-              color: Colors.black.withOpacity(0.5),
-              dismissible: false,
-            ),
-            AlertDialog(
-              backgroundColor: winningTeam == 'Draw'
-                  ? Colors.grey
-                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
-              content: Text(
-                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-            ),
-          ],
-        );
-      },
-    );
 
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pop(context); // Close the alert dialog
-      Navigator.pop(context, [redScore, blueScore]); // Navigate back
-    });
-  }
 
   void _checkGameEnd() {
     if (questionsNumber == 8) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        _showWinnerDialog('Red Team');
+        showWinnerDialog('Red Team',context,redScore,blueScore);
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        _showWinnerDialog('Blue Team');
+        showWinnerDialog('Blue Team',context,redScore,blueScore);
       } else {
-        _showWinnerDialog('Draw');
+        showWinnerDialog('Draw',context,redScore,blueScore);
       }
     }
   }
@@ -110,38 +85,24 @@ class _labesSa7bakState extends State<labesSa7bak> {
     });
   }
 
-  Widget buildScoreColumn(Color color, int score, Function() onPressed) {
-    return Column(
-      children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Center(
-            child: Text(
-              score.toString(),
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
-          ),
-        ),
-        IconButton(
-          icon: Icon(Icons.add, color: color),
-          onPressed: onPressed,
-        ),
-      ],
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        title:  Text('لبس صاحبك', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title:  Text('لبس صاحبك',  style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Teko',
+          color: isDarkMode ? colors.mainText : colors.secondaryText,
+        ),
+        ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -152,12 +113,40 @@ class _labesSa7bakState extends State<labesSa7bak> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buildScoreColumn(Colors.red, gameRedScore, () => updateScores(1)),
+                  Column(
+                    children: [
+                      scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
+                      IconButton(
+                        icon: Icon(Icons.add, color: colors.team1,size: 35,),
+                        onPressed: () {
+                          setState(() {
+                            gameRedScore++;
+                            questionsNumber++;
+                            _checkGameEnd();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                   Text(
                     'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27,fontFamily: 'Zain'),
+                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
-                  buildScoreColumn(Colors.blue, gameBlueScore, () => updateScores(2)),
+                  Column(
+                    children: [
+                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
+                      IconButton(
+                        icon: Icon(Icons.add, color: colors.team2,size: 35,),
+                        onPressed: () {
+                          setState(() {
+                            gameBlueScore++;
+                            questionsNumber++;
+                            _checkGameEnd();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -173,7 +162,7 @@ class _labesSa7bakState extends State<labesSa7bak> {
               child: Center(
                 child: Text(
                   labesSa7bak_data[randomNumbers[questionsNumber]]['question'] as String,
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
                 ),
               ),
             ),

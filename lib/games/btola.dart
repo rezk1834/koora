@@ -1,22 +1,23 @@
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/guess_the_player_data.dart';
 import '../theme.dart';
+import '../database/saba7o database/btola_data.dart';
 
-class GuessThePlayer extends StatefulWidget {
+class Btola extends StatefulWidget {
   final int redScore;
   final int blueScore;
 
-  GuessThePlayer({required this.redScore, required this.blueScore});
+  Btola({required this.redScore, required this.blueScore});
 
   @override
-  State<GuessThePlayer> createState() => _GuessThePlayerState();
+  State<Btola> createState() => _BtolaState();
 }
 
-class _GuessThePlayerState extends State<GuessThePlayer> {
+class _BtolaState extends State<Btola> {
   late int redScore;
   late int blueScore;
   int gameBlueScore = 0;
@@ -32,7 +33,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(3, guessThePlayer_data.length);
+    randomNumbers = generateUniqueRandomNumbers(5, Btola_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -49,7 +50,6 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
   void draw() {
     setState(() {
       questionsNumber++;
-      clueNumber = 0;
       showName = false;
       _checkGameEnd();
     });
@@ -58,7 +58,8 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
 
 
   void _checkGameEnd() {
-    if (questionsNumber == 3) {
+    clueNumber = 0;
+    if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
@@ -74,7 +75,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
 
   void changeQuestion() {
     setState(() {
-      randomNumbers[questionsNumber] = random.nextInt(guessThePlayer_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(Btola_data.length);
       clueNumber = 0;
       showName = false;
     });
@@ -82,7 +83,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, String> currentPlayerData = guessThePlayer_data[randomNumbers[questionsNumber]];
+    Map<String, String> currentPlayerData = Btola_data[randomNumbers[questionsNumber]];
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
 
@@ -90,7 +91,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
         title: Text(
-          'من اللاعب',
+          'خمن البطولة',
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'Teko',
@@ -104,6 +105,10 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+            Text(
+              'Question No.${questionsNumber + 1}',
+              style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
@@ -116,6 +121,9 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         icon: Icon(Icons.add, color: colors.team1,size: 35,),
                         onPressed: () {
                           setState(() {
+                            if (clueNumber<2){
+                              gameRedScore++;
+                            }
                             gameRedScore++;
                             questionsNumber++;
                             _checkGameEnd();
@@ -124,10 +132,6 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                       ),
                     ],
                   ),
-                  Text(
-                    'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
-                  ),
                   Column(
                     children: [
                       scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
@@ -135,6 +139,9 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         icon: Icon(Icons.add, color: colors.team2,size: 35,),
                         onPressed: () {
                           setState(() {
+                            if (clueNumber<2){
+                              gameBlueScore++;
+                            }
                             gameBlueScore++;
                             questionsNumber++;
                             _checkGameEnd();
@@ -163,7 +170,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                           String clueKey = 'Clue ${index + 1}';
                           return ListTile(
                             title: Text(
-                              currentPlayerData[clueKey] ?? 'No more clues',
+                              currentPlayerData[clueKey] ?? '',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: isDarkMode ? colors.mainText : colors.secondaryText,
@@ -204,7 +211,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Show Next Clue'),
+                      child: Text('Show Next Round'),
                     ),
                     SizedBox(width: 20),
                     ElevatedButton(

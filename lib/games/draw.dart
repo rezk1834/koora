@@ -1,8 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../components/drawingpage.dart';
+import '../components/functions.dart';
+import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/draw_data.dart';
+import '../theme.dart';
 
 class Draw extends StatefulWidget {
   final int redScore;
@@ -33,43 +36,10 @@ class _DrawState extends State<Draw> {
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
     Set<int> uniqueNumbers = Set<int>();
-
     while (uniqueNumbers.length < count) {
-      int number = random.nextInt(max);
-      uniqueNumbers.add(number);
+      uniqueNumbers.add(random.nextInt(max));
     }
-
     return uniqueNumbers.toList();
-  }
-
-  void _showWinnerDialog(String winningTeam) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            ModalBarrier(
-              color: Colors.black.withOpacity(0.5),
-              dismissible: false,
-            ),
-            AlertDialog(
-              backgroundColor: winningTeam == 'Draw'
-                  ? Colors.grey
-                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
-              content: Text(
-                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pop(context); // Close the alert dialog
-      Navigator.pop(context, [redScore, blueScore]); // Navigate back
-    });
   }
 
   void _checkGameEnd() {
@@ -77,12 +47,12 @@ class _DrawState extends State<Draw> {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        _showWinnerDialog('Red Team');
+        showWinnerDialog('Red Team', context, redScore, blueScore);
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        _showWinnerDialog('Blue Team');
+        showWinnerDialog('Blue Team', context, redScore, blueScore);
       } else {
-        _showWinnerDialog('Draw');
+        showWinnerDialog('Draw', context, redScore, blueScore);
       }
     }
   }
@@ -103,146 +73,131 @@ class _DrawState extends State<Draw> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        title: Text('الرسم', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title: Text(
+          'الرسم',
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Teko',
+            color: isDarkMode ? colors.mainText : colors.secondaryText,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameRedScore.toString(),
-                                style: TextStyle(color: Colors.white, fontSize: 25),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.add, color: Colors.red),
-                            onPressed: () {
-                              setState(() {
-                                gameRedScore++;
-                                questionsNumber++;
-                                _checkGameEnd();
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameBlueScore.toString(),
-                                style: TextStyle(color: Colors.white, fontSize: 25),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.add, color: Colors.blue),
-                            onPressed: () {
-                              setState(() {
-                                gameBlueScore++;
-                                questionsNumber++;
-                                _checkGameEnd();
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildScoreColumn(gameRedScore, colors.team1, isDarkMode),
+                  Text(
+                    'Question No.${questionsNumber + 1}',
+                    style: TextStyle(
+                      fontSize: 27,
+                      fontFamily: 'Zain',
+                      color: isDarkMode ? colors.mainText : colors.secondaryText,
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-                Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  child: Center(
+                  _buildScoreColumn(gameBlueScore, colors.team2, isDarkMode),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.symmetric(vertical: 20),
                     child: Text(
                       Draw_data[randomNumbers[questionsNumber]]['name'] as String,
-                      style: TextStyle(fontSize: 40),
+                      style: TextStyle(
+                        fontSize: 40,
+                        color: isDarkMode ? colors.mainText : colors.secondaryText,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.asset(
+                        Draw_data[randomNumbers[questionsNumber]]['photo'] as String,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: changeQuestion,
+                  style: ElevatedButton.styleFrom(
+                    side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                    backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
+                  ),
+                  child: Text('Change the question'),
                 ),
-                Container(
-                  child: ClipRRect(
-                    child: Image(
-                      image: AssetImage(Draw_data[randomNumbers[questionsNumber]]['photo'] as String),
-                      fit: BoxFit.cover,
-                    ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DrawingPage()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                    backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
                   ),
+                  child: Icon(Icons.draw_rounded),
                 ),
               ],
-            ),
-            Positioned(
-              bottom: 50,
-              left: 10,
-              right: 150,
-              child: ElevatedButton(
-                onPressed: changeQuestion,
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.green,
-                ),
-                child: Text('Change the question'),
-              ),
-            ),
-            Positioned(
-              bottom: 50,
-              right: 20,
-              left: 200,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DrawingPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blueGrey,
-                ),
-                child: Icon(Icons.draw_rounded),
-              ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildScoreColumn(int score, Color color, bool isDarkMode) {
+    return Column(
+      children: [
+        scoreContainer(score.toString(), color, 35, isDarkMode),
+        IconButton(
+          icon: Icon(Icons.add, color: color, size: 35),
+          onPressed: () {
+            setState(() {
+              if (color == colors.team1) {
+                gameRedScore++;
+              } else {
+                gameBlueScore++;
+              }
+              questionsNumber++;
+              _checkGameEnd();
+            });
+          },
+        ),
+      ],
     );
   }
 }
