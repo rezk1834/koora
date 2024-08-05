@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/scoreContainer.dart';
+import '../theme.dart';
 import 'bankpage.dart';
 
 class Bank extends StatefulWidget {
@@ -47,7 +48,7 @@ class _BankState extends State<Bank> {
               },
               child: Text(
                 'Team Red Wins',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: colors.team1),
               ),
             ),
             TextButton(
@@ -60,7 +61,7 @@ class _BankState extends State<Bank> {
               },
               child: Text(
                 'Team Blue Wins',
-                style: TextStyle(color: Colors.blue),
+                style: TextStyle(color: colors.team2),
               ),
             ),
           ],
@@ -83,9 +84,9 @@ class _BankState extends State<Bank> {
     ).then((result) {
       if (result != null && result is int) {
         setState(() {
-          if (color == Colors.red) {
+          if (color == colors.team1) {
             redBankScore += result;
-          } else if (color == Colors.blue) {
+          } else if (color == colors.team2) {
             blueBankScore += result;
           }
           buttonClicked[index] = true;
@@ -96,10 +97,16 @@ class _BankState extends State<Bank> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        title: Text('بنك', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title: Text('بنك', style: TextStyle(fontSize: 30,fontFamily: 'Teko',color: isDarkMode ? colors.mainText : colors.secondaryText,
+        ),),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
         children: [
@@ -109,8 +116,8 @@ class _BankState extends State<Bank> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                scoreContainer(redBankScore.toString(), Colors.red,14),
-                scoreContainer(blueBankScore.toString(), Colors.blue,14),
+                  scoreContainer(redBankScore.toString(), colors.team1, 35,isDarkMode),
+                  scoreContainer(blueBankScore.toString(), colors.team2, 35,isDarkMode),
               ],
             ),
           ),
@@ -126,14 +133,14 @@ class _BankState extends State<Bank> {
                       onPressed: buttonClicked[i]
                           ? null
                           : () {
-                        Color color = (i % 2 == 0) ? Colors.red : Colors.blue;
-                        int bankingScore = (color == Colors.red)
+                        Color color = (i % 2 == 0) ? colors.team1 : colors.team2;
+                        int bankingScore = (color == colors.team1)
                             ? redBankScore
                             : blueBankScore;
                         navigateToBankPage(color, bankingScore, i);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: (i % 2 == 0) ? Colors.red : Colors.blue,
+                        backgroundColor: (i % 2 == 0) ? colors.team1 : colors.team2,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 15),
@@ -150,8 +157,9 @@ class _BankState extends State<Bank> {
             right: 40,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Color(0xfffdca40),
+                side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
               ),
               onPressed: _endround,
               child: Text("End Round"),

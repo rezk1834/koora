@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/risk_data.dart';
+import '../theme.dart';
 
 class Risk extends StatefulWidget {
   final int redScore;
@@ -135,11 +136,20 @@ class _RiskState extends State<Risk> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        title: Text('ريسك', style: TextStyle(fontSize: 30,fontFamily: 'Teko'),),
+        title: Text('ريسك', style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Teko',
+          color: isDarkMode ? colors.mainText : colors.secondaryText,
+        ),
+        ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Column(
         children: <Widget>[
@@ -148,8 +158,17 @@ class _RiskState extends State<Risk> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                scoreContainer(gameRedScore.toString(), Colors.red,14),
-                scoreContainer(gameBlueScore.toString(), Colors.blue,14),
+                Column(
+                  children: [
+                    scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
+                  ],
+                ),
+                Column(
+                  children: [
+                    scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
+
+                  ],
+                ),
               ],
             ),
           ),
@@ -167,7 +186,8 @@ class _RiskState extends State<Risk> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.red,
                   ),
-                  child: Text("+$value"),
+                  child: Text("+$value",style: TextStyle(fontSize: 18, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                ),
                 );
               }).toList(),
             ),
@@ -186,7 +206,8 @@ class _RiskState extends State<Risk> {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
-                  child: Text("+$value"),
+                child: Text("+$value",style: TextStyle(fontSize: 18, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                )
                 );
               }).toList(),
             ),
@@ -202,15 +223,15 @@ class _RiskState extends State<Risk> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.blueGrey[400],
+                          color:  isDarkMode ?Colors.blueGrey[800]:Colors.blueGrey[200],
                           borderRadius: BorderRadius.circular(12)
                         ),
                         width: 60,
                         height: 75,
                         child: Center(child: Text(
                           randomRiskData[columnIndex]["title"]!,
-                          style: TextStyle(
-                              fontSize: 16, color: Colors.white),)),
+                          style: TextStyle(fontSize: 16, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                        ),),
                       ),
                     ),
                     ...[5, 10, 20, 40]
@@ -239,7 +260,8 @@ class _RiskState extends State<Risk> {
 
                             width: 60,
                             height: 50,
-                            child: Center(child: Text("$value")),
+                            child: Center(child: Text("$value",style: TextStyle(fontSize: 25, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                            ),),
                           ),
                         ),
                       );
@@ -251,8 +273,9 @@ class _RiskState extends State<Risk> {
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Color(0xfffdca40),
+                side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
               ),
               onPressed: _endround,
               child: Padding(

@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: _lightTheme,
       darkTheme: _darkTheme,
-      themeMode: ThemeMode.system, // Use system setting for light/dark mode
+      themeMode: ThemeMode.system,
+      // Use system setting for light/dark mode
       home: home_screen(),
       routes: {
         '/games': (context) => Games(),
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       },
     );
   }
-
+}
   ThemeData get _lightTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
@@ -42,8 +43,8 @@ class MyApp extends StatelessWidget {
       ),
       scaffoldBackgroundColor: colors.lightBackground,
       textTheme: TextTheme(
-        bodyText1: TextStyle(color: colors.secondaryText),
-        bodyText2: TextStyle(color: colors.tertiaryText),
+        bodyLarge: TextStyle(color: colors.secondaryText), // Updated from bodyText1
+        bodyMedium: TextStyle(color: colors.tertiaryText), // Updated from bodyText2
       ),
       // Add other light theme properties here
     );
@@ -63,10 +64,9 @@ class MyApp extends StatelessWidget {
       ),
       scaffoldBackgroundColor: colors.darkBackground,
       textTheme: TextTheme(
-        bodyText1: TextStyle(color: colors.mainText),
-        bodyText2: TextStyle(color: colors.tertiaryText),
+        bodyLarge: TextStyle(color: colors.mainText), // Updated from bodyText1
+        bodyMedium: TextStyle(color: colors.tertiaryText), // Updated from bodyText2
       ),
       // Add other dark theme properties here
     );
   }
-}

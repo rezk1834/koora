@@ -80,12 +80,12 @@ class _SquareState extends State<Square> {
               return Seconds(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/draw':
               return Draw(redScore: widget.red_score, blueScore: widget.blue_score);
-            case '/mazad':
+            case '/arosty':
               return arosty(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/wdyk':
-              return WDYK();
-            case '/themazad':
-              return TheMazad();
+              return WDYK(redScore: widget.red_score, blueScore: widget.blue_score);
+            case '/mazad':
+              return Mazad(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/bell':
               return TheBell(redScore: widget.red_score, blueScore: widget.blue_score);
             case '/impossible':

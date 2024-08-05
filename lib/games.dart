@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:football/drawer.dart';
 import 'components/square.dart';
 import 'components/scoreContainer.dart';
 import 'database/database.dart';
@@ -47,10 +48,19 @@ class _GamesState extends State<Games> {
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
         automaticallyImplyLeading: false,
         centerTitle: true,
-        leading: Icon(Icons.menu),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () { Scaffold.of(context).openDrawer(); },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         elevation: 0,
         bottomOpacity: 5,
       ),
+      drawer: TheDrawer(),
       body: Column(
         children: [
           Padding(
@@ -93,7 +103,7 @@ class _GamesState extends State<Games> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
                   Expanded(
@@ -101,6 +111,8 @@ class _GamesState extends State<Games> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         childAspectRatio: 1,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
                       ),
                       itemCount: game_categories.length,
                       itemBuilder: (context, index) {
@@ -120,8 +132,9 @@ class _GamesState extends State<Games> {
                   ElevatedButton(
                     onPressed: resetScore,
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.green,
+                      side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                      backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                     ),
                     child: Text(
                       'Reset the score',

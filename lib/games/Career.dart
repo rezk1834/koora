@@ -2,7 +2,10 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../components/functions.dart';
+import '../components/scoreContainer.dart';
 import '../database/saba7o database/Career_data.dart';
+import '../theme.dart';
 
 class Career extends StatefulWidget {
   final int redScore;
@@ -74,35 +77,7 @@ class _CareerState extends State<Career> {
     });
   }
 
-  void _showWinnerDialog(String winningTeam) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            ModalBarrier(
-              color: Colors.black.withOpacity(0.5),
-              dismissible: false,
-            ),
-            AlertDialog(
-              backgroundColor: winningTeam == 'Draw'
-                  ? Colors.grey
-                  : (winningTeam == 'Blue Team' ? Colors.blue : Colors.red),
-              content: Text(
-                winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              ),
-            ),
-          ],
-        );
-      },
-    );
 
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pop(context); // Close the alert dialog
-      Navigator.pop(context, [redScore, blueScore]); // Navigate back
-    });
-  }
 
   void _checkGameEnd() {
     showNameNotifier.value = false;
@@ -110,23 +85,32 @@ class _CareerState extends State<Career> {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
-        _showWinnerDialog('Red Team');
+        showWinnerDialog('Red Team',context,redScore,blueScore);
       } else if (gameRedScore < gameBlueScore) {
         blueScore++;
-        _showWinnerDialog('Blue Team');
+        showWinnerDialog('Blue Team',context,redScore,blueScore);
       } else {
-        _showWinnerDialog('Draw');
+        showWinnerDialog('Draw',context,redScore,blueScore);
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
+  return Scaffold(
+      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        title: Text('مسيرة اللاعب', style: TextStyle(fontSize: 30, fontFamily: 'Teko')),
+        title: Text('مسيرة اللاعب', style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Teko',
+          color: isDarkMode ? colors.mainText : colors.secondaryText,
+        ),
+        ),
         centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
         children: [
@@ -141,22 +125,9 @@ class _CareerState extends State<Career> {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameRedScore.toString(),
-                                style: TextStyle(color: Colors.white, fontSize: 25),
-                              ),
-                            ),
-                          ),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: Colors.red),
+                            icon: Icon(Icons.add, color: colors.team1,size: 35,),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
@@ -169,26 +140,13 @@ class _CareerState extends State<Career> {
                       ),
                       Text(
                         'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain'),
+                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                       ),
                       Column(
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                gameBlueScore.toString(),
-                                style: TextStyle(color: Colors.white, fontSize: 25),
-                              ),
-                            ),
-                          ),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: Colors.blue),
+                            icon: Icon(Icons.add, color: colors.team2,size: 35,),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
@@ -202,7 +160,6 @@ class _CareerState extends State<Career> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30),
                 ValueListenableBuilder<bool>(
                   valueListenable: showAnswerNotifier,
                   builder: (context, showAnswer, child) {
@@ -221,12 +178,12 @@ class _CareerState extends State<Career> {
                           for (int i = 0; i <= currentTeamIndices[currentQuestion]; i++)
                             Text(
                               careerPath.isNotEmpty ? careerPath[i] : 'No career path available',
-                              style: TextStyle(fontSize: 40, color: Colors.green),
+                              style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
                             ),
                           if (showAnswer) ...[
                             Text(
                               Career_data[currentQuestion]['answer']?.toString() ?? '',
-                              style: TextStyle(fontSize: 40, color: Colors.green),
+                              style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
                             ),
                           ],
                         ],
@@ -250,8 +207,8 @@ class _CareerState extends State<Career> {
                         Career_data[randomNumbers[questionsNumber]]
                         ['name']
                             .toString(),
-                        style: TextStyle(
-                            fontSize: 40, color: Colors.green),
+                        style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
+
                       )
                           : Text("");
                     },
@@ -265,53 +222,62 @@ class _CareerState extends State<Career> {
             right: 10,
             bottom: 30,
             child: Container(
-              color: Colors.grey[200],
+              color: Colors.transparent,
               padding: EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 children: [
+                  Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: showNextTeam,
+                        style: ElevatedButton.styleFrom(
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
+                        ),
+                        child: Text('Next Team'),
+                      ),
+                      ElevatedButton(
+                        onPressed: toggleAnswer,
+                        style: ElevatedButton.styleFrom(
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
+                        ),
+                        child: ValueListenableBuilder<bool>(
+                          valueListenable: showNameNotifier,
+                          builder: (context, showName, child) {
+                            return Text(showName ? 'Hide Name' : 'Show Name');
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
                         onPressed: draw,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.blueGrey,
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
                         child: Text('No Answer'),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.green,
+                          side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                          foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                          backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
                         child: Text('Change the question'),
                       ),
 
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: showNextTeam,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.orange,
-                    ),
-                    child: Text('Next Team'),
-                  ),
-                  ElevatedButton(
-                    onPressed: toggleAnswer,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Color(0xfffdca40),
-                    ),
-                    child: ValueListenableBuilder<bool>(
-                      valueListenable: showNameNotifier,
-                      builder: (context, showName, child) {
-                        return Text(showName ? 'Hide Name' : 'Show Name');
-                      },
-                    ),
-                  ),
+
                 ],
               ),
             ),
