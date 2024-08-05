@@ -26,6 +26,8 @@ final List<Map<String, String>> game_categories = [
   {"title": "الجرس", "image": "assets/main/30 Challenge.png", "path": "/bell","rules":"سؤال واللي يجاوب اسرع ياخد النقطة"},
   {"title": "المستحيل", "image": "assets/main/30 Challenge.png", "path": "/impossible","rules":"سؤال مستحيل واللي يجاوب اسرع ياخد 2 بوينت"},
   {"title": "مسيرة اللاعب ", "image": "assets/main/30 Challenge.png", "path": "/career","rules":"هيكون في مسيرة لاعب واللي يعرفه الاول ياخد البوينت"},
+  {"title": "كوبري", "image": "assets/main/Aqua Ta7ady.png", "path": "/kobry","rules":"هيكون في 2 لاعيبة وتحاول توصل بينهم بلاعيبة لعبوا معاهم وهيكون في وقت. اللي هيربط بين الاتنين لاعيبة بعدد لاعبين اقل هيكسب. لو نفس عدد اللاعبين فالاسرع هو اللي هياخد البوينت"},
+  {"title": "خمن البطولة", "image": "assets/main/Aqua Ta7ady.png", "path": "/btola","rules":"هيكون في 5 اسئلة كل سؤال بيكون فيه ماتشات اتلعبت من بطولة من الدور الاول لحد النهائي بالنتيجة بتاعة الماتش والتيم اللي يعرف اسم البطولة والنسخة بياخد البوينت ولو جاوب في اول سؤالين بياخد 2 بوينتس"},
 ];
 
 
