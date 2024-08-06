@@ -71,7 +71,7 @@ class _CareerState extends State<Career> {
     setState(() {
       int currentQuestion = randomNumbers[questionsNumber];
       if (currentTeamIndices[currentQuestion] <
-          (Career_data[currentQuestion]['CareerPath']?.split(' -> ').length ?? 0) - 1) {
+          (Career_data[currentQuestion]['CareerPath']?.split(' - ').length ?? 0) - 1) {
         currentTeamIndices[currentQuestion]++;
       }
     });
@@ -164,7 +164,7 @@ class _CareerState extends State<Career> {
                   valueListenable: showAnswerNotifier,
                   builder: (context, showAnswer, child) {
                     int currentQuestion = randomNumbers[questionsNumber];
-                    List<String> careerPath = Career_data[currentQuestion]['CareerPath']?.split(' -> ') ?? [];
+                    List<String> careerPath = Career_data[currentQuestion]['CareerPath']?.split(' - ') ?? [];
                     return Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
