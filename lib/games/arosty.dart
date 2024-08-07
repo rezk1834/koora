@@ -84,7 +84,7 @@ class _ArostyState extends State<Arosty> {
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
         title: Text(
-          'روندو',
+          'عروستي',
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'Teko',
@@ -165,7 +165,7 @@ class _ArostyState extends State<Arosty> {
                   foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                   backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
-                child: Text('Change Name'),
+                child: Text('تغيير الاسم',style: TextStyle(fontSize: 20),),
               ),
 
             ],

@@ -166,7 +166,7 @@ class _WhisperState extends State<Whisper> {
                   foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                   backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
-                child: Text('Change Name'),
+                child: Text('تغيير الاسم',style: TextStyle(fontSize: 20),),
               ),
 
             ],
