@@ -147,7 +147,7 @@ class _SquareState extends State<Square> {
                   Navigator.pop(context);
                 },
                 child: Text(
-                  'Close',
+                  'اغلاق',
                   style: TextStyle(
                     color: colors.mainText,
                     fontSize: 18,
