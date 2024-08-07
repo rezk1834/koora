@@ -98,6 +98,10 @@ class _RondoState extends State<Rondo> {
           padding: const EdgeInsets.all(8.0),
           child:  Column(
             children: <Widget>[
+              Text(
+                'Question No.${questionsNumber + 1}',
+                style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
@@ -117,10 +121,6 @@ class _RondoState extends State<Rondo> {
                           },
                         ),
                       ],
-                    ),
-                    Text(
-                      'Question No.${questionsNumber + 1}',
-                      style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                     ),
                     Column(
                       children: [

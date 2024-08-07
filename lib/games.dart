@@ -72,7 +72,7 @@ class _GamesState extends State<Games> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: colors.team1,
                         borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
                       ),
                       child: Center(
@@ -86,7 +86,7 @@ class _GamesState extends State<Games> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: colors.team2,
                         borderRadius: BorderRadius.horizontal(right: Radius.circular(15)),
                       ),
                       child: Center(
@@ -109,7 +109,7 @@ class _GamesState extends State<Games> {
                   Expanded(
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: 2,
                         childAspectRatio: 1,
                         crossAxisSpacing: 8.0,
                         mainAxisSpacing: 8.0,
@@ -119,6 +119,7 @@ class _GamesState extends State<Games> {
                         return Square(
                           child: game_categories[index]['title']!,
                           pic: game_categories[index]['image']!,
+                          gamePlay: game_categories[index]['type']!,
                           red_score: red_score,
                           blue_score: blue_score,
                           path: game_categories[index]['path']!,

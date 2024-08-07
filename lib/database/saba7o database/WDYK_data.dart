@@ -23,5 +23,5 @@ final List<Map<String, dynamic>> WDYK_data = [
   {"question": "لاعب لعب في فريق واحد بس", "answer": ""},
   {"question": "لاعب عربي لعب لمنتخب غير عربي", "answer": ""},
   {"question": "لاعب عربي لعب في التشامبيونشيب", "answer": ""},
-  {"question": "", "answer": ""},
+  // {"question": "", "answer": ""},
 ];

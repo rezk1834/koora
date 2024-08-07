@@ -1,27 +1,29 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:football/theme.dart';
+import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/acting_data.dart';
+import '../database/saba7o database/labes_sa7bak_data.dart';
+import '../theme.dart';
 
-class Acting extends StatefulWidget {
+class Labes extends StatefulWidget {
   final int redScore;
   final int blueScore;
 
-  Acting({required this.redScore, required this.blueScore});
+  Labes({required this.redScore, required this.blueScore});
 
   @override
-  State<Acting> createState() => _ActingState();
+  State<Labes> createState() => _LabesState();
 }
 
-class _ActingState extends State<Acting> {
+class _LabesState extends State<Labes> {
   late int redScore;
   late int blueScore;
   int gameBlueScore = 0;
   int gameRedScore = 0;
   int questionsNumber = 0;
   Random random = Random();
+  late Key timerKey;
   late List<int> randomNumbers;
 
   @override
@@ -29,7 +31,8 @@ class _ActingState extends State<Acting> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, Acting_data.length);
+    timerKey = UniqueKey();
+    randomNumbers = generateUniqueRandomNumbers(8, labes_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -43,22 +46,9 @@ class _ActingState extends State<Acting> {
     return uniqueNumbers.toList();
   }
 
-  void draw() {
-    setState(() {
-      questionsNumber++;
-      _checkGameEnd();
-    });
-  }
-
-  void changeQuestion() {
-    setState(() {
-      randomNumbers[questionsNumber] = random.nextInt(Acting_data.length);
-    });
-  }
-
   void _checkGameEnd() {
     if (questionsNumber == 8) {
-      questionsNumber--;
+      questionsNumber--; // Adjusting to show the final question
       if (gameRedScore > gameBlueScore) {
         redScore++;
         showWinnerDialog('Red Team', context, redScore, blueScore);
@@ -68,9 +58,24 @@ class _ActingState extends State<Acting> {
       } else {
         showWinnerDialog('Draw', context, redScore, blueScore);
       }
-    } else if (gameRedScore == 4 && gameBlueScore == 4) {
-      showWinnerDialog('Draw', context, redScore, blueScore);
     }
+  }
+
+  void _nextQuestion() {
+    setState(() {
+      questionsNumber++;
+      _checkGameEnd();
+      timerKey = UniqueKey(); // Reset timer
+    });
+  }
+
+  void _changeQuestion() {
+    setState(() {
+      _checkGameEnd();
+      if (questionsNumber < randomNumbers.length) {
+        randomNumbers[questionsNumber] = random.nextInt(labes_data.length);
+      }
+    });
   }
 
   @override
@@ -82,19 +87,15 @@ class _ActingState extends State<Acting> {
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
         title: Text(
-          'تمثيل',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
+          'لبس صاحبك',
+          style: TextStyle(fontSize: 30, fontFamily: 'Teko', color: isDarkMode ? colors.mainText : colors.secondaryText),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -110,9 +111,9 @@ class _ActingState extends State<Acting> {
                     children: [
                       Column(
                         children: [
-                          scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team1,size: 35,),
+                            icon: Icon(Icons.add, color: colors.team1, size: 35),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
@@ -125,9 +126,9 @@ class _ActingState extends State<Acting> {
                       ),
                       Column(
                         children: [
-                          scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team2,size: 35,),
+                            icon: Icon(Icons.add, color: colors.team2, size: 35),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
@@ -141,7 +142,6 @@ class _ActingState extends State<Acting> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30),
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -149,13 +149,30 @@ class _ActingState extends State<Acting> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.symmetric(vertical: 20),
+                  margin: EdgeInsets.symmetric(vertical: 5),
                   child: Center(
                     child: Text(
-                      Acting_data[randomNumbers[questionsNumber]]['name'] as String,
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: isDarkMode ? colors.mainText : colors.secondaryText,
+                      labes_data[randomNumbers[questionsNumber]]['question'] as String,
+                      style: TextStyle(fontSize: 25, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 150, // Fixed height for the answer container
+                  child: SingleChildScrollView(
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      child: Center(
+                        child: Text(
+                          labes_data[randomNumbers[questionsNumber]]['answer'] as String,
+                          style: TextStyle(fontSize: 18, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                        ),
                       ),
                     ),
                   ),
@@ -164,33 +181,24 @@ class _ActingState extends State<Acting> {
             ),
           ),
           Positioned(
+              left: 30,
+              right: 30,
+              bottom: 90,
+              child: CountdownTimer(key: timerKey, seconds: 30)),
+          Positioned(
             left: 10,
             right: 10,
-            bottom: 30,
+            bottom: 10,
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 20),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: changeQuestion,
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
-                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
-                      backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
-                    ),
-                    child: Text('تغيير الاسم',style: TextStyle(fontSize: 20),),
-                  ),
-                  SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: draw,
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
-                      foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
-                      backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
-                    ),
-                    child: Text('لا أجابة',style: TextStyle(fontSize: 20),),
-                  ),
-                ],
+              child: ElevatedButton(
+                onPressed: _changeQuestion,
+                style: ElevatedButton.styleFrom(
+                  side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                  foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                  backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
+                ),
+                child: Text('تغيير السؤال', style: TextStyle(fontSize: 20)),
               ),
             ),
           ),

@@ -92,11 +92,16 @@ class _MazadState extends State<Mazad> {
             )),
         centerTitle: true,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+                  Text(
+                    'سؤال رقم: ${questionsNumber + 1}',
+                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+                  ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
@@ -116,10 +121,6 @@ class _MazadState extends State<Mazad> {
                         },
                       ),
                     ],
-                  ),
-                  Text(
-                    'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
                   Column(
                     children: [
@@ -169,7 +170,7 @@ class _MazadState extends State<Mazad> {
                     foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                     backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                   ),
-                  child: Text('Change the question'),
+                  child: Text('تغيير السؤال' ,style: TextStyle(fontSize: 20),),
                 ),
               ),
             ),

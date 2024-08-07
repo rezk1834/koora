@@ -92,12 +92,17 @@ class _PasswordState extends State<Password> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(
           padding: const EdgeInsets.all(8.0),
           child:  Column(
             children: <Widget>[
+                    Text(
+                      'اللاعب رقم: ${questionsNumber + 1}',
+                      style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
@@ -117,10 +122,6 @@ class _PasswordState extends State<Password> {
                           },
                         ),
                       ],
-                    ),
-                    Text(
-                      'Question No.${questionsNumber + 1}',
-                      style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                     ),
                     Column(
                       children: [
@@ -165,7 +166,7 @@ class _PasswordState extends State<Password> {
                   foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                   backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
-                child: Text('Change Name'),
+                child: Text('تغيير الاسم',style: TextStyle(fontSize: 20),),
               ),
 
             ],

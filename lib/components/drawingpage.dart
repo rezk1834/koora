@@ -14,7 +14,6 @@ class _DrawingPageState extends State<DrawingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Draw Here'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

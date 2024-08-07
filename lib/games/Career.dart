@@ -110,14 +110,28 @@ class _CareerState extends State<Career> {
         ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
         children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 5,),
+              Center(
+                child: Text(
+                  'سؤال رقم: ${questionsNumber + 1}',
+                  style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+                ),
+              ),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(
               children: <Widget>[
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
@@ -138,10 +152,7 @@ class _CareerState extends State<Career> {
                           ),
                         ],
                       ),
-                      Text(
-                        'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
-                      ),
+
                       Column(
                         children: [
                           scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
@@ -235,7 +246,7 @@ class _CareerState extends State<Career> {
                           foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                           backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
-                        child: Text('Next Team'),
+                        child: Text('الفريق التالي',style: TextStyle(fontSize: 20),),
                       ),
                       ElevatedButton(
                         onPressed: toggleAnswer,
@@ -247,7 +258,7 @@ class _CareerState extends State<Career> {
                         child: ValueListenableBuilder<bool>(
                           valueListenable: showNameNotifier,
                           builder: (context, showName, child) {
-                            return Text(showName ? 'Hide Name' : 'Show Name');
+                            return Text(showName ? 'اخفاء الاسم' : 'اظهار الاسم' ,style: TextStyle(fontSize: 20),);
                           },
                         ),
                       ),
@@ -263,7 +274,7 @@ class _CareerState extends State<Career> {
                           foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                           backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
-                        child: Text('No Answer'),
+                        child: Text('لا اجابة',style: TextStyle(fontSize: 20),),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
@@ -272,7 +283,7 @@ class _CareerState extends State<Career> {
                           foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                           backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
-                        child: Text('Change the question'),
+                        child: Text('تغيير اللاعب',style: TextStyle(fontSize: 20),),
                       ),
 
                     ],

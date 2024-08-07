@@ -99,6 +99,10 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+                  Text(
+                    'صورة رقم: ${questionsNumber + 1}',
+                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+                  ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
@@ -118,10 +122,6 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                         },
                       ),
                     ],
-                  ),
-                  Text(
-                    'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
                   Column(
                     children: [
@@ -205,7 +205,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                                       foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                                       backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                                     ),
-                                    child: Text('Draw'),
+                                    child: Text('تعادل',style: TextStyle(fontSize: 20),),
                                   ),
                                   ElevatedButton(
                                     onPressed: toggleAnswer,
@@ -214,7 +214,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                                       foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                                       backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                                     ),
-                                    child: Text(show ? 'Hide Answer' : 'Show Answer'),
+                                    child: Text(show ? 'اخفاء الاسماء' : 'إظهار الاسماء',style: TextStyle(fontSize: 20),),
                                   ),
                                 ],
                               ),

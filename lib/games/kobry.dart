@@ -93,13 +93,14 @@ class _KobryState extends State<Kobry> {
         centerTitle: true,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors
             .lightAppbarBackground,
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
             Text(
-              'Question No.${questionsNumber + 1}',
+              'سؤال رقم: ${questionsNumber + 1}',
               style: TextStyle(fontSize: 27,
                   fontFamily: 'Zain',
                   color: isDarkMode ? colors.mainText : colors.secondaryText),
@@ -209,7 +210,7 @@ class _KobryState extends State<Kobry> {
                   backgroundColor: isDarkMode ? Colors.transparent : colors
                       .lightbutton,
                 ),
-                child: Text('Change the Names'),
+                child: Text('تغيير الاسم'),
               ),
             ),
           ],

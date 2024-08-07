@@ -20,9 +20,10 @@ class home_screen extends StatelessWidget {
           itemBuilder: (context,index ){
             return Padding(
               padding: const EdgeInsets.all(10.0),
-              child: main_square(
+              child: MainSquare(
                 child: main_categories[index]['title']!,
                 pic: main_categories[index]['image']!,
+                gamePlay: main_categories[index]['type']!,
                 path: main_categories[index]['path']!,
               ),
             );

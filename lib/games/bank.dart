@@ -30,13 +30,26 @@ class _BankState extends State<Bank> {
     blueScore = widget.blueScore;
   }
 
-  void _endround() {
+  void _endround({required bool isDarkMode}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('End Game'),
-          content: Text('Select the winning team:'),
+          backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          title: Text(
+            'انهي اللعبة',
+            style: TextStyle(
+              color: isDarkMode ? colors.mainText : colors.secondaryText,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Text(
+            'اختار الفريق الفائز:',
+            style: TextStyle(
+              color: isDarkMode ? colors.mainText : colors.secondaryText,
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () {
@@ -46,10 +59,14 @@ class _BankState extends State<Bank> {
                 Navigator.pop(context);
                 Navigator.pop(context, [redScore, blueScore]);
               },
-              child: Text(
-                'Team Red Wins',
-                style: TextStyle(color: colors.team1),
+              style: TextButton.styleFrom(
+                foregroundColor: colors.team1,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
+              child: Text('الفريق الأحمر',style: TextStyle(color: colors.team1),),
             ),
             TextButton(
               onPressed: () {
@@ -59,10 +76,31 @@ class _BankState extends State<Bank> {
                 Navigator.pop(context);
                 Navigator.pop(context, [redScore, blueScore]);
               },
-              child: Text(
-                'Team Blue Wins',
-                style: TextStyle(color: colors.team2),
+              style: TextButton.styleFrom(
+                foregroundColor: colors.team2,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
+              child: Text('الفريق الأزرق',style: TextStyle(color: colors.team2),),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  blueScore++;
+                });
+                Navigator.pop(context);
+                Navigator.pop(context, [redScore, blueScore]);
+              },
+              style: TextButton.styleFrom(
+                foregroundColor: colors.team2,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text('تعادل',style: TextStyle(color: isDarkMode ? colors.mainText : colors.secondaryText,),),
             ),
           ],
         );
@@ -90,6 +128,14 @@ class _BankState extends State<Bank> {
             blueBankScore += result;
           }
           buttonClicked[index] = true;
+
+          // Check if all rounds have been played
+          if (buttonClicked.every((clicked) => clicked)) {
+            // Automatically call _endround when all rounds are played
+            final theme = Theme.of(context);
+            final isDarkMode = theme.brightness == Brightness.dark;
+            _endround(isDarkMode: isDarkMode);
+          }
         });
       }
     });
@@ -101,71 +147,108 @@ class _BankState extends State<Bank> {
     final isDarkMode = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('بنك', style: TextStyle(fontSize: 30,fontFamily: 'Teko',color: isDarkMode ? colors.mainText : colors.secondaryText,
-        ),),
-        centerTitle: true,
-        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
-      ),
-      body: Stack(
-        children: [
-          SizedBox(height: 5,),
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                  scoreContainer(redBankScore.toString(), colors.team1, 35,isDarkMode),
-                  scoreContainer(blueBankScore.toString(), colors.team2, 35,isDarkMode),
-              ],
-            ),
+        title: Text(
+          'بنك',
+          style: TextStyle(
+            fontSize: 30,
+            fontFamily: 'Teko',
+            color: isDarkMode ? colors.mainText : colors.secondaryText,
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                for (int i = 0; i < 6; i++)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: ElevatedButton(
-                      onPressed: buttonClicked[i]
-                          ? null
-                          : () {
-                        Color color = (i % 2 == 0) ? colors.team1 : colors.team2;
-                        int bankingScore = (color == colors.team1)
-                            ? redBankScore
-                            : blueBankScore;
-                        navigateToBankPage(color, bankingScore, i);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: (i % 2 == 0) ? colors.team1 : colors.team2,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 15),
-                        child: Text( 'Round ${i+1}' ,style: TextStyle(color: Colors.white),),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: isDarkMode
+                ? [colors.darkBackground.withOpacity(0.9), colors.darkBackground]
+                : [colors.lightBackground, colors.lightBackground.withOpacity(0.9)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 35),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      scoreContainer(redBankScore.toString(), colors.team1, 35, isDarkMode),
+                      scoreContainer(blueBankScore.toString(), colors.team2, 35, isDarkMode),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (int i = 0; i < 6; i++)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
+                      child: ElevatedButton(
+                        onPressed: buttonClicked[i]
+                            ? null
+                            : () {
+                          Color color = (i % 2 == 0) ? colors.team1 : colors.team2;
+                          int bankingScore = (color == colors.team1)
+                              ? redBankScore
+                              : blueBankScore;
+                          navigateToBankPage(color, bankingScore, i);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                          backgroundColor: (i % 2 == 0) ? colors.team1 : colors.team2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          shadowColor: !isDarkMode ? colors.mainText : colors.secondaryText,
+                          elevation: 5,
+                        ),
+                        child: Text(
+                          'الجولة ${i + 1}',
+                          style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
                       ),
                     ),
-                  ),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            left: 40,
-            right: 40,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
-                foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
-                backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
+                ],
               ),
-              onPressed: _endround,
-              child: Text("End Round"),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 40,
+              left: 40,
+              right: 40,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                  foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                  backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  shadowColor: Colors.black54,
+                  elevation: 5,
+                ),
+                onPressed: () => _endround(isDarkMode: isDarkMode),
+                child: Text(
+                  "انهي اللعبة",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

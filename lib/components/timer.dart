@@ -98,18 +98,6 @@ class _CountdownTimerState extends State<CountdownTimer> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                onPressed: startTimer,
-                style: ElevatedButton.styleFrom(
-                  side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
-                  foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
-                  backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
-                ),
-                child: Text(
-                  _isRunning ? 'Stop' : 'Start',
-                  style: TextStyle(fontSize: 20,),
-                ),
-              ),
-              ElevatedButton(
                 onPressed: resetTimer,
                 style: ElevatedButton.styleFrom(
                   side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
@@ -117,8 +105,20 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
                 child: Text(
-                  'Reset',
+                  'اعادة',
                   style: TextStyle(fontSize: 20),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: startTimer,
+                style: ElevatedButton.styleFrom(
+                  side: BorderSide(width: 2,color: isDarkMode ? colors.mainText : colors.secondaryText,),
+                  foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                  backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
+                ),
+                child: Text(
+                  _isRunning ? 'توقف' : 'ابدأ',
+                  style: TextStyle(fontSize: 20,),
                 ),
               ),
             ],

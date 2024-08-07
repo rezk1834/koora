@@ -98,6 +98,10 @@ class _WhisperState extends State<Whisper> {
           padding: const EdgeInsets.all(8.0),
           child:  Column(
             children: <Widget>[
+              Text(
+                'Question No.${questionsNumber + 1}',
+                style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
@@ -118,10 +122,7 @@ class _WhisperState extends State<Whisper> {
                         ),
                       ],
                     ),
-                    Text(
-                      'Question No.${questionsNumber + 1}',
-                      style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
-                    ),
+
                     Column(
                       children: [
                         scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),

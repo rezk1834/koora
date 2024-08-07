@@ -98,6 +98,7 @@ class _EhbedState extends State<Ehbed> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
@@ -106,6 +107,10 @@ class _EhbedState extends State<Ehbed> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
+                Text(
+                  'سؤال رقم: ${questionsNumber + 1}',
+                  style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
@@ -125,10 +130,6 @@ class _EhbedState extends State<Ehbed> {
                             },
                           ),
                         ],
-                      ),
-                      Text(
-                        'Question No.${questionsNumber + 1}',
-                        style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                       ),
                       Column(
                         children: [
@@ -214,7 +215,7 @@ class _EhbedState extends State<Ehbed> {
                           foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                           backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
-                        child: Text('No Answer'),
+                        child: Text('لا اجابة' ,style: TextStyle(fontSize: 20),),
                       ),
                       ElevatedButton(
                         onPressed: changeQuestion,
@@ -223,7 +224,7 @@ class _EhbedState extends State<Ehbed> {
                           foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                           backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                         ),
-                        child: Text('Change the question'),
+                        child: Text('تغيير السؤال',style: TextStyle(fontSize: 20),),
                       ),
                     ],
                   ),
@@ -238,7 +239,7 @@ class _EhbedState extends State<Ehbed> {
                     child: ValueListenableBuilder<bool>(
                       valueListenable: showAnswerNotifier,
                       builder: (context, showAnswer, child) {
-                        return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
+                        return Text(showAnswer ? 'اخفاء الاجابة' : 'اظهار الاجابة',style: TextStyle(fontSize: 20),);
                       },
                     ),
                   ),

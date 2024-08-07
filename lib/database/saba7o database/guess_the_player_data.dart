@@ -1,12 +1,13 @@
 final List<Map<String, String>> guessThePlayer_data = [
+  // {
+  //   "name": "",
+  //   "Clue 1": "",
+  //   "Clue 2": "",
+  //   "Clue 3": "",
+  //   "Clue 4": "",
+  //   "Clue 5": ""
+  // },
   {
-    "name": "",
-    "Clue 1": "",
-    "Clue 2": "",
-    "Clue 3": "",
-    "Clue 4": "",
-    "Clue 5": ""
-  },  {
     "name": "ادريانو",
     "Clue 1": "انا لعبت لدوري واحد من الدوريات الخمسة الكبري",
     "Clue 2": "فزت بالدوري 4 مرات متتالي",

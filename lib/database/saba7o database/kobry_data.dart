@@ -40,5 +40,5 @@ final List<Map<String, dynamic>> Kobry_data = [
 {"player1": "نوير", "player2":"نيك بوب","rule":"اندية ","time":90},
 {"player1": "برونو فيرناندز", "player2":"برونو جيماريش","rule":"اندية ومنتخبات","time":60},
 {"player1": "الخطيب", "player2":"محمد صلاح","rule":"اندية","time":90},
-{"player1": "", "player2":"","rule":"اندية ومنتخبات","time":60},
+// {"player1": "", "player2":"","rule":"اندية ومنتخبات","time":60},
 ];

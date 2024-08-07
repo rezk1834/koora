@@ -36,6 +36,7 @@ class _BankPageState extends State<BankPage> {
     super.initState();
     score = widget.bankingScore;
     bank = 0;
+    score =0;
     timerKey = UniqueKey();
     randomNumbers = generateUniqueRandomNumbers(13, Bank_data.length);
   }
@@ -81,14 +82,11 @@ class _BankPageState extends State<BankPage> {
     return Scaffold(
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
-        title: Text('بنك', style: TextStyle(fontSize: 30,fontFamily: 'Teko',
-          color: isDarkMode ? colors.mainText : colors.secondaryText,
-        ),),
-        centerTitle: true,
+        backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
+        automaticallyImplyLeading: false,
       ),
       body: questionsNumber<12? Stack(
         children: [
-
           Column(
             children: [
               SizedBox(height: 15,),
@@ -96,7 +94,7 @@ class _BankPageState extends State<BankPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 child: Text(
-                  'Question No.${questionsNumber + 1}',
+                  'السؤال رقم: ${questionsNumber + 1}',
                   style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                 ),
               ),
@@ -150,7 +148,7 @@ class _BankPageState extends State<BankPage> {
                         foregroundColor: Colors.green,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Correct', style: TextStyle(fontSize: 20)),
+                      child: Text('اجابة صحيحة', style: TextStyle(fontSize: 20)),
                     ),
                     ElevatedButton(
                       onPressed: wrong,
@@ -159,7 +157,7 @@ class _BankPageState extends State<BankPage> {
                         foregroundColor: Colors.red,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Wrong', style: TextStyle(fontSize: 20)),
+                      child: Text('اجابة خاطئة', style: TextStyle(fontSize: 20)),
                     ),
                     ElevatedButton(
                       onPressed: banking,
@@ -168,13 +166,13 @@ class _BankPageState extends State<BankPage> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Bank', style: TextStyle(fontSize: 20)),
+                      child: Text('بنك', style: TextStyle(fontSize: 20)),
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
-                Text("Current points: $score", style: TextStyle(fontSize: 25)),
-                Text("Bank points: $bank", style: TextStyle(fontSize: 25)),
+                Text("النقاط الحالية:  $score", style: TextStyle(fontSize: 25,color: isDarkMode ? colors.mainText : colors.secondaryText,),),
+                Text("نقاط البنك:  $bank", style: TextStyle(fontSize: 25,color: isDarkMode ? colors.mainText : colors.secondaryText,),),
               ],
             ),
           ),
@@ -183,11 +181,11 @@ class _BankPageState extends State<BankPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Bank points: $bank", style: TextStyle(
+            Text("نقاط البنك في هذه الجولة:  $bank", style: TextStyle(
                 fontSize: 35,
                 color: isDarkMode ? colors.mainText : colors.secondaryText,
                 fontWeight: FontWeight.bold),),
-            Text("Current points: $score", style: TextStyle(
+            Text(" النقاط الحالية:  $score", style: TextStyle(
                 fontSize: 35,
                 color: isDarkMode ? colors.mainText : colors.secondaryText,
                 fontWeight: FontWeight.bold),),
@@ -201,7 +199,7 @@ class _BankPageState extends State<BankPage> {
                   foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                   backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
-                child: Text('Bank', style: TextStyle(fontSize: 20)),
+                child: Text('بنك', style: TextStyle(fontSize: 20)),
               ),
             ),
             Container(
@@ -216,7 +214,7 @@ class _BankPageState extends State<BankPage> {
                   foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                   backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                 ),
-                child: Text('Return', style: TextStyle(fontSize: 20)),
+                child: Text('العودة', style: TextStyle(fontSize: 20)),
               ),
             ),
           ],
