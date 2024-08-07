@@ -92,6 +92,7 @@ class _ArostyState extends State<Arosty> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(

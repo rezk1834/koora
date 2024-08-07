@@ -176,7 +176,7 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                             }
                           },
                           errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                            return Text('Failed to load image');
+                            return Text('فشل في تحميل الصورة برجاء الاتصال بالنت واعادة المحاولة');
                           },
                         ),
                       ),

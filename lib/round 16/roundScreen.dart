@@ -4,8 +4,9 @@ import '../theme.dart';
 
 class RoundScreen extends StatefulWidget {
   final List<String> names;
+  final String title;
 
-  RoundScreen({required this.names});
+  RoundScreen({required this.names, required this.title});
 
   @override
   _RoundScreenState createState() => _RoundScreenState();
@@ -14,7 +15,7 @@ class RoundScreen extends StatefulWidget {
 class _RoundScreenState extends State<RoundScreen> {
   late List<String> _currentRound;
   late List<String> _nextRound;
-  late List<Color> _buttonColors; // Track button colors
+  late List<Color> _buttonColors;
   int _roundNumber = 16;
 
   @override
@@ -26,13 +27,10 @@ class _RoundScreenState extends State<RoundScreen> {
   }
 
   void _playNextRound() {
-    if (_currentRound.length == 1) {
-      // Debug print
-      print("Navigating to WinnerScreen with winner: ${_currentRound.first}");
-
+    if (_currentRound.length == 2) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => WinnerScreen(winner: _currentRound.first)),
+        MaterialPageRoute(builder: (context) => WinnerScreen(winner: _currentRound.first,title: widget.title)),
       );
     } else {
       setState(() {
@@ -62,12 +60,11 @@ class _RoundScreenState extends State<RoundScreen> {
   }
 
   void _handleButtonPress(int index) {
-    if (_buttonColors[index] != Colors.grey) return; // Prevent re-pressing
+    if (_buttonColors[index] != Colors.grey) return;
 
     setState(() {
       _buttonColors[index] = Colors.green;
 
-      // Determine the other button in the same pair
       int otherIndex = (index % 2 == 0) ? index + 1 : index - 1;
 
       if (otherIndex >= 0 && otherIndex < _buttonColors.length) {
@@ -77,8 +74,6 @@ class _RoundScreenState extends State<RoundScreen> {
       _nextRound.add(_currentRound[index]);
 
       if (_nextRound.length == _currentRound.length ~/ 2) {
-        // Debug print
-        print("Next round prepared. Current round length: ${_currentRound.length}");
         _playNextRound();
       }
     });
@@ -100,10 +95,10 @@ class _RoundScreenState extends State<RoundScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
-      body: SingleChildScrollView(
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: ListView(
             children: [
               for (int i = 0; i < _currentRound.length; i += 2)
                 Row(

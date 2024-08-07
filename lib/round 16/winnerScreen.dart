@@ -1,139 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:football/round%2016/round.dart';
+import '../theme.dart';
 
-class WinnerScreen extends StatelessWidget {
+class WinnerScreen extends StatefulWidget {
   final String winner;
+  final String title;
 
-  WinnerScreen({required this.winner});
+  const WinnerScreen({Key? key, required this.winner, required this.title}) : super(key: key);
 
   @override
+  State<WinnerScreen> createState() => _WinnerScreenState();
+}
+
+class _WinnerScreenState extends State<WinnerScreen> {
+  @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    String modifiedTitle = widget.title.replaceAll('افضل', '').trim();
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Winner'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _AnimatedText(winner: winner),
-            SizedBox(height: 20),
-            _AnimatedButton(),
-          ],
+        title: Text('Winner',style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Teko',
+          color: isDarkMode ? colors.mainText : colors.secondaryText,
         ),
       ),
-    );
-  }
-}
-
-class _AnimatedText extends StatefulWidget {
-  final String winner;
-
-  _AnimatedText({required this.winner});
-
-  @override
-  __AnimatedTextState createState() => __AnimatedTextState();
-}
-
-class __AnimatedTextState extends State<_AnimatedText> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..repeat(reverse: true);
-
-    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-
-    _slideAnimation = Tween<Offset>(begin: Offset(0, -0.5), end: Offset(0, 0)).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _fadeAnimation,
-      child: SlideTransition(
-        position: _slideAnimation,
-        child: Text(
-          'The winner is ${widget.winner}!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
-
-class _AnimatedButton extends StatefulWidget {
-  @override
-  __AnimatedButtonState createState() => __AnimatedButtonState();
-}
-
-class __AnimatedButtonState extends State<_AnimatedButton> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<Color?> _colorAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
-
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
-    );
-
-    _colorAnimation = ColorTween(begin: Colors.blue, end: Colors.green).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-
-    _controller.forward();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _scaleAnimation,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return ElevatedButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => NameEntryScreen()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: _colorAnimation.value,
+      automaticallyImplyLeading: false,
+      centerTitle: true,
+      backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
+    ),
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 20),
+                Text(
+                  'أفضل $modifiedTitle هو ${widget.winner}', style: TextStyle( color: isDarkMode ? colors.mainText : colors.secondaryText,fontSize: 40), // Adjust text style if needed
+                ),
+                SizedBox(height: 40),
+              ],
             ),
-            child: Text('Play Again'),
-          );
-        },
+          ),
+          Positioned(
+            bottom: 20,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                    backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
+                  ),
+                  onPressed: () {
+                    // Navigate to RoundScreen
+                    Navigator.pushReplacementNamed(context, '/round');
+                  },
+                  child: Text('لعب مناقشة اخري'),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
+                    backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
+                  ),
+                  onPressed: () {
+                    // Navigate to HomeScreen
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                  child: Text('العودة الي القائمة الرئيسية'),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

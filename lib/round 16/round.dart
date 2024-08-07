@@ -10,7 +10,9 @@ class NameEntryScreen extends StatefulWidget {
 
 class _NameEntryScreenState extends State<NameEntryScreen> {
   final _names = List<String>.generate(16, (_) => "");
+  String title='';
   final _controllers = List<TextEditingController>.generate(16, (_) => TextEditingController());
+  final controller =TextEditingController();
 
   @override
   void dispose() {
@@ -36,6 +38,18 @@ class _NameEntryScreenState extends State<NameEntryScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+          Directionality(
+          textDirection: TextDirection.rtl,
+          child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              labelText: 'عنوان المناقشة',
+            ),
+            onChanged: (value) {
+              title = value;
+            },
+          ),
+        ),
             Expanded(
               child: ListView.builder(
                 itemCount: 16,
@@ -65,7 +79,7 @@ class _NameEntryScreenState extends State<NameEntryScreen> {
                 if (_names.every((name) => name.isNotEmpty)) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RoundScreen(names: _names)),
+                    MaterialPageRoute(builder: (context) => RoundScreen(names: _names,title: title)),
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
