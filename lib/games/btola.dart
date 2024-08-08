@@ -99,6 +99,7 @@ class _BtolaState extends State<Btola> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(
@@ -106,7 +107,7 @@ class _BtolaState extends State<Btola> {
         child: Column(
           children: <Widget>[
             Text(
-              'Question No.${questionsNumber + 1}',
+              'السؤال رقم: ${questionsNumber + 1}',
               style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
             ),
             Padding(
@@ -211,7 +212,7 @@ class _BtolaState extends State<Btola> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Show Next Round'),
+                      child: Text('أظهر الدليل القادم',style: TextStyle(fontSize: 20),),
                     ),
                     SizedBox(width: 20),
                     ElevatedButton(
@@ -226,7 +227,7 @@ class _BtolaState extends State<Btola> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text(showName ? 'Hide Name' : 'Show Name'),
+                      child: Text(showName ? 'اخفاء الاسم' : 'إظهار الاسم',style: TextStyle(fontSize: 20),),
                     ),
                   ],
                 ),
@@ -240,7 +241,7 @@ class _BtolaState extends State<Btola> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('No Answer'),
+                      child: Text('لا إجابة'),
                     ),
                     ElevatedButton(
                       onPressed: changeQuestion,
@@ -249,7 +250,7 @@ class _BtolaState extends State<Btola> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Change the question'),
+                      child: Text('تغيير السؤال',style: TextStyle(fontSize: 20),),
                     ),
                   ],
                 ),

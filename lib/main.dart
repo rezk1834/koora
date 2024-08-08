@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/games': (context) => Games(),
         '/round': (context) => NameEntryScreen(),
+        '/home': (context) => home_screen(),
+
       },
     );
   }

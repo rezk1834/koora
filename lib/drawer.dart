@@ -3,13 +3,25 @@ import 'package:football/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 
+import 'about.dart';
+
 // url_launcher: ^6.3.0
 // share: ^2.0.4
+
+void _navigateToAboutPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => AboutPage()),
+  );
+}
+
 class TheDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
+
+
 
     return Drawer(
       child: Container(
@@ -33,7 +45,7 @@ class TheDrawer extends StatelessWidget {
                     size: 29,
                    ),
                   title: Text(
-                    "Contact Us",
+                    "الاتصال بنا",
                     style: TextStyle(fontSize: 20),
                   ),
                   onTap: () =>
@@ -50,7 +62,7 @@ class TheDrawer extends StatelessWidget {
                     size: 29,
                   ),
                   title: Text(
-                    "More Applications",
+                    "المزيد من البرامج",
                     style: TextStyle(fontSize: 20),
                   ),
                   onTap: () =>
@@ -68,7 +80,7 @@ class TheDrawer extends StatelessWidget {
                     size: 29,
                   ),
                   title: Text(
-                    "Feedback",
+                    "اعطي رأيك",
                     style: TextStyle(fontSize: 20),
                   ),
                   onTap: () =>
@@ -86,7 +98,7 @@ class TheDrawer extends StatelessWidget {
                     size: 29,
                   ),
                   title: Text(
-                    "Invite Friends",
+                    "دعوة الاصدقاء",
                     style: TextStyle(fontSize: 20),
                   ),
                   onTap: () => _inviteFriends(),
@@ -102,12 +114,10 @@ class TheDrawer extends StatelessWidget {
                     size: 29,
                   ),
                   title: Text(
-                    "About",
+                    "عن البرنامج",
                     style: TextStyle( fontSize: 20),
                   ),
-                  onTap: () =>
-                      _launchURL(
-                          'https://github.com/rezk1834/koora'),
+                  onTap: () => _navigateToAboutPage(context),
                 ),
               ),
             )

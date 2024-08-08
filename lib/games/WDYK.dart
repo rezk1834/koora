@@ -130,6 +130,7 @@ class _WDYKState extends State<WDYK> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Stack(
@@ -152,7 +153,7 @@ class _WDYKState extends State<WDYK> {
                           scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode),
                           SizedBox(height: 5,),
                           Text(
-                            'Strikes: $redStrikes',
+                            'سترايك: $redStrikes',
                             style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText),
                           ),
                           ElevatedButton(
@@ -162,7 +163,7 @@ class _WDYKState extends State<WDYK> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: colors.team1,
                             ),
-                            child: Text('Strike', style: TextStyle(color: Colors.white)),
+                            child: Text('سترايك', style: TextStyle(color: Colors.white)),
                           ),
                         ],
                       ),
@@ -172,7 +173,7 @@ class _WDYKState extends State<WDYK> {
                           scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode),
                           SizedBox(height: 5,),
                           Text(
-                            'Strikes: $blueStrikes',
+                            'سترايك: $blueStrikes',
                             style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText),
                           ),
                           ElevatedButton(
@@ -182,7 +183,7 @@ class _WDYKState extends State<WDYK> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: colors.team2,
                             ),
-                            child: Text('Strike', style: TextStyle(color: Colors.white)),
+                            child: Text('سترايك', style: TextStyle(color: Colors.white)),
                           ),
                         ],
                       ),
@@ -249,7 +250,7 @@ class _WDYKState extends State<WDYK> {
                           foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                           backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
                         ),
-                        child: Text('Change the question'),
+                        child: Text('تغيير السؤال',style: TextStyle(fontSize: 20),),
                       ),
                       ElevatedButton(
                         onPressed: toggleAnswer,
@@ -261,7 +262,7 @@ class _WDYKState extends State<WDYK> {
                         child: ValueListenableBuilder<bool>(
                           valueListenable: showAnswerNotifier,
                           builder: (context, showAnswer, child) {
-                            return Text(showAnswer ? 'Hide Answer' : 'Show Answer');
+                            return Text(showAnswer ? 'اخفاء الاجابة' : 'اظهار الاجابة',style: TextStyle(fontSize: 20),);
                           },
                         ),
                       ),

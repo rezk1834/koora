@@ -58,6 +58,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
 
 
   void _checkGameEnd() {
+    clueNumber = 0;
     if (questionsNumber == 3) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
@@ -98,12 +99,17 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false  ,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+            Text(
+              'سؤال رقم: ${questionsNumber + 1}',
+              style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
@@ -124,10 +130,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                       ),
                     ],
                   ),
-                  Text(
-                    'Question No.${questionsNumber + 1}',
-                    style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
-                  ),
+
                   Column(
                     children: [
                       scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
@@ -204,7 +207,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Show Next Clue'),
+                      child: Text('الدليل القادم' ,style: TextStyle(fontSize: 20),),
                     ),
                     SizedBox(width: 20),
                     ElevatedButton(
@@ -219,7 +222,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text(showName ? 'Hide Name' : 'Show Name'),
+                      child: Text(showName ? 'اخفاء الاسم' : 'اظهار الاسم',style: TextStyle(fontSize: 20),),
                     ),
                   ],
                 ),
@@ -233,7 +236,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('No Answer'),
+                      child: Text('لا اجابة' ,style: TextStyle(fontSize: 20),),
                     ),
                     ElevatedButton(
                       onPressed: changeQuestion,
@@ -242,7 +245,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                         foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                         backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                       ),
-                      child: Text('Change the question'),
+                      child: Text('تغيير اللاعب',style: TextStyle(fontSize: 20),),
                     ),
                   ],
                 ),

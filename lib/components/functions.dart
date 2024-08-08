@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:football/theme.dart';
 
 void showWinnerDialog(String winningTeam,BuildContext context,int redScore,int blueScore) {
+  String teamW;
+  if (winningTeam=='Red Team') teamW ='الفريق الاحمر';
+  else teamW = 'الفريق الازرق';
   showDialog(
     context: context,
     barrierDismissible: true,
@@ -18,10 +21,11 @@ void showWinnerDialog(String winningTeam,BuildContext context,int redScore,int b
                 borderRadius: BorderRadius.circular(15.0),
               ),
               backgroundColor: winningTeam == 'Draw'
-                  ? Colors.grey
+                  ? Colors.grey[800]
                   : (winningTeam == 'Blue Team' ? colors.team2 : colors.team1),
               title: Text(
-                'Result',
+                '           النتيجة',
+
                 style: TextStyle(
                   color: colors.mainText,
                   fontSize: 28,
@@ -40,7 +44,7 @@ void showWinnerDialog(String winningTeam,BuildContext context,int redScore,int b
                   ),
                   SizedBox(height: 20),
                   Text(
-                    winningTeam == 'Draw' ? '$winningTeam!' : '$winningTeam wins!',
+                    winningTeam == 'Draw' ? 'تعادل!' : ' الفائز هو $teamW',
                     style: TextStyle(color: colors.mainText, fontSize: 22),
                     textAlign: TextAlign.center,
                   ),
@@ -53,7 +57,7 @@ void showWinnerDialog(String winningTeam,BuildContext context,int redScore,int b
                     Navigator.pop(context, [redScore, blueScore]); // Navigate back
                   },
                   child: Text(
-                    'OK',
+                    'العودة',
                     style: TextStyle(color: colors.mainText, fontSize: 18),
                   ),
                 ),
