@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:football/round%2016/winnerScreen.dart';
+import '../drawer.dart';
 import '../theme.dart';
 
 class RoundScreen extends StatefulWidget {
@@ -95,6 +96,7 @@ class _RoundScreenState extends State<RoundScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

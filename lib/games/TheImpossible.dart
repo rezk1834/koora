@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
+import '../drawer.dart';
 import '../theme.dart';
 import '../database/saba7o database/TheImpossible_data.dart';
 
@@ -100,6 +101,7 @@ class _TheImpossibleState extends State<TheImpossible> {
         centerTitle: true,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Stack(
         children: [
           Padding(

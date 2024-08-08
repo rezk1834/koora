@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
+import '../drawer.dart';
 import '../theme.dart';
 import '../database/saba7o database/men_fel_sora_data.dart';
 
@@ -93,8 +94,10 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

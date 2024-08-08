@@ -6,6 +6,8 @@ import '../components/scoreContainer.dart';
 import '../database/saba7o database/Ehbed_data.dart';
 import 'package:football/theme.dart';
 
+import '../drawer.dart';
+
 class Ehbed extends StatefulWidget {
   final int redScore;
   final int blueScore;
@@ -101,6 +103,7 @@ class _EhbedState extends State<Ehbed> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Stack(
         children: [
           Padding(

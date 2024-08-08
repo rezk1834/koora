@@ -6,6 +6,8 @@ import '../components/scoreContainer.dart';
 import '../database/saba7o database/Ekdeb_data.dart';
 import 'package:football/theme.dart';
 
+import '../drawer.dart';
+
 class Ekdeb extends StatefulWidget {
   final int redScore;
   final int blueScore;
@@ -101,6 +103,7 @@ class _EkdebState extends State<Ekdeb> {
         centerTitle: true,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Stack(
         children: [
           Padding(

@@ -4,6 +4,7 @@ import 'package:football/theme.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/saba7o database/acting_data.dart';
+import '../drawer.dart';
 
 class Acting extends StatefulWidget {
   final int redScore;
@@ -93,6 +94,7 @@ class _ActingState extends State<Acting> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Stack(
         children: [
           Padding(

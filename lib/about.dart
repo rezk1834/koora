@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:football/theme.dart';
 
+import 'drawer.dart';
+
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,6 +10,7 @@ class AboutPage extends StatelessWidget {
     final isDarkMode = theme.brightness == Brightness.dark;
 
     return Scaffold(
+      drawer: TheDrawer(),
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
       appBar: AppBar(
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,

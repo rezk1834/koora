@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/main_square.dart';
 import 'database/database.dart';
+import 'drawer.dart';
 
 class home_screen extends StatelessWidget {
    home_screen({super.key});
@@ -15,6 +16,7 @@ class home_screen extends StatelessWidget {
         title: Text('اختار التحدي', style: TextStyle(fontSize: 40),),
         centerTitle: true,
       ),
+      drawer: TheDrawer(),
       body: ListView.builder(
           itemCount: main_categories.length,
           itemBuilder: (context,index ){

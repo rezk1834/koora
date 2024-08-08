@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:football/round%2016/roundScreen.dart';
 
+import '../drawer.dart';
 import '../theme.dart';
 
 class NameEntryScreen extends StatefulWidget {
@@ -34,6 +35,7 @@ class _NameEntryScreenState extends State<NameEntryScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
