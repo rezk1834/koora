@@ -21,7 +21,6 @@ import '../games/men_fe_elsora.dart';
 import '../games/risk.dart';
 import '../games/bank.dart';
 import '../games/seconds.dart';
-import '../theme.dart';
 
 class Square extends StatefulWidget {
   final String child;
@@ -125,9 +124,8 @@ class _SquareState extends State<Square> {
               borderRadius: BorderRadius.circular(15.0),
             ),
             backgroundColor: colors.darkBackground,
-            title:
-            Text(
-              widget.child.toString(),
+            title: Text(
+              widget.child,
               style: TextStyle(
                 color: colors.mainText,
                 fontSize: 28,
@@ -163,9 +161,11 @@ class _SquareState extends State<Square> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
+    String subtitle = "${widget.rounds}  | ${widget.gamePlay}";
+
+
     return Scaffold(
       backgroundColor: widget.mood ? colors.darkBackground : colors.lightBackground,
       body: Stack(
@@ -215,7 +215,6 @@ class _SquareState extends State<Square> {
                         right: 0,
                         bottom: 10,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Padding(
@@ -240,7 +239,7 @@ class _SquareState extends State<Square> {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 15.0),
                               child: Text(
-                                " ${widget.rounds} جولات  | ${widget.gamePlay}",
+                                subtitle,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 9.0,
@@ -255,7 +254,6 @@ class _SquareState extends State<Square> {
                                 textDirection: TextDirection.rtl, // Right-to-left text direction
                               ),
                             ),
-
                           ],
                         ),
                       ),

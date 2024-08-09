@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:football/home_screen.dart';
 import 'package:football/round%2016/round.dart';
 import 'package:football/games.dart';
-
+import 'package:flutter/services.dart';
+import 'database/Load data.dart';
 import 'theme.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await loadCsvData();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
