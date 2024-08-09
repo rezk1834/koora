@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/scoreContainer.dart';
+import '../drawer.dart';
 import '../theme.dart';
 import 'bankpage.dart';
 
@@ -162,6 +163,7 @@ class _BankState extends State<Bank> {
         elevation: 0,
         automaticallyImplyLeading: false,
       ),
+      drawer: TheDrawer(),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(

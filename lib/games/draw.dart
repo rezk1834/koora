@@ -5,6 +5,7 @@ import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/draw_data.dart';
+import '../drawer.dart';
 import '../theme.dart';
 
 class Draw extends StatefulWidget {
@@ -91,6 +92,7 @@ class _DrawState extends State<Draw> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

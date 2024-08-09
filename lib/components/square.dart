@@ -29,6 +29,7 @@ class Square extends StatefulWidget {
   final String gamePlay;
   final int red_score;
   final int blue_score;
+  final String rounds;
   final String path;
   final String rules;
   final bool mood;
@@ -41,6 +42,7 @@ class Square extends StatefulWidget {
     required this.gamePlay,
     required this.red_score,
     required this.blue_score,
+    required this.rounds,
     required this.path,
     required this.rules,
     required this.updateScores,
@@ -238,7 +240,7 @@ class _SquareState extends State<Square> {
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 15.0),
                               child: Text(
-                                widget.gamePlay,
+                                " ${widget.rounds} جولات  | ${widget.gamePlay}",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 9.0,

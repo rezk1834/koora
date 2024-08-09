@@ -4,6 +4,7 @@ import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/saba7o database/Kobry_data.dart';
+import '../drawer.dart';
 import '../theme.dart';
 class Kobry extends StatefulWidget {
   final int redScore;
@@ -95,6 +96,7 @@ class _KobryState extends State<Kobry> {
             .lightAppbarBackground,
         automaticallyImplyLeading: false,
       ),
+      drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

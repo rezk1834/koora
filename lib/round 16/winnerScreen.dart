@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../drawer.dart';
 import '../theme.dart';
 
 class WinnerScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _WinnerScreenState extends State<WinnerScreen> {
       centerTitle: true,
       backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
     ),
+      drawer: TheDrawer(),
       body: Stack(
         children: <Widget>[
           Center(

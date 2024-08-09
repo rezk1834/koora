@@ -122,6 +122,7 @@ class _GamesState extends State<Games> {
                           gamePlay: game_categories[index]['type']!,
                           red_score: red_score,
                           blue_score: blue_score,
+                          rounds: game_categories[index]['rounds']!,
                           path: game_categories[index]['path']!,
                           updateScores: updateScores,
                           rules: game_categories[index]['rules']!,

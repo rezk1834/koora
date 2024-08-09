@@ -6,6 +6,7 @@ import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/arosty_data.dart';
 import '../database/saba7o database/seconds_data.dart';
+import '../drawer.dart';
 import '../theme.dart';
 class Seconds extends StatefulWidget {
   final int redScore;
@@ -94,6 +95,7 @@ class _SecondsState extends State<Seconds> {
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
         automaticallyImplyLeading: false,
       ),
+      drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

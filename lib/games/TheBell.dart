@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
+import '../drawer.dart';
 import '../theme.dart';
 import '../database/saba7o database/TheBell_data.dart';
 
@@ -99,6 +100,7 @@ class _TheBellState extends State<TheBell> {
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
         automaticallyImplyLeading: false,
       ),
+      drawer: TheDrawer(),
       body: Stack(
         children: [
           Padding(

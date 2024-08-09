@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
+import '../drawer.dart';
 import '../theme.dart';
 import '../database/saba7o database/btola_data.dart';
 
@@ -102,6 +103,7 @@ class _BtolaState extends State<Btola> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

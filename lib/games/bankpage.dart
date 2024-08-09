@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:football/components/timer.dart';
 import '../database/database.dart';
 import '../database/saba7o database/bank_data.dart';
+import '../drawer.dart';
 import '../theme.dart';
 
 class BankPage extends StatefulWidget {
@@ -85,6 +86,7 @@ class _BankPageState extends State<BankPage> {
         backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
         automaticallyImplyLeading: false,
       ),
+      drawer: TheDrawer(),
       body: questionsNumber<12? Stack(
         children: [
           Column(

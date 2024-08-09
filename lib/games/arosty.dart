@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/saba7o database/arosty_data.dart';
+import '../drawer.dart';
 import '../theme.dart';
 
 class Arosty extends StatefulWidget {
@@ -95,6 +96,7 @@ class _ArostyState extends State<Arosty> {
         automaticallyImplyLeading: false,
         backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
       ),
+      drawer: TheDrawer(),
       body: Padding(
           padding: const EdgeInsets.all(8.0),
           child:  Column(
