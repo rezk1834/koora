@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:football/components/timer.dart';
 import '../database/database.dart';
-import '../database/saba7o database/bank_data.dart';
+import '../database/games database/bank_data.dart';
 import '../drawer.dart';
 import '../theme.dart';
 

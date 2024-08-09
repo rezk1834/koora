@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football/theme.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/acting_data.dart';
+import '../database/games database/acting_data.dart';
 import '../drawer.dart';
 
 class Acting extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ActingState extends State<Acting> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, Acting_data.length);
+    randomNumbers = generateUniqueRandomNumbers(10, Acting_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -58,7 +58,7 @@ class _ActingState extends State<Acting> {
   }
 
   void _checkGameEnd() {
-    if (questionsNumber == 8) {
+    if (questionsNumber == 10) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;

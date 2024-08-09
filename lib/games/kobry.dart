@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/Kobry_data.dart';
+import '../database/games database/Kobry_data.dart';
 import '../drawer.dart';
 import '../theme.dart';
 class Kobry extends StatefulWidget {

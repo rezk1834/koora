@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/database.dart';
-import '../database/saba7o database/arosty_data.dart';
-import '../database/saba7o database/theMazad_data.dart';
+import '../database/games database/theMazad_data.dart';
 import '../drawer.dart';
 import '../theme.dart';
 class Mazad extends StatefulWidget {
@@ -34,7 +32,7 @@ class _MazadState extends State<Mazad> {
     redScore = widget.redScore;
     blueScore = widget.blueScore;
     timerKey = UniqueKey();
-    randomNumbers = generateUniqueRandomNumbers(10, Mazad_data.length);
+    randomNumbers = generateUniqueRandomNumbers(6, Mazad_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -51,7 +49,7 @@ class _MazadState extends State<Mazad> {
 
 
   void _checkGameEnd() {
-    if (questionsNumber == 10) {
+    if (questionsNumber == 6) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/Ehbed_data.dart';
+import '../database/games database/Ehbed_data.dart';
 import 'package:football/theme.dart';
 
 import '../drawer.dart';

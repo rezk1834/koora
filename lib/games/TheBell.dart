@@ -4,7 +4,7 @@ import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../drawer.dart';
 import '../theme.dart';
-import '../database/saba7o database/TheBell_data.dart';
+import '../database/games database/TheBell_data.dart';
 
 class TheBell extends StatefulWidget {
   final int redScore;
@@ -31,7 +31,7 @@ class _TheBellState extends State<TheBell> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, TheBell_data.length);
+    randomNumbers = generateUniqueRandomNumbers(10, TheBell_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -66,7 +66,7 @@ class _TheBellState extends State<TheBell> {
 
   void checkGameEnd() {
     showAnswerNotifier.value = false;
-    if (questionsNumber == 8) {
+    if (questionsNumber == 10) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
