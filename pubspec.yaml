@@ -39,6 +39,9 @@ dependencies:
   url_launcher: ^6.3.0
   share: ^2.0.4
   confetti: ^0.7.0
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  csv: ^6.0.0
 
 
 
@@ -83,6 +86,7 @@ flutter:
     - assets/saba7o/
     - assets/saba7o/men_fe_elsora/
     - assets/aqua ta7ady/
+    - assets/acting_data.csv
 
 
   fonts:
