@@ -4,7 +4,7 @@ import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../drawer.dart';
 import '../theme.dart';
-import '../database/saba7o database/TheImpossible_data.dart';
+import '../database/games database/TheImpossible_data.dart';
 
 class TheImpossible extends StatefulWidget {
   final int redScore;
@@ -31,7 +31,7 @@ class _TheImpossibleState extends State<TheImpossible> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, TheImpossible_data.length);
+    randomNumbers = generateUniqueRandomNumbers(5, TheImpossible_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -68,7 +68,7 @@ class _TheImpossibleState extends State<TheImpossible> {
 
   void checkGameEnd() {
     showAnswerNotifier.value = false;
-    if (questionsNumber == 8) {
+    if (questionsNumber == 5) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;

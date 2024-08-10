@@ -6,7 +6,7 @@ import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../drawer.dart';
 import '../theme.dart';
-import '../database/saba7o database/btola_data.dart';
+import '../database/games database/btola_data.dart';
 
 class Btola extends StatefulWidget {
   final int redScore;

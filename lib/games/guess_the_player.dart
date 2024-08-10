@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/guess_the_player_data.dart';
+import '../database/games database/guess_the_player_data.dart';
 import '../drawer.dart';
 import '../theme.dart';
 

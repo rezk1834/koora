@@ -4,7 +4,7 @@ import '../components/drawingpage.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
-import '../database/saba7o database/draw_data.dart';
+import '../database/games database/draw_data.dart';
 import '../drawer.dart';
 import '../theme.dart';
 

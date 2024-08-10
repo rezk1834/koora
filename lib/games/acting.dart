@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:football/theme.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/acting_data.dart';
+import '../database/games database/Players.dart';
 import '../drawer.dart';
 
 class Acting extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ActingState extends State<Acting> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, Acting_data.length);
+    randomNumbers = generateUniqueRandomNumbers(10, Players.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -53,12 +53,12 @@ class _ActingState extends State<Acting> {
 
   void changeQuestion() {
     setState(() {
-      randomNumbers[questionsNumber] = random.nextInt(Acting_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(Players.length);
     });
   }
 
   void _checkGameEnd() {
-    if (questionsNumber == 8) {
+    if (questionsNumber == 10) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
@@ -154,7 +154,7 @@ class _ActingState extends State<Acting> {
                   margin: EdgeInsets.symmetric(vertical: 20),
                   child: Center(
                     child: Text(
-                      Acting_data[randomNumbers[questionsNumber]]['name'] as String,
+                      Players[randomNumbers[questionsNumber]]['name'] as String,
                       style: TextStyle(
                         fontSize: 40,
                         color: isDarkMode ? colors.mainText : colors.secondaryText,

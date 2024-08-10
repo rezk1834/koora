@@ -7,7 +7,7 @@ import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../drawer.dart';
 import '../theme.dart';
-import '../database/saba7o database/men_fel_sora_data.dart';
+import '../database/games database/men_fel_sora_data.dart';
 
 class Men_fe_elsora extends StatefulWidget {
   final int redScore;

@@ -1,4 +1,4 @@
-final List<Map<String, String>> Acting_data = [
+final List<Map<String, String>> Players = [
   {"name": "غاريث بيل"},
   {"name": "إيرلينغ هالاند"},
   {"name": "كريستيانو رونالدو"},

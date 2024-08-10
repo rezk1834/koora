@@ -1,4 +1,4 @@
-final List<Map<String, dynamic>> Ekdeb_data = [
+final List<Map<String, dynamic>> MCQ_data = [
   {"question": "امتي كانت اول مرة الاهلي ياخد الدوري من غير هزيمة؟", "answer": 1976},
   {"question": "كام لاعب جاب 100+ جون في البريميرليج؟", "answer": 34},
   {"question": "هازارد سجل كام جون مع المنتخب؟", "answer": 33},

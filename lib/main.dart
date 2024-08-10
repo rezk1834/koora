@@ -3,12 +3,14 @@ import 'package:football/home_screen.dart';
 import 'package:football/round%2016/round.dart';
 import 'package:football/games.dart';
 import 'package:flutter/services.dart';
-import 'database/Load data.dart';
+
 import 'theme.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await loadCsvData();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
   runApp(MyApp());
 }
 

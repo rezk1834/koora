@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/saba7o database/Whisper_data.dart';
+import '../database/games database/Players.dart';
 import '../drawer.dart';
 import '../theme.dart';
 
@@ -30,7 +30,7 @@ class _WhisperState extends State<Whisper> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, Whisper_data.length);
+    randomNumbers = generateUniqueRandomNumbers(8, Players.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -71,13 +71,13 @@ class _WhisperState extends State<Whisper> {
   void changeQuestion() {
     setState(() {
       checkGameEnd();
-      randomNumbers[questionsNumber] = random.nextInt(Whisper_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(Players.length);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<int> randomNumbers = generateUniqueRandomNumbers(8, Whisper_data.length);
+    List<int> randomNumbers = generateUniqueRandomNumbers(8, Players.length);
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
 
@@ -154,7 +154,7 @@ class _WhisperState extends State<Whisper> {
                 margin: EdgeInsets.symmetric(vertical: 20),
                 child: Center(
                   child: Text(
-                    Whisper_data[randomNumbers[questionsNumber]]['name'] as String,
+                    Players[randomNumbers[questionsNumber]]['name'] as String,
                     style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
                 ),

@@ -4,7 +4,7 @@ import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../drawer.dart';
 import '../theme.dart';
-import '../database/saba7o database/WDYK_data.dart';
+import '../database/games database/WDYK_data.dart';
 
 class WDYK extends StatefulWidget {
   final int redScore;
@@ -33,7 +33,7 @@ class _WDYKState extends State<WDYK> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, WDYK_data.length);
+    randomNumbers = generateUniqueRandomNumbers(4, WDYK_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -100,7 +100,7 @@ class _WDYKState extends State<WDYK> {
 
   void checkGameEnd() {
     showAnswerNotifier.value = false;
-    if (questionsNumber == 8) {
+    if (questionsNumber == 4) {
       questionsNumber--; // to not exceed the length of questions
       if (gameRedScore > gameBlueScore) {
         redScore++;
