@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:football/home_screen.dart';
 import 'package:football/round%2016/round.dart';
 import 'package:football/games.dart';
+import 'package:flutter/services.dart';
 
 import 'theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
