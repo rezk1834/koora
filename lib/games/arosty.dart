@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/games database/arosty_data.dart';
+import '../database/games database/Players.dart';
 import '../drawer.dart';
 import '../theme.dart';
 
@@ -30,7 +30,7 @@ class _ArostyState extends State<Arosty> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(8, Arosty_data.length);
+    randomNumbers = generateUniqueRandomNumbers(8, Players.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -71,13 +71,13 @@ class _ArostyState extends State<Arosty> {
   void changeQuestion() {
     setState(() {
       checkGameEnd();
-      randomNumbers[questionsNumber] = random.nextInt(Arosty_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(Players.length);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<int> randomNumbers = generateUniqueRandomNumbers(8, Arosty_data.length);
+    List<int> randomNumbers = generateUniqueRandomNumbers(8, Players.length);
     final theme = Theme.of(context);
     final isDarkMode = theme.brightness == Brightness.dark;
 
@@ -154,7 +154,7 @@ class _ArostyState extends State<Arosty> {
                 margin: EdgeInsets.symmetric(vertical: 20),
                 child: Center(
                   child: Text(
-                    Arosty_data[randomNumbers[questionsNumber]]['name'] as String,
+                    Players[randomNumbers[questionsNumber]]['name'] as String,
                     style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
                 ),

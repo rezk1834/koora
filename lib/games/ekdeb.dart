@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/games database/Ekdeb_data.dart';
+import '../database/games database/MCQ_data.dart';
 import 'package:football/theme.dart';
 
 import '../drawer.dart';
@@ -33,7 +33,7 @@ class _EkdebState extends State<Ekdeb> {
     super.initState();
     redScore = widget.redScore;
     blueScore = widget.blueScore;
-    randomNumbers = generateUniqueRandomNumbers(5, Ekdeb_data.length);
+    randomNumbers = generateUniqueRandomNumbers(5, MCQ_data.length);
   }
 
   List<int> generateUniqueRandomNumbers(int count, int max) {
@@ -58,7 +58,7 @@ class _EkdebState extends State<Ekdeb> {
     setState(() {
       checkGameEnd();
       showAnswerNotifier.value = false;
-      randomNumbers[questionsNumber] = random.nextInt(Ekdeb_data.length);
+      randomNumbers[questionsNumber] = random.nextInt(MCQ_data.length);
     });
   }
 
@@ -163,7 +163,7 @@ class _EkdebState extends State<Ekdeb> {
                   margin: EdgeInsets.symmetric(vertical: 20),
                   child: Center(
                     child: Text(
-                      Ekdeb_data[randomNumbers[questionsNumber]]['question']
+                      MCQ_data[randomNumbers[questionsNumber]]['question']
                       as String,
                       style: TextStyle(
                           fontSize: 40,
@@ -185,7 +185,7 @@ class _EkdebState extends State<Ekdeb> {
                       margin: EdgeInsets.symmetric(vertical: 20),
                       child: showAnswer
                           ? Text(
-                        Ekdeb_data[randomNumbers[questionsNumber]]
+                        MCQ_data[randomNumbers[questionsNumber]]
                         ['answer']
                             .toString(),
                         style: TextStyle(
