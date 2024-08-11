@@ -4,7 +4,7 @@ import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/games database/Kobry_data.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 class Kobry extends StatefulWidget {
   final int redScore;

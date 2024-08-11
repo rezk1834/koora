@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:football/components/timer.dart';
 import '../database/database.dart';
 import '../database/games database/bank_data.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 
 class BankPage extends StatefulWidget {

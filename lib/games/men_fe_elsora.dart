@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 import '../database/games database/men_fel_sora_data.dart';
 

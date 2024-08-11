@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/main_square.dart';
 import 'database/database.dart';
-import 'drawer.dart';
+import 'components/drawer.dart';
 
 class home_screen extends StatelessWidget {
    home_screen({super.key});

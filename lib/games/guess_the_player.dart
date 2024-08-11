@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/games database/guess_the_player_data.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 
 class GuessThePlayer extends StatefulWidget {

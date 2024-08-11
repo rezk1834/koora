@@ -4,7 +4,7 @@ import 'package:football/components/timer.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/games database/theMazad_data.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 class Mazad extends StatefulWidget {
   final int redScore;

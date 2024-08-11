@@ -6,7 +6,7 @@ import '../components/scoreContainer.dart';
 import '../database/games database/MCQ_data.dart';
 import 'package:football/theme.dart';
 
-import '../drawer.dart';
+import '../components/drawer.dart';
 
 class Ehbed extends StatefulWidget {
   final int redScore;

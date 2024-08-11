@@ -1,10 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:football/components/appbar.dart';
 import 'package:football/theme.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/games database/Players.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 
 class Acting extends StatefulWidget {
   final int redScore;
@@ -47,7 +48,7 @@ class _ActingState extends State<Acting> {
   void draw() {
     setState(() {
       questionsNumber++;
-      _checkGameEnd();
+      checkGameEnd();
     });
   }
 
@@ -57,8 +58,8 @@ class _ActingState extends State<Acting> {
     });
   }
 
-  void _checkGameEnd() {
-    if (questionsNumber == 10) {
+  void checkGameEnd(int x) {
+    if (questionsNumber == x) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
@@ -81,19 +82,9 @@ class _ActingState extends State<Acting> {
 
     return Scaffold(
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
-      appBar: AppBar(
-        title: Text(
-          'تمثيل',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
-      ),
+      appBar: PreferredSize(
+          preferredSize: 20,
+      child: TheAppBar(title: 'تمثيل')),
       drawer: TheDrawer(),
       body: Stack(
         children: [
@@ -103,7 +94,11 @@ class _ActingState extends State<Acting> {
               children: <Widget>[
                 Text(
                   'رقم السؤال: ${questionsNumber + 1}',
-                  style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
+                  style: TextStyle(
+                    fontSize: 27,
+                    fontFamily: 'Zain',
+                    color: isDarkMode ? colors.mainText : colors.secondaryText,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -112,14 +107,14 @@ class _ActingState extends State<Acting> {
                     children: [
                       Column(
                         children: [
-                          scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team1,size: 35,),
+                            icon: Icon(Icons.add, color: colors.team1, size: 35),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
                                 questionsNumber++;
-                                _checkGameEnd();
+                                checkGameEnd(10);
                               });
                             },
                           ),
@@ -127,14 +122,14 @@ class _ActingState extends State<Acting> {
                       ),
                       Column(
                         children: [
-                          scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode),
                           IconButton(
-                            icon: Icon(Icons.add, color: colors.team2,size: 35,),
+                            icon: Icon(Icons.add, color: colors.team2, size: 35),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
                                 questionsNumber++;
-                                _checkGameEnd();
+                                checkGameEnd(10);
                               });
                             },
                           ),
@@ -180,7 +175,7 @@ class _ActingState extends State<Acting> {
                       foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                       backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
                     ),
-                    child: Text('تغيير الاسم',style: TextStyle(fontSize: 20),),
+                    child: Text('تغيير الاسم', style: TextStyle(fontSize: 20)),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
@@ -190,7 +185,7 @@ class _ActingState extends State<Acting> {
                       foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                       backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
                     ),
-                    child: Text('لا أجابة',style: TextStyle(fontSize: 20),),
+                    child: Text('لا أجابة', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),
