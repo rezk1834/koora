@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:football/drawer.dart';
+import 'package:football/components/drawer.dart';
 import 'components/square.dart';
 import 'components/scoreContainer.dart';
 import 'database/database.dart';

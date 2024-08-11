@@ -5,7 +5,7 @@ import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/games database/draw_data.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 
 class Draw extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:football/round%2016/roundScreen.dart';
 
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 
 class NameEntryScreen extends StatefulWidget {

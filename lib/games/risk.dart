@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/scoreContainer.dart';
 import '../database/database.dart';
 import '../database/games database/risk_data.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 
 class Risk extends StatefulWidget {

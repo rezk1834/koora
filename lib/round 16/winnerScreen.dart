@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 
 class WinnerScreen extends StatefulWidget {

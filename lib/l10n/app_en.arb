@@ -1,0 +1,10 @@
+{
+  "appTitle": "My Flutter App",
+  "greeting": "Hello",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "@greeting": {
+    "description": "A greeting message"
+  }
+}

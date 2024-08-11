@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/scoreContainer.dart';
-import '../drawer.dart';
+import '../components/drawer.dart';
 import '../theme.dart';
 import 'bankpage.dart';
 

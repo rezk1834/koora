@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:football/theme.dart';
 
-import 'drawer.dart';
+import 'components/drawer.dart';
 
 class AboutPage extends StatelessWidget {
   @override
