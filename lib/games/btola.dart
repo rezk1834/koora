@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:football/components/appbar.dart';
 
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
@@ -90,19 +91,7 @@ class _BtolaState extends State<Btola> {
 
     return Scaffold(
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
-      appBar: AppBar(
-        title: Text(
-          'خمن البطولة',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
-      ),
+      appBar: AppyBar(title: 'خمن البطولة'),
       drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -119,7 +108,7 @@ class _BtolaState extends State<Btola> {
                 children: [
                   Column(
                     children: [
-                      scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
+                      scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode,-5,5),
                       IconButton(
                         icon: Icon(Icons.add, color: colors.team1,size: 35,),
                         onPressed: () {
@@ -137,7 +126,7 @@ class _BtolaState extends State<Btola> {
                   ),
                   Column(
                     children: [
-                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
+                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode,5,5),
                       IconButton(
                         icon: Icon(Icons.add, color: colors.team2,size: 35,),
                         onPressed: () {

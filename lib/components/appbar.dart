@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
-class TheAppBar extends StatefulWidget {
+class AppyBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
-  const TheAppBar({super.key, required this.title});
+
+  const AppyBar({super.key, required this.title});
 
   @override
-  State<TheAppBar> createState() => _TheAppBarState();
+  State<AppyBar> createState() => _AppyBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class _TheAppBarState extends State<TheAppBar> {
+class _AppyBarState extends State<AppyBar> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

@@ -58,8 +58,8 @@ class _ActingState extends State<Acting> {
     });
   }
 
-  void checkGameEnd(int x) {
-    if (questionsNumber == x) {
+  void checkGameEnd() {
+    if (questionsNumber == 10) {
       questionsNumber--;
       if (gameRedScore > gameBlueScore) {
         redScore++;
@@ -82,9 +82,7 @@ class _ActingState extends State<Acting> {
 
     return Scaffold(
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
-      appBar: PreferredSize(
-          preferredSize: 20,
-      child: TheAppBar(title: 'تمثيل')),
+      appBar: AppyBar(title: 'تمثيل'),
       drawer: TheDrawer(),
       body: Stack(
         children: [
@@ -107,14 +105,14 @@ class _ActingState extends State<Acting> {
                     children: [
                       Column(
                         children: [
-                          scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode,-5,5),
                           IconButton(
                             icon: Icon(Icons.add, color: colors.team1, size: 35),
                             onPressed: () {
                               setState(() {
                                 gameRedScore++;
                                 questionsNumber++;
-                                checkGameEnd(10);
+                                checkGameEnd();
                               });
                             },
                           ),
@@ -122,14 +120,14 @@ class _ActingState extends State<Acting> {
                       ),
                       Column(
                         children: [
-                          scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode,5,5 ),
                           IconButton(
                             icon: Icon(Icons.add, color: colors.team2, size: 35),
                             onPressed: () {
                               setState(() {
                                 gameBlueScore++;
                                 questionsNumber++;
-                                checkGameEnd(10);
+                                checkGameEnd();
                               });
                             },
                           ),

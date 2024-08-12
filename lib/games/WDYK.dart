@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:football/components/appbar.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../components/drawer.dart';
@@ -121,19 +122,7 @@ class _WDYKState extends State<WDYK> {
 
     return Scaffold(
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
-      appBar: AppBar(
-        title: Text(
-          'ماذا تعرف',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
-      ),
+      appBar: AppyBar(title: 'ماذا تعرف',),
       drawer: TheDrawer(),
       body: Stack(
         children: [
@@ -142,7 +131,7 @@ class _WDYKState extends State<WDYK> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Question No.${questionsNumber + 1}',
+                  'سؤال رقم: ${questionsNumber + 1}',
                   style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                 ),
                 Padding(
@@ -152,7 +141,7 @@ class _WDYKState extends State<WDYK> {
                     children: [
                       Column(
                         children: [
-                          scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode),
+                          scoreContainer(gameRedScore.toString(), colors.team1, 35, isDarkMode,-5,5),
                           SizedBox(height: 5,),
                           Text(
                             'سترايك: $redStrikes',
@@ -172,7 +161,7 @@ class _WDYKState extends State<WDYK> {
 
                       Column(
                         children: [
-                          scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode),
+                          scoreContainer(gameBlueScore.toString(), colors.team2, 35, isDarkMode,5,5),
                           SizedBox(height: 5,),
                           Text(
                             'سترايك: $blueStrikes',

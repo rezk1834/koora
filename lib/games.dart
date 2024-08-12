@@ -64,41 +64,14 @@ class _GamesState extends State<Games> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-            child: Container(
-              height: 50,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: colors.team1,
-                        borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          red_score.toString(),
-                          style: TextStyle(fontSize: 25, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: colors.team2,
-                        borderRadius: BorderRadius.horizontal(right: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          blue_score.toString(),
-                          style: TextStyle(fontSize: 25, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(child: scoreContainer(red_score.toString(), colors.team1, 35,isDarkMode,-5,5)),
+                SizedBox(width: 15,),
+                Expanded(child: scoreContainer(blue_score.toString(), colors.team2, 35,isDarkMode,5,5)),
+              ],
             ),
           ),
           Expanded(
@@ -139,7 +112,7 @@ class _GamesState extends State<Games> {
                       backgroundColor: isDarkMode ? Colors.transparent :colors.lightbutton,
                     ),
                     child: Text(
-                      'Reset the score',
+                      'تصفير النقاط',
                       style: TextStyle(fontSize: 25),
                     ),
                   ),

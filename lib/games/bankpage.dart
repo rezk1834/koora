@@ -91,8 +91,6 @@ class _BankPageState extends State<BankPage> {
         children: [
           Column(
             children: [
-              SizedBox(height: 15,),
-              CountdownTimer(key: timerKey, seconds: 120),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 child: Text(
@@ -132,6 +130,7 @@ class _BankPageState extends State<BankPage> {
                   ),
                 ),
               ),
+              CountdownTimer(key: timerKey, seconds: 120),
             ],
           ),
           Positioned(

@@ -41,7 +41,7 @@ class TheDrawer extends StatelessWidget {
                     ),
                     title: Text(
                       "الاتصال بنا",
-                      style: TextStyle(fontSize: 20, color: colors.mainText),
+                      style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText,),
                     ),
                     onTap: () => _launchURL('https://www.linkedin.com/in/moustafarezk1834/'),
                   ),
@@ -52,7 +52,7 @@ class TheDrawer extends StatelessWidget {
                     ),
                     title: Text(
                       "المزيد من البرامج",
-                      style: TextStyle(fontSize: 20, color: colors.mainText),
+                      style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText,),
                     ),
                     onTap: () => _launchURL(
                         'https://drive.google.com/drive/folders/1-HFaqY-nKXCBXxfAiH0X1iKOgd0LWhBA?usp=sharing'),
@@ -64,7 +64,7 @@ class TheDrawer extends StatelessWidget {
                     ),
                     title: Text(
                       "اعطي رأيك",
-                      style: TextStyle(fontSize: 20, color: colors.mainText),
+                      style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText,),
                     ),
                     onTap: () => _launchURL(
                         'https://docs.google.com/forms/d/e/1FAIpQLSe0uvpW60tVsfEFRu85CmRH27uRm_r5egASHMz-YgmkX7eQqA/viewform'),
@@ -76,7 +76,7 @@ class TheDrawer extends StatelessWidget {
                     ),
                     title: Text(
                       "دعوة الاصدقاء",
-                      style: TextStyle(fontSize: 20, color: colors.mainText),
+                      style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText,),
                     ),
                     onTap: () => _inviteFriends(),
                   ),
@@ -87,7 +87,7 @@ class TheDrawer extends StatelessWidget {
                     ),
                     title: Text(
                       "عن البرنامج",
-                      style: TextStyle(fontSize: 20, color: colors.mainText),
+                      style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText,),
                     ),
                     onTap: () => _navigateToAboutPage(context),
                   ),
@@ -103,7 +103,7 @@ class TheDrawer extends StatelessWidget {
                 ),
                 title: Text(
                   "خروج",
-                  style: TextStyle(fontSize: 20, color: colors.mainText),
+                  style: TextStyle(fontSize: 20, color: isDarkMode ? colors.mainText : colors.secondaryText,),
                 ),
                 onTap: () {
                   _showExitConfirmationDialog(context);
