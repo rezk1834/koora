@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget scoreContainer(String title, Color color, double fontSize,bool isDarkMode) {
+Widget scoreContainer(String title, Color color, double fontSize,bool isDarkMode, double Xos,double Yos) {
   return Container(
     width: 50, // Set the width to make it a square
     height: 50, // Set the height to match the width
@@ -14,7 +14,7 @@ Widget scoreContainer(String title, Color color, double fontSize,bool isDarkMode
       boxShadow: [
         BoxShadow(
           color: color.withOpacity(0.7), // Apply shadow with opacity
-          offset: Offset(5, 5), // Offset the shadow to the bottom right
+          offset: Offset(Xos,Yos), // Offset the shadow to the bottom right
           blurRadius: 4, // Optional: Blur the shadow for a softer effect
         ),
       ],

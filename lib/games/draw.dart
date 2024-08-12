@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:football/components/appbar.dart';
 import '../components/drawingpage.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
@@ -78,40 +79,61 @@ class _DrawState extends State<Draw> {
     final isDarkMode = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
-      appBar: AppBar(
-        title: Text(
-          'الرسم',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
-      ),
+      backgroundColor: isDarkMode ? colors.darkBackground : colors
+          .lightBackground,
+      appBar: AppyBar(title: 'الرسم'),
       drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-                  Text(
-                    'سؤال رقم: ${questionsNumber + 1}',
-                    style: TextStyle(
-                      fontSize: 27,
-                      fontFamily: 'Zain',
-                      color: isDarkMode ? colors.mainText : colors.secondaryText,
-                    ),
-                  ),
+            Text(
+              'سؤال رقم: ${questionsNumber + 1}',
+              style: TextStyle(
+                fontSize: 27,
+                fontFamily: 'Zain',
+                color: isDarkMode ? colors.mainText : colors.secondaryText,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildScoreColumn(gameRedScore, colors.team1, isDarkMode),
-                  _buildScoreColumn(gameBlueScore, colors.team2, isDarkMode),
+                  Column(
+                    children: [
+                      scoreContainer(
+                          gameRedScore.toString(), colors.team1, 35, isDarkMode,
+                          -5, 5),
+                      IconButton(
+                        icon: Icon(Icons.add, color: colors.team1, size: 35,),
+                        onPressed: () {
+                          setState(() {
+                            gameRedScore++;
+                            questionsNumber++;
+                            _checkGameEnd();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+
+                  Column(
+                    children: [
+                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,
+                          isDarkMode, 5, 5),
+                      IconButton(
+                        icon: Icon(Icons.add, color: colors.team2, size: 35,),
+                        onPressed: () {
+                          setState(() {
+                            gameBlueScore++;
+                            questionsNumber++;
+                            _checkGameEnd();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -131,7 +153,8 @@ class _DrawState extends State<Draw> {
                       Draw_data[randomNumbers[questionsNumber]]['name'] as String,
                       style: TextStyle(
                         fontSize: 40,
-                        color: isDarkMode ? colors.mainText : colors.secondaryText,
+                        color: isDarkMode ? colors.mainText : colors
+                            .secondaryText,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -154,31 +177,39 @@ class _DrawState extends State<Draw> {
                 ElevatedButton(
                   onPressed: changeQuestion,
                   style: ElevatedButton.styleFrom(
-                    side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
-                    foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
-                    backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
+                    side: BorderSide(width: 2,
+                        color: isDarkMode ? colors.mainText : colors
+                            .secondaryText),
+                    foregroundColor: isDarkMode ? colors.mainText : colors
+                        .secondaryText,
+                    backgroundColor: isDarkMode ? Colors.transparent : colors
+                        .lightbutton,
                   ),
-                  child: Text('تغيير الفريق',style: TextStyle(fontSize: 20),),
+                  child: Text('تغيير الفريق', style: TextStyle(fontSize: 20),),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DrawingPage()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    side: BorderSide(width: 2, color: isDarkMode ? colors.mainText : colors.secondaryText),
-                    foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
-                    backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
-                  ),
-                  child: Row(
-                    children: [
-                    Text('ارسم    ',style: TextStyle(fontSize: 20),),
-                      Icon(Icons.draw_rounded),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DrawingPage()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(width: 2,
+                          color: isDarkMode ? colors.mainText : colors
+                              .secondaryText),
+                      foregroundColor: isDarkMode ? colors.mainText : colors
+                          .secondaryText,
+                      backgroundColor: isDarkMode ? Colors.transparent : colors
+                          .lightbutton,
+                    ),
+                    child: Row(
+                      children: [
+                        Text('ارسم    ', style: TextStyle(fontSize: 20),),
+                        Icon(Icons.draw_rounded),
 
-                    ],
-                  )
+                      ],
+                    )
                 ),
               ],
             ),
@@ -187,26 +218,5 @@ class _DrawState extends State<Draw> {
       ),
     );
   }
-
-  Widget _buildScoreColumn(int score, Color color, bool isDarkMode) {
-    return Column(
-      children: [
-        scoreContainer(score.toString(), color, 35, isDarkMode),
-        IconButton(
-          icon: Icon(Icons.add, color: color, size: 35),
-          onPressed: () {
-            setState(() {
-              if (color == colors.team1) {
-                gameRedScore++;
-              } else {
-                gameBlueScore++;
-              }
-              questionsNumber++;
-              _checkGameEnd();
-            });
-          },
-        ),
-      ],
-    );
-  }
 }
+

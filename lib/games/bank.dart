@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:football/components/appbar.dart';
 import '../components/scoreContainer.dart';
 import '../components/drawer.dart';
 import '../theme.dart';
@@ -61,13 +62,15 @@ class _BankState extends State<Bank> {
                 Navigator.pop(context, [redScore, blueScore]);
               },
               style: TextButton.styleFrom(
-                foregroundColor: colors.team1,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Text('الفريق الأحمر',style: TextStyle(color: colors.team1),),
+              child: Text(
+                'الفريق الأحمر',
+                style: TextStyle(color: colors.team1),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -78,13 +81,15 @@ class _BankState extends State<Bank> {
                 Navigator.pop(context, [redScore, blueScore]);
               },
               style: TextButton.styleFrom(
-                foregroundColor: colors.team2,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Text('الفريق الأزرق',style: TextStyle(color: colors.team2),),
+              child: Text(
+                'الفريق الأزرق',
+                style: TextStyle(color: colors.team2),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -95,13 +100,17 @@ class _BankState extends State<Bank> {
                 Navigator.pop(context, [redScore, blueScore]);
               },
               style: TextButton.styleFrom(
-                foregroundColor: colors.team2,
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Text('تعادل',style: TextStyle(color: isDarkMode ? colors.mainText : colors.secondaryText,),),
+              child: Text(
+                'تعادل',
+                style: TextStyle(
+                  color: isDarkMode ? colors.mainText : colors.secondaryText,
+                ),
+              ),
             ),
           ],
         );
@@ -130,9 +139,7 @@ class _BankState extends State<Bank> {
           }
           buttonClicked[index] = true;
 
-          // Check if all rounds have been played
           if (buttonClicked.every((clicked) => clicked)) {
-            // Automatically call _endround when all rounds are played
             final theme = Theme.of(context);
             final isDarkMode = theme.brightness == Brightness.dark;
             _endround(isDarkMode: isDarkMode);
@@ -149,20 +156,7 @@ class _BankState extends State<Bank> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          'بنك',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppyBar(title: 'بنك'),
       drawer: TheDrawer(),
       body: Container(
         decoration: BoxDecoration(
@@ -177,15 +171,15 @@ class _BankState extends State<Bank> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(50.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  SizedBox(height: 35),
+                  SizedBox(height: 100),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      scoreContainer(redBankScore.toString(), colors.team1, 35, isDarkMode),
-                      scoreContainer(blueBankScore.toString(), colors.team2, 35, isDarkMode),
+                      scoreContainer(redBankScore.toString(), colors.team1, 35, isDarkMode, -5, 5),
+                      scoreContainer(blueBankScore.toString(), colors.team2, 35, isDarkMode, 5, 5),
                     ],
                   ),
                 ],
@@ -210,7 +204,11 @@ class _BankState extends State<Bank> {
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                          backgroundColor: (i % 2 == 0) ? colors.team1 : colors.team2,
+                          backgroundColor: buttonClicked[i]
+                              ? Colors.grey
+                              : (i % 2 == 0)
+                              ? colors.team1
+                              : colors.team2,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -219,7 +217,11 @@ class _BankState extends State<Bank> {
                         ),
                         child: Text(
                           'الجولة ${i + 1}',
-                          style: TextStyle(color: Colors.white, fontSize: 25),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

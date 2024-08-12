@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:football/components/appbar.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
 import '../database/games database/guess_the_player_data.dart';
@@ -90,19 +91,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
 
     return Scaffold(
       backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
-      appBar: AppBar(
-        title: Text(
-          'من اللاعب',
-          style: TextStyle(
-            fontSize: 30,
-            fontFamily: 'Teko',
-            color: isDarkMode ? colors.mainText : colors.secondaryText,
-          ),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false  ,
-        backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
-      ),
+      appBar: AppyBar(title: 'من اللاعب'),
       drawer: TheDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -119,7 +108,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                 children: [
                   Column(
                     children: [
-                      scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode),
+                      scoreContainer(gameRedScore.toString(), colors.team1, 35,isDarkMode,-5,5),
                       IconButton(
                         icon: Icon(Icons.add, color: colors.team1,size: 35,),
                         onPressed: () {
@@ -132,10 +121,9 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                       ),
                     ],
                   ),
-
                   Column(
                     children: [
-                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode),
+                      scoreContainer(gameBlueScore.toString(), colors.team2, 35,isDarkMode,5,5),
                       IconButton(
                         icon: Icon(Icons.add, color: colors.team2,size: 35,),
                         onPressed: () {
@@ -150,8 +138,7 @@ class _GuessThePlayerState extends State<GuessThePlayer> {
                   ),
                 ],
               ),
-            ),
-            Expanded(
+            ),Expanded(
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.4),
