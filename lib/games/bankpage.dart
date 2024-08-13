@@ -92,13 +92,12 @@ class _BankPageState extends State<BankPage> {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
                 child: Text(
                   'السؤال رقم: ${questionsNumber + 1}',
                   style: TextStyle(fontSize: 27, fontFamily: 'Zain', color: isDarkMode ? colors.mainText : colors.secondaryText),
                 ),
               ),
-              SizedBox(height: 10),
               Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -110,7 +109,7 @@ class _BankPageState extends State<BankPage> {
                 child: Center(
                   child: Text(
                     Bank_data[randomNumbers[questionsNumber]]['question'] as String,
-                    style: TextStyle(fontSize: 27, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    style: TextStyle(fontSize: 25, color: isDarkMode ? colors.mainText : colors.secondaryText),
                   ),
                 ),
               ),
@@ -121,15 +120,16 @@ class _BankPageState extends State<BankPage> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: EdgeInsets.all(10),
-                margin: EdgeInsets.symmetric(vertical: 20),
+                margin: EdgeInsets.symmetric(vertical: 10),
                 child: Center(
                   child: Text(
                     Bank_data[randomNumbers[questionsNumber]]['answer'].toString(),
-                    style: TextStyle(fontSize: 40, color: isDarkMode ? colors.mainText : colors.secondaryText),
+                    style: TextStyle(fontSize: 25, color: isDarkMode ? colors.mainText : colors.secondaryText),
 
                   ),
                 ),
               ),
+              SizedBox(height: 5,),
               CountdownTimer(key: timerKey, seconds: 120),
             ],
           ),

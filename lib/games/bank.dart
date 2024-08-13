@@ -58,7 +58,6 @@ class _BankState extends State<Bank> {
                 setState(() {
                   redScore++;
                 });
-                Navigator.pop(context);
                 Navigator.pop(context, [redScore, blueScore]);
               },
               style: TextButton.styleFrom(
@@ -77,7 +76,6 @@ class _BankState extends State<Bank> {
                 setState(() {
                   blueScore++;
                 });
-                Navigator.pop(context);
                 Navigator.pop(context, [redScore, blueScore]);
               },
               style: TextButton.styleFrom(
@@ -93,10 +91,6 @@ class _BankState extends State<Bank> {
             ),
             TextButton(
               onPressed: () {
-                setState(() {
-                  blueScore++;
-                });
-                Navigator.pop(context);
                 Navigator.pop(context, [redScore, blueScore]);
               },
               style: TextButton.styleFrom(
@@ -117,6 +111,7 @@ class _BankState extends State<Bank> {
       },
     );
   }
+
 
   void navigateToBankPage(Color color, int bankingScore, int index) {
     Navigator.push(
