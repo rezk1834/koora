@@ -16,7 +16,7 @@ final List<Map<String, String>> main_categories = [
 final List<Map<String, String>> game_categories = [
   {
     "title": "اهبد صح",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/اهبد صح.png",
     "path": "/ehbed",
     "rules":
         "سؤال وكل فريق معاه 30 ثانية علشان يجاوب واللي اجابته اقرب بياخد نقطة ولو حد جاب اجابة صح بياخد نقطتين",
@@ -25,7 +25,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "اكدب صح",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/اكدب صح.png",
     "path": "/ekdeb",
     "rules":
         "كل لاعب من الفريق المنافس هيقول اجابة وهيكون في 3 اختيارات والفريق مطلوب منه يعرف الاجابة الصح",
@@ -34,7 +34,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "روندو",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/روندو.png",
     "path": "/rondo",
     "rules":
         "هنبدأ باسم لاعب او فريق (لو لاعب هتقول اسم فريق بعده والعكس) وهتفضل كده لحد ما المنافس يقول اسم غلط واللاعب يقول cheating لو صح هياخد البوينت لو غلط الخصم هياخد البوينت",
@@ -43,7 +43,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "مين في الصورة",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/مين في الصورة.png",
     "path": "/men_fe_elsora",
     "rules":
         "هيكون في صورة لفريق وكل فريق هيقول يجيب اكبر عدد يقدر عليه. الترتيب هيكون ABBA ولو لاعب معرفش يجاوب مرتين ورا بعض بيخسر واللاعب التاني يكمل لحد ما يخسر والبوينت تروح للفريق التاني",
@@ -52,7 +52,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "الهمس ",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/الهمس.png",
     "path": "/whisper",
     "rules": "اللاعب هيلبس سماعة في ودانه وصاحبه هيحاول يقوله اسم لاعب",
     "type": "لعبة جماعية",
@@ -60,7 +60,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "5*10",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/5x10.png",
     "path": "/seconds",
     "rules": "معاك 10 ثواني علشان تقول 5 اجابات صحيحة",
     "type": "لعبة فردية",
@@ -68,7 +68,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "من اللاعب",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/من اللاعب.png",
     "path": "/guess_the_player",
     "rules": "هيكون في 5 معلومات عن اللاعب وكل فريق يحاول يعرفه اسرع",
     "type": "لعبة فردية و جماعية",
@@ -76,7 +76,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "كلمة السر",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/كلمة السر.png",
     "path": "/password",
     "rules":
         "كل لاعب هيحاول يقول لزميله علي اسم اللاعب بس من غير ما يقول اسم او رقم او نادي",
@@ -85,7 +85,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "ريسك",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/ريسك.png",
     "path": "/risk",
     "rules":
         "هيكون في 4 كاتيجوري وكل واحدة فيها 4 اسئلة بالتدريج من الاسهل للاصعب والفريق اللي يجمع نقاط اكتر يكسب. في سؤال دابل بوينت الحكم يختاره",
@@ -94,7 +94,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "بنك",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/بنك.png",
     "path": "/bank",
     "rules":
         "كل فريق ليه 3 جولات كل جولة 12 سؤال كل لاعب بيتسأل سؤال. كل لاعب ممكن يقول بنك قبل ما يتسأل سؤال وكل اجابة صح النقاط بتزيد (لو مقالش بنك وحد غلط بيرجع ل0) والفريق الللي معاه نقاط اكتر في البنك بيكسب",
@@ -103,7 +103,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "لبس صاحبك",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/لبس صاحبك.png",
     "path": "/Labes",
     "rules":
         "بيكون في سؤال وكل واحد بيتوقع اللاعب اللي معاه هيقول كام اجابة (اللاعب التاني مش بيكون عارف السؤال)",
@@ -112,7 +112,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "عروستي",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/عروستي بالعكس.png",
     "path": "/arosty",
     "rules":
         "كل لاعب بيتوقع صاحبه هيحتاج كام سؤال (الاجابة بصح او غلط) علشان يعرف اللاعب",
@@ -121,7 +121,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "الرسم",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/الرسم.png",
     "path": "/draw",
     "rules":
         "هيكون في لوجو فريق واللاعب هيحاول يرسمه لصاحبه ف 45 ثانيه لو معرفش الفريق التاني هيكون ليه اجابة",
@@ -130,7 +130,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "التمثيل",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/التمثيل.png",
     "path": "/acting",
     "rules":
         "هيكون في اسم لاعب/مدرب واللاعب هيحاول يمثله لصاحبه من غير ما يتكلم ف45 ثانية ولو معرفش الفريق التاني هيكون ليه 10 ثواني يجاوب فيهم اجابة واحدة",
@@ -139,7 +139,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "ماذا تعرف",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/ماذا تعرف.png",
     "path": "/wdyk",
     "rules": "كل لاعب هيقول اجابه ولو حد غلط 3 غلطات بيخسر النقطة",
     "type": "لعبة فردية",
@@ -147,7 +147,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "المزاد",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/المزاد.png",
     "path": "/mazad",
     "rules": "كل لاعب بيتوقع هيقول كام اجابة في خلال 30 ثانية",
     "type": "لعبة فردية",
@@ -171,7 +171,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "مسيرة اللاعب ",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/مسيرة اللاعب.png",
     "path": "/career",
     "rules": "هيكون في مسيرة لاعب واللي يعرفه الاول ياخد البوينت",
     "type": "لعبة فردية",
@@ -179,7 +179,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "كوبري",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/كوبري.png",
     "path": "/kobry",
     "rules":
         "هيكون في 2 لاعيبة وتحاول توصل بينهم بلاعيبة لعبوا معاهم وهيكون في وقت. اللي هيربط بين الاتنين لاعيبة بعدد لاعبين اقل هيكسب. لو نفس عدد اللاعبين فالاسرع هو اللي هياخد البوينت",
@@ -188,7 +188,7 @@ final List<Map<String, String>> game_categories = [
   },
   {
     "title": "خمن البطولة",
-    "image": "assets/main/games/.png",
+    "image": "assets/main/games/خمن البطولة.png",
     "path": "/btola",
     "rules":
         "هيكون في 5 اسئلة كل سؤال بيكون فيه ماتشات اتلعبت من بطولة من الدور الاول لحد النهائي بالنتيجة بتاعة الماتش والتيم اللي يعرف اسم البطولة والنسخة بياخد البوينت ولو جاوب في اول سؤالين بياخد 2 بوينتس",
