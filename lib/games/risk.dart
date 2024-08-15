@@ -93,24 +93,43 @@ class _RiskState extends State<Risk> {
     );
   }
 
-  void _endRound() {
+  void _endround({required bool isDarkMode}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('End Game'),
-          content: Text('Select the winning team:'),
+          backgroundColor: isDarkMode ? colors.darkBackground : colors.lightBackground,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          title: Text(
+            'انهي اللعبة',
+            style: TextStyle(
+              color: isDarkMode ? colors.mainText : colors.secondaryText,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Text(
+            'اختار الفريق الفائز:',
+            style: TextStyle(
+              color: isDarkMode ? colors.mainText : colors.secondaryText,
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
                   redScore++;
                 });
-                Navigator.pop(context, [redScore, blueScore]);
+                Navigator.pop(context, [redScore, blueScore]);Navigator.pop(context, [redScore, blueScore]);
               },
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               child: Text(
-                'Team Red Wins',
-                style: TextStyle(color: Colors.red),
+                'الفريق الأحمر',
+                style: TextStyle(color: colors.team1),
               ),
             ),
             TextButton(
@@ -118,11 +137,34 @@ class _RiskState extends State<Risk> {
                 setState(() {
                   blueScore++;
                 });
-                Navigator.pop(context, [redScore, blueScore]);
+                Navigator.pop(context, [redScore, blueScore]);Navigator.pop(context, [redScore, blueScore]);
               },
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               child: Text(
-                'Team Blue Wins',
-                style: TextStyle(color: Colors.blue),
+                'الفريق الأزرق',
+                style: TextStyle(color: colors.team2),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, [redScore, blueScore]);Navigator.pop(context, [redScore, blueScore]);
+              },
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text(
+                'تعادل',
+                style: TextStyle(
+                  color: isDarkMode ? colors.mainText : colors.secondaryText,
+                ),
               ),
             ),
           ],
@@ -278,7 +320,7 @@ class _RiskState extends State<Risk> {
                 foregroundColor: isDarkMode ? colors.mainText : colors.secondaryText,
                 backgroundColor: isDarkMode ? Colors.transparent : colors.lightbutton,
               ),
-              onPressed: _endRound,
+              onPressed: () => _endround(isDarkMode: isDarkMode),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text("انهي الجولة",style: TextStyle(fontSize: 15),),

@@ -7,7 +7,7 @@ void showWinnerDialog(String winningTeam,BuildContext context,int redScore,int b
   else teamW = 'الفريق الازرق';
   showDialog(
     context: context,
-    barrierDismissible: true,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return Stack(
         children: [
