@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:football/components/appbar.dart';
 import '../components/functions.dart';
 import '../components/scoreContainer.dart';
-import '../database/database.dart';
 import '../components/drawer.dart';
 import '../theme.dart';
 import '../database/games database/men_fel_sora_data.dart';
@@ -152,24 +151,35 @@ class _Men_fe_elsoraState extends State<Men_fe_elsora> {
                       SizedBox(height: 20),
                       InteractiveViewer(
                         maxScale: 12,
-                        child: Image.network(
-                          Men_fe_elsora_data[randomNumbers[questionsNumber]]['image'] as String,
-                          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) {
-                              return child;
-                            } else {
-                              return Center(
-                                child: CircularProgressIndicator(
-                                  value: loadingProgress.expectedTotalBytes != null
-                                      ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                                      : null,
-                                ),
-                              );
-                            }
+                        child: GestureDetector(
+                          onTap: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: isDarkMode ? colors.darkAppbarBackground : colors.lightAppbarBackground,
+                                    content: Center(child: Text("تقدر تكبر الصورة",style: TextStyle(color: isDarkMode ? colors.mainText : colors.secondaryText,)))
+
+                                )
+                            );
                           },
-                          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                            return Text('فشل في تحميل الصورة برجاء الاتصال بالنت واعادة المحاولة');
-                          },
+                          child: Image.network(
+                            Men_fe_elsora_data[randomNumbers[questionsNumber]]['image'] as String,
+                            loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    value: loadingProgress.expectedTotalBytes != null
+                                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                                        : null,
+                                  ),
+                                );
+                              }
+                            },
+                            errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                              return Text('فشل في تحميل الصورة برجاء الاتصال بالنت واعادة المحاولة',style: TextStyle(color: isDarkMode ? colors.mainText : colors.secondaryText,),);
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),
